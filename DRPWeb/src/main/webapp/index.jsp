@@ -1,0 +1,1 @@
+<script>location="view/main.html";</script>
