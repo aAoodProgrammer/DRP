@@ -73,7 +73,6 @@
 
     <jpa:repositories base-package="com.drp.repository"
                       repository-impl-postfix="Impl"
-                      factory-class="com.drp.repository.factory.BaseRepositoryFactoryBean"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="jpaTransactionManager">
     </jpa:repositories>
