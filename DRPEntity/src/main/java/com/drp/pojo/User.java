@@ -35,7 +35,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer uId;		//用户主键	
 	@Column(length=40,nullable=false)
-	private String username;	//用户名
+	private String userName;	//用户名
 	@Column(length=20,nullable=false)
 	private String userPassword;//用户密码
 	@Column(length=20)
@@ -60,11 +60,11 @@ public class User implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	public User() {}
 	
-	public User(Integer uId, String username, String userPassword, String userTel, String userEmail, String userCode,
-			Date createDate) {
+	public User(Integer uId, String userName, String userPassword, String userTel, String userEmail, String userCode,
+				Date createDate) {
 		super();
 		this.uId = uId;
-		this.username = username;
+		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userTel = userTel;
 		this.userEmail = userEmail;
@@ -78,11 +78,11 @@ public class User implements Serializable{
 	public void setuId(Integer uId) {
 		this.uId = uId;
 	}
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getUserPassword() {
 		return userPassword;
@@ -153,7 +153,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [uId=" + uId + ", username=" + username + ", userPassword=" + userPassword + ", userTel=" + userTel
+		return "User [uId=" + uId + ", userName=" + userName + ", userPassword=" + userPassword + ", userTel=" + userTel
 				+ ", userEmail=" + userEmail + ", userCode=" + userCode + ", createDate=" + createDate + ", roles="
 				+ roles + "]";
 	}

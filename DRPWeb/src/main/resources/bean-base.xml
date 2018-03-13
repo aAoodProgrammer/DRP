@@ -51,6 +51,7 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.id.new_generator_mappings">false</prop>
             </props>
         </property>
     </bean>
@@ -166,7 +167,7 @@
     <!--配置验证表单的名字 -->
     <bean id="formAuthenticationFilter"
           class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-        <property name="usernameParam" value="username"/>
+        <property name="usernameParam" value="userName"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
         <property name="servletContext" ref="servletContext"/>

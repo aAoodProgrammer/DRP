@@ -2,7 +2,6 @@ package com.drp.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.drp.pojo.User;
 
@@ -10,6 +9,8 @@ import com.drp.repository.UserRepository;
 import com.drp.service.IUserService;
 import com.drp.util.Encryption;
 import com.drp.util.StateAndMsg;
+
+import javax.annotation.Resource;
 
 /**
  * 
@@ -24,7 +25,7 @@ import com.drp.util.StateAndMsg;
 @Service
 public class UserService implements IUserService {
 
-	@Autowired
+	@Resource
 	private UserRepository userRepository;
 
 	public StateAndMsg add(User user) {
@@ -32,7 +33,7 @@ public class UserService implements IUserService {
 		if ( stateAndMsg == null) {
 			userRepository.save(user);
 			return new StateAndMsg(1, "添加成功！");
-		} 
+		}
 		return stateAndMsg;
 
 	}
@@ -44,17 +45,17 @@ public class UserService implements IUserService {
 		if (user.getUserCode() == null) {
 			return new StateAndMsg(-1, "用户代码不能为空！");
 		}
-		if (user.getUsername() == null) {
+		if (user.getUserName() == null) {
 			return new StateAndMsg(-1, "用户名不能为空！");
 		}
 		if (user.getUserPassword() == null) {
 			return new StateAndMsg(-1, "密码不能为空！");
 		}
-		
+
 //		if (userRepository.findByUserCode(user.getUserCode()) != null) {
 //			return new StateAndMsg(-1, "用户代码已存在！");
 //		}
-		if (userRepository.findByUsername(user.getUsername()) != null) {
+		if (userRepository.findByUserName(user.getUserName()) != null) {
 			return new StateAndMsg(-1, "用户名已存在！");
 		}
 		if (userRepository.findByUserTel(user.getUserTel()) != null) {
@@ -63,8 +64,8 @@ public class UserService implements IUserService {
 		if (userRepository.findByUserEmail(user.getUserEmail()) != null) {
 			return new StateAndMsg(-1, "用户邮箱已存在！");
 		}
-		return null; 
-		
+		return null;
+
 	}
 
 	public StateAndMsg update(User user) {
@@ -72,14 +73,14 @@ public class UserService implements IUserService {
 		if ( stateAndMsg == null) {
 			userRepository.save(user);
 			return new StateAndMsg(1, "修改成功！");
-		} 
+		}
 		return stateAndMsg;
 	}
 
-	public User login(String uName) {
+	public User login(String userName) {
 
-		if (uName != null) {
-			User user = userRepository.findByUsername(uName);
+		if (userName != null) {
+			User user = userRepository.findByUserName(userName);
 			if (null != user) {
 				return user;
 			}

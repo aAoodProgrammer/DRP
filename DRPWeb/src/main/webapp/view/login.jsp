@@ -19,9 +19,9 @@
 		$("#login_btn").click(function() {
 			alert("---------login_btn-----------");
 			var flag = false;
-			var username = $("#username").val();
-			alert(username);
-			if (!username.length > 0) {
+			var userName = $("#userName").val();
+			alert(userName);
+			if (!userName.length > 0) {
 				flag = true;
 				$("#userIdSpan").html("<font color='red'>用户代码不能为空</font>");
 			}
@@ -44,7 +44,7 @@
 
 	/* 	function submitForm() {
 			var flag = false;
-			if (trim(loginForm.username.value).length == 0) {
+			if (trim(loginForm.userName.value).length == 0) {
 				flag = true;
 				document.getElementById("userIdSpan").innerHTML = "<font color='red'>用户代码不能为空</font>";
 			}
@@ -71,8 +71,8 @@
 						<TD align="left"><FONT
 							face="verdana, arial, helvetica, sans-serif" size="-1">用户名:&nbsp;</FONT>
 						</TD>
-						<TD align="left"><INPUT type="text" name="username"
-							id="username" size="20" maxlength="20"> <span
+						<TD align="left"><INPUT type="text" name="userName"
+							id="userName" size="20" maxlength="20"> <span
 							id="userIdSpan"></span></TD>
 					</TR>
 					<TR>

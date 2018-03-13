@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.drp.pojo.User;
 import com.drp.service.IUserService;
-import com.drp.service.impl.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class UserController {
 
 	@RequestMapping("login.action")
 	public String login(HttpServletRequest request, User user) {
-		User user2 = userService.login(user.getUsername());
+		User user2 = userService.login(user.getUserName());
 		System.out.println("2222:"+user2);
 		// 获取我们的错误信息
 		String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");

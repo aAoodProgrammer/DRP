@@ -39,12 +39,12 @@ public class UserRepositoryTest extends BaseService<User>{
 	@Test
 	public void testSave() {
 //		User user = new User();
-//		user.setUsername("admin");
+//		user.setUserName("admin");
 //		user.setUserPassword("123456");
 //		user.setUserCode("admin111");
 //		System.out.println(userRepository.save(user));
 		User user = new User();
-		user.setUsername("xixi");
+		user.setUserName("xixi");
 		user.setUserPassword("123456");
 		user.setCreateDate(new Date());
 		user.setUserCode("U10001");
@@ -58,7 +58,7 @@ public class UserRepositoryTest extends BaseService<User>{
 	@Test
 	public void testUpdateUser(){
 		User user = new User(3,"haha","123456","13344556677","12345@qq.com","u1001",new Date());
-		userRepository.updateUser(user.getUsername(),user.getUserPassword(),
+		userRepository.updateUser(user.getUserName(),user.getUserPassword(),
 			user.getUserTel(),user.getUserEmail(),user.getuId());
 //		System.out.println(user);
 	}
