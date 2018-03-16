@@ -61,11 +61,6 @@ public class ResourceService implements IResourceService {
 	}
 
 	@Override
-	public List<Resource> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return resourceRepository.findByConditions(pageNo, pageSize, objects);
-	}
-
-	@Override
 	public List<Resource> findAll() {
 		return resourceRepository.findAll();
 	}

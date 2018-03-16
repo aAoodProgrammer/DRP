@@ -95,10 +95,6 @@ public class ItemService implements IItemService {
 		return itemRepository.findOne(id);
 	}
 
-	@Override
-	public List<Item> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return itemRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<Item> findAll() {

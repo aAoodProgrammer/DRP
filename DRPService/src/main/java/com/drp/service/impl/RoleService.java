@@ -66,11 +66,6 @@ public class RoleService implements IRoleService {
 	}
 
 	@Override
-	public List<Role> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return roleRepository.findByConditions(pageNo, pageSize, objects);
-	}
-
-	@Override
 	public List<Role> findAll() {
 		return roleRepository.findAll();
 	}

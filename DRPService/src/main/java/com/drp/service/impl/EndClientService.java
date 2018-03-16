@@ -59,11 +59,6 @@ public class EndClientService implements IEndClientService{
 		return endClientRepository.findById(id);
 	}
 
-	@Override
-	public List<EndClient> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		
-		return endClientRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<EndClient> findAll() {

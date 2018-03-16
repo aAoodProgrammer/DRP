@@ -43,16 +43,6 @@ public interface IBaseService<T extends Serializable> {
     T findById(Integer id);
 
     /**
-     * 通过条件查找
-     *
-     * @param pageNo   当前的页码数
-     * @param pageSize 每页显示的数据条数
-     * @param objects  查询条件
-     * @return
-     */
-    List<T> findByConditions(Integer pageNo, Integer pageSize, final Object... objects);
-
-    /**
      * 查找所有
      *
      * @return

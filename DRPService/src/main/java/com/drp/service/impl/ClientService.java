@@ -95,10 +95,6 @@ public class ClientService implements IClientService{
 		return clientRepository.findOne(id);
 	}
 
-	@Override
-	public List<Client> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return clientRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<Client> findAll() {

@@ -69,10 +69,6 @@ public class InventoryService implements IInventoryService {
 		return inventoryRepository.findOne(id);
 	}
 
-	@Override
-	public List<Inventory> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return inventoryRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<Inventory> findAll() {

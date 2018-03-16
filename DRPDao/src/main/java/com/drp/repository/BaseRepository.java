@@ -21,6 +21,4 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface BaseRepository<T, ID extends Serializable> extends JpaSpecificationExecutor<T>, JpaRepository<T, ID> {
 
-    List<T> findByConditions(Integer pageNo, Integer pageSize, final Object... objects);
-
 }

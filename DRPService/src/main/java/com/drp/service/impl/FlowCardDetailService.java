@@ -57,10 +57,6 @@ public class FlowCardDetailService implements IFlowCardDetailService{
 		return flowCardDetailRepository.findOne(id);
 	}
 
-	@Override
-	public List<FlowCardDetail> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return flowCardDetailRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<FlowCardDetail> findAll() {

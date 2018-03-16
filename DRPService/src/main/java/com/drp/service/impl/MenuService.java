@@ -60,11 +60,6 @@ public class MenuService implements IMenuService {
 	}
 
 	@Override
-	public List<Menu> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return menuRepository.findByConditions(pageNo, pageSize, objects);
-	}
-
-	@Override
 	public List<Menu> findAll() {
 		return menuRepository.findAll();
 	}

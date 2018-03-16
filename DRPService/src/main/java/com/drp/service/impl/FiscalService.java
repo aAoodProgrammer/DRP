@@ -58,10 +58,6 @@ public class FiscalService implements IFiscalService {
 		return fiscalRepository.findOne(id);
 	}
 
-	@Override
-	public List<Fiscal> findByConditions(Integer pageNo, Integer pageSize, Object... objects) {
-		return fiscalRepository.findByConditions(pageNo, pageSize, objects);
-	}
 
 	@Override
 	public List<Fiscal> findAll() {

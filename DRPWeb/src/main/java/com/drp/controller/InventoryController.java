@@ -63,11 +63,10 @@ public class InventoryController {
 	/**
 	 * 查询所有
 	 */
-	@RequestMapping("/inv_init_qty_maint.action")
-	public ModelAndView findAll() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("inventories",inventoryService.findByConditions(1, 10));
-		modelAndView.setViewName("inventory/inv_init_qty_maint.jsp");
-		return modelAndView;
-	}
+//	@RequestMapping("/inv_init_qty_maint.action")
+//	public ModelAndView findAll() {
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("inventory/inv_init_qty_maint.jsp");
+//		return modelAndView;
+//	}
 }

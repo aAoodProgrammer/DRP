@@ -184,4 +184,12 @@
             <version>RELEASE</version>
         </dependency>
     </dependencies>
+
+	<distributionManagement>
+		<repository>
+            <id>mirrorId</id>
+            <name>Human Readable Name for this Mirror.</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+	</distributionManagement>
 </project>
