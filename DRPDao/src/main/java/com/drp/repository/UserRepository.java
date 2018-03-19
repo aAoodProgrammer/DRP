@@ -19,7 +19,7 @@ import com.drp.pojo.User;
 *  
 */
 
-public interface UserRepository extends BaseRepository<User,Integer> {
+public interface UserRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<User>, org.springframework.data.jpa.repository.JpaRepository<User, Integer> {
 	
 	/**
 	 * 修改用户密码

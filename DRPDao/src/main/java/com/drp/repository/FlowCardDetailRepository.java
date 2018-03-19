@@ -12,7 +12,7 @@ import com.drp.pojo.FlowCardDetail;
  * @date 2017年11月1日 下午3:43:58 
  *  
  */
-public interface FlowCardDetailRepository extends BaseRepository<FlowCardDetail,Integer> {
+public interface FlowCardDetailRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<FlowCardDetail>, org.springframework.data.jpa.repository.JpaRepository<FlowCardDetail, Integer> {
 	
 	/**
 	 * 保存流向单详细信息（目标客户的id）

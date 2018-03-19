@@ -18,7 +18,7 @@ import com.drp.pojo.Item;
  * @date 2017年11月1日 下午3:31:13 
  *  
  */
-public interface ItemRepository extends BaseRepository<Item,Integer> {
+public interface ItemRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Item>, org.springframework.data.jpa.repository.JpaRepository<Item, Integer> {
 	
 	/**
 	 * 修改物料（根据物料代码）

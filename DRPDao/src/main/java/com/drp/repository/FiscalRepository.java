@@ -16,7 +16,7 @@ import com.drp.pojo.Fiscal;
  * @date 2017年11月1日 下午3:33:38 
  *  
  */
-public interface FiscalRepository extends BaseRepository<Fiscal,Integer> {
+public interface FiscalRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Fiscal>, org.springframework.data.jpa.repository.JpaRepository<Fiscal, Integer> {
 	
 	/**
 	 * 修改会计维护期

@@ -8,6 +8,8 @@ import com.drp.repository.CategoryRepository;
 import com.drp.service.ICategoryService;
 import com.drp.util.StateAndMsg;
 
+import java.util.List;
+
 /**
  * @ClassName: CategoryService
  * @Description: 业务逻辑层实体：静态字典
@@ -16,7 +18,7 @@ import com.drp.util.StateAndMsg;
  * 
  */
 @Service
-public class CategoryService extends BaseService<Category> implements ICategoryService {
+public class CategoryService implements ICategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository = null;
 
@@ -30,7 +32,12 @@ public class CategoryService extends BaseService<Category> implements ICategoryS
 		}
 	}
 
-	
+	@Override
+	public void delete(List<Integer> ids) {
+
+	}
+
+
 	@Override
 	public StateAndMsg update(Category t) {
 		if (t != null) {
@@ -43,6 +50,16 @@ public class CategoryService extends BaseService<Category> implements ICategoryS
 		} else {
 			return new StateAndMsg(-1, "参数有误！");
 		}
+	}
+
+	@Override
+	public Category findById(Integer id) {
+		return null;
+	}
+
+	@Override
+	public List<Category> findAll() {
+		return null;
 	}
 
 }

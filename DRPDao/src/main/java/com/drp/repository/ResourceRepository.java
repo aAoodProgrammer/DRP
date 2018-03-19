@@ -19,7 +19,7 @@ import java.lang.Integer;
  *  
  */
 
-public interface ResourceRepository extends BaseRepository<Resource,Integer> {
+public interface ResourceRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Resource>, org.springframework.data.jpa.repository.JpaRepository<Resource, Integer> {
 	
 	/**
 	 * 修改资源url

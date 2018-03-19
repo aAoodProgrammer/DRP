@@ -17,7 +17,7 @@ import com.drp.pojo.Inventory;
  * @date 2017年11月1日 下午3:28:09 
  *  
  */
-public interface InventoryRepository extends BaseRepository<Inventory,Integer> {
+public interface InventoryRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Inventory>, org.springframework.data.jpa.repository.JpaRepository<Inventory, Integer> {
 	
 	/**
 	 * 修改初始库存

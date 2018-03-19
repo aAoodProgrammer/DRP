@@ -21,7 +21,7 @@ import com.drp.pojo.EndClient;
  * @date 2017年11月1日 下午3:33:09 
  *  
  */
-public interface EndClientRepository extends BaseRepository<EndClient,Integer> {
+public interface EndClientRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<EndClient>, org.springframework.data.jpa.repository.JpaRepository<EndClient, Integer> {
 	
 
 	/**

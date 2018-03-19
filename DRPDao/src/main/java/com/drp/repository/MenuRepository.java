@@ -18,7 +18,7 @@ import com.drp.pojo.Menu;
  * @date 2017年11月1日 下午3:34:31 
  *  
  */
-public interface MenuRepository extends BaseRepository<Menu,Integer> {
+public interface MenuRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Menu>, org.springframework.data.jpa.repository.JpaRepository<Menu, Integer> {
 	
 	/**
 	 * 更新

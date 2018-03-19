@@ -16,7 +16,7 @@ import java.lang.String;
  * @date 2017年11月1日 下午3:25:55 
  *  
  */
-public interface FlowCardMainRepository extends BaseRepository<FlowCardMain,Integer> {
+public interface FlowCardMainRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<FlowCardMain>, org.springframework.data.jpa.repository.JpaRepository<FlowCardMain, Integer> {
 
 	/**
 	 * 保存分销商的id

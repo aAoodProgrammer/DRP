@@ -22,7 +22,7 @@ import com.drp.pojo.Category;
  */
 
 @Repository
-public interface CategoryRepository extends BaseRepository<Category,Integer> {
+public interface CategoryRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Category>, org.springframework.data.jpa.repository.JpaRepository<Category, Integer> {
 
 	@Query("select c from Category c where c.category = ?1")
 	List<Category> queryByCategory(Integer category);

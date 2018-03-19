@@ -23,7 +23,7 @@ import com.drp.pojo.Client;
  *
  */
 @Repository
-public interface ClientRepository extends BaseRepository<Client, Integer> {
+public interface ClientRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Client>, org.springframework.data.jpa.repository.JpaRepository<Client, Integer> {
 
     /**
      * 通过上一级通过上一级分销商（区域）id进行查找

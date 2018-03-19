@@ -20,7 +20,7 @@ import com.drp.pojo.User;
  *  
  */
 
-public interface RoleRepository extends BaseRepository<Role,Integer> {
+public interface RoleRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Role>, org.springframework.data.jpa.repository.JpaRepository<Role, Integer> {
 	
 	/**
 	 * 更新角色名
