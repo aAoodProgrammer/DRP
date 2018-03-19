@@ -8,6 +8,8 @@ package com.drp.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -22,10 +24,13 @@ import com.drp.pojo.Category;
  */
 
 @Repository
-public interface CategoryRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Category>, org.springframework.data.jpa.repository.JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaSpecificationExecutor<Category>, JpaRepository<Category, Integer> {
 
 	@Query("select c from Category c where c.category = ?1")
 	List<Category> queryByCategory(Integer category);
+
+	@Query("select c from Category c where c.id = ?1")
+	Category findById(Integer id);
 	
 	@Query("select c from Category c where c.category = ?1")
 	List<Category> findCategoryByCategory(Integer category);

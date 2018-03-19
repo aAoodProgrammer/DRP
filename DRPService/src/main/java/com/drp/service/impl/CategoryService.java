@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class CategoryService implements ICategoryService {
 	@Autowired
-	private CategoryRepository categoryRepository = null;
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public StateAndMsg add(Category t) {
@@ -54,12 +54,12 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public Category findById(Integer id) {
-		return null;
+		return categoryRepository.findById(id);
 	}
 
 	@Override
 	public List<Category> findAll() {
-		return null;
+		return findAll();
 	}
 
 }

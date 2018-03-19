@@ -6,6 +6,8 @@
  */
 package com.drp.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,7 +21,7 @@ import com.drp.pojo.User;
 *  
 */
 
-public interface UserRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<User>, org.springframework.data.jpa.repository.JpaRepository<User, Integer> {
+public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepository<User, Integer> {
 	
 	/**
 	 * 修改用户密码

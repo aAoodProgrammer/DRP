@@ -44,31 +44,6 @@
 				<li><a href="../view/inventory/checkvou_audit.html"
 					target="main">盘点结果审核</a></li>
 			</ul>
-			<h3 class="am-icon-cart-plus">
-				<em></em> <a href="#">分销费用管理</a>
-			</h3>
-			<ul class="slider">
-				<li><a href="" target="main">分销费用初始化</a></li>
-				<li><a href="" target="main">分销费用初始化确认</a></li>
-				<li><a href="" target="main">分销费用计算</a></li>
-				<li><a href="" target="main">分消费审核</a></li>
-			</ul>
-			<h3 class="am-icon-users">
-				<em></em> <a href="#">结账管理</a>
-			</h3>
-			<ul class="slider">
-				<li><a href="" target="main">月结账</a></li>
-				<li><a href="" target="main">年结账</a></li>
-			</ul>
-			<h3 class="am-icon-volume-up">
-				<em></em> <a href="#">付款结算管理</a>
-			</h3>
-			<ul class="slider">
-				<li><a href="" target="main">付款申请单维护</a></li>
-				<li><a href="" target="main">付款申请单审核</a></li>
-				<li><a href="" target="main">付款申请单复审</a></li>
-				<li><a href="" target="main">付款申请单监审</a></li>
-			</ul>
 
 			<h3 class="am-icon-volume-up">
 				<em></em> <a href="#">统计报表管理</a>
