@@ -19,9 +19,6 @@
 
 <body>
 	<div class="nav-navicon admin-main admin-sidebar">
-
-		<div class="sideMenu am-icon-dashboard"
-			style="color: #aeb2b7; margin: 10px 0 0 0;">欢迎系统管理员：admin</div>
 		<div class="sideMenu">
 			<h3 class="am-icon-flag">
 				<em></em> <a href="#">分销库存管理</a>
