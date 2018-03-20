@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  * 
  * @ClassName: FlowCardMain 
  * @Description: 实体：流向单主信息
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月7日 上午11:46:25 
  *
  */

@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: Role 
  * @Description: 实体：角色
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月7日 上午11:48:20 
  *
  */

@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- * @author 王春
+ * @author 刘江涛
  * @ClassName: IBaseService
  * @Description: 业务逻辑层：基类
  * @date 2017年11月1日 上午10:43:58

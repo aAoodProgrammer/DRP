@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 /** 
 * @ClassName: Encryption 
 * @Description: 用MD5的方式进行加密
-* @author 王春
+* @author 刘江涛
 * @date 2017年11月15日 下午3:05:03 
 *  
 */

@@ -14,7 +14,7 @@ import java.lang.Integer;
 /** 
  * @ClassName: ResourceRepository 
  * @Description: 资源持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:18:42 
  *  
  */

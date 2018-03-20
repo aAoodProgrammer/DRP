@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.text.*" %>    
+<%@page import="java.text.*" %>
 <%@page import="java.util.*" %>
 <%--<%@page import="com.demo.drp.basedata.manager.*" %>
 <%@page import="com.demo.drp.basedata.domain.*" %>
@@ -17,8 +17,9 @@
 		out.println("提示：修改核算期间成功！"); 
 	} 
 	FiscalYearPeriod fiscalYearPeriod = FiscalYearPeriodManager.getInstance().findFiscalYearPeriodById(id);
- --%>    
+ --%>
 <html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>修改会计核算期间</title>
@@ -27,47 +28,43 @@
 		<script src="../../js/JSCalendar.js"></script>
 		<script src="../../js/client_validate.js"></script>
 		<script type="text/javascript">
-			
 			function init() {
 				document.getElementById("beginDate").focus();
 			}
-		
-			function modifyFiscalYearPeriod(){
-				if (trim(document.getElementById("beginDate").value) > trim(document.getElementById("endDate").value)) {
+
+			function modifyFiscalYearPeriod() {
+				if(trim(document.getElementById("beginDate").value) > trim(document.getElementById("endDate").value)) {
 					alert("核算日期必须小于等于结束日期！");
 					document.getElementById("beginDate").focus();
 					return;
 				}
-				with (document.getElementById("fiscalYearPeriodForm")) {
+				with(document.getElementById("fiscalYearPeriodForm")) {
 					method = "post";
 					action = "fiscal_year_period_modify.jsp?command=modify&id=id";
 					submit();
 				}
 			}
-			
-			function goBack(){
+
+			function goBack() {
 				window.self.location = "fiscal_year_period_maint.jsp";
 			}
 		</script>
 	</head>
 
 	<body class="body1" onLoad="init()">
-		<form name="fiscalYearPeriodForm" target="_self"
-			id="fiscalYearPeriodForm">
+		<form name="fiscalYearPeriodForm" target="_self" id="fiscalYearPeriodForm">
 			<div align="center">
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>&nbsp;
-							
+
 						</td>
 					</tr>
 				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="25">
+				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="25">
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
-							<img src="../../images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							<img src="../../images/mark_arrow_03.gif" width="14" height="14"> &nbsp;
 							<b>基础数据管理&gt;&gt;会计核算期间维护&gt;&gt;修改</b>
 						</td>
 					</tr>
@@ -81,8 +78,7 @@
 							</div>
 						</td>
 						<td width="78%">
-							<input name="fiscalYear" type="text" class="text1" value="getFiscalYear() %>"
-								id="fiscalYear" size="10" maxlength="10" readonly="true">
+							<input name="fiscalYear" type="text" class="text1" value="getFiscalYear() %>" id="fiscalYear" size="10" maxlength="10" readonly="true">
 						</td>
 					</tr>
 					<tr>
@@ -92,8 +88,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="fiscalPeriod" type="text" class="text1" value="getFiscalPeriod() %>"
-								id="fiscalPeriod" size="10" maxlength="10" readonly="true">
+							<input name="fiscalPeriod" type="text" class="text1" value="getFiscalPeriod() %>" id="fiscalPeriod" size="10" maxlength="10" readonly="true">
 						</td>
 					</tr>
 					<tr>
@@ -112,36 +107,31 @@
 					<tr>
 						<td height="26">
 							<div align="right">
-								<font color="#FF0000">*</font>结束日期:&nbsp;
+								<font color="black">*</font>结束日期:&nbsp;
 							</div>
 						</td>
 						<td>
-							<input name="endDate" type="text" id="endDate"
-								onClick=JSCalendar(this) value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>" size="10"
-								maxlength="10" readonly="true">
+							<input name="endDate" type="text" id="endDate" onClick=JSCalendar(this) value="<%=new SimpleDateFormat(" yyyy-MM-dd ").format(new Date()) %>" size="10" maxlength="10" readonly="true">
 						</td>
 					</tr>
 					<tr>
 						<td height="26">
 							<div align="right">
-								<font color="#FF0000">*</font>是否可用:&nbsp;
+								<font color="black">*</font>是否可用:&nbsp;
 							</div>
 						</td>
 						<td>
-							<input name="periodSts" type="checkbox" class="checkbox1"  getPeriodSts().equals("N")?"":"checked" >
-								id="periodSts" />
+							<input name="periodSts" type="checkbox" class="checkbox1" getPeriodSts().equals( "N")? "": "checked"> id="periodSts" />
 						</td>
 					</tr>
 				</table>
 				<hr width="97%" align="center" size=0>
 				<div align="center">
-					<input name="btnModify" class="button1" type="button"
-						id="btnModify" value="修改" onClick="modifyFiscalYearPeriod()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="返回" onClick="goBack()">
+					<input name="btnModify" class="button1" type="button" id="btnModify" value="修改" onClick="modifyFiscalYearPeriod()"> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="btnBack" class="button1" type="button" id="btnBack" value="返回" onClick="goBack()">
 				</div>
 			</div>
 		</form>
 	</body>
+
 </html>

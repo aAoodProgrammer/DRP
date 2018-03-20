@@ -211,10 +211,10 @@
 				<tr>
 					<td nowrap class="rd19" height="2">
 						<div align="left">
-							<font color="#FFFFFF">&nbsp;共&nbspgetTotalPages() %>&nbsp页</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<font color="#FFFFFF">当前第</font>&nbsp
-							<font color="#FF0000">getPageNo() %></font>&nbsp
-							<font color="#FFFFFF">页</font>
+							<font color="black">&nbsp;共&nbspgetTotalPages() %>&nbsp页</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<font color="black">当前第</font>&nbsp
+							<font color="black">getPageNo() %></font>&nbsp
+							<font color="black">页</font>
 						</div>
 					</td>
 					<td nowrap class="rd19">

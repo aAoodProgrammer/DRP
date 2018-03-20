@@ -1,7 +1,7 @@
 /**   
  * @Title: TypeRepository.java
  * @Package com.drp.repository 
- * @author 小灰灰	日期：2017年11月1日 
+ * @author 刘江涛	日期：2017年11月1日 
  * @version V1.0   
  */
 package com.drp.repository;
@@ -18,7 +18,7 @@ import com.drp.pojo.Category;
 /**
  * @ClassName: CategoryRepository
  * @Description: 类型（静态字典）持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:57:42
  * 
  */

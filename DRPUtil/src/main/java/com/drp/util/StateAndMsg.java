@@ -3,7 +3,7 @@ package com.drp.util;
 /** 
 * @ClassName: StateAndMsg 
 * @Description: 业务逻辑层处理结果 :state处理状态（1 成功 -1 失败）msg(提示语句)
-* @author 王春
+* @author 刘江涛
 * @date 2017年11月15日 上午10:29:31 
 *  
 */

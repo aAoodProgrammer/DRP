@@ -1,7 +1,7 @@
 /**
  * @Title: ClientRepository.java
  * @Package com.qf.drp
- * @author 小灰灰    日期：2017年11月1日 上午9:06:39
+ * @author 刘江涛    日期：2017年11月1日 上午9:06:39
  * @version V1.0
  */
 package com.drp.repository;
@@ -18,7 +18,7 @@ import com.drp.pojo.Client;
 /**
  * @ClassName: ClientRepository
  * @Description: 分销商持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:25:42 
  *
  */

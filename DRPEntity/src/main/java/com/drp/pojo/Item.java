@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: Item 
  * @Description: 实体：物料
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月7日 上午11:47:01 
  *
  */

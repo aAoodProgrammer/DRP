@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * /**
  *
- * @author 王春
+ * @author 刘江涛
  * @ClassName: UserService
  * @Description: 业务逻辑层实体：用户
  * @date 2017年11月1日 下午2:46:06

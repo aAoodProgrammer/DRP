@@ -9,7 +9,7 @@ import com.drp.util.StateAndMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author 王春
+ * @author 刘江涛
  * @ClassName: BaseService
  * @Description: 业务逻辑层实体：基类
  * @date 2017年11月7日 下午1:46:22

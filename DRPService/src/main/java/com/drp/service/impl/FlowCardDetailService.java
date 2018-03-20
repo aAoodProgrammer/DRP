@@ -13,7 +13,7 @@ import com.drp.util.StateAndMsg;
 /** 
 * @ClassName: FlowCardDetailService 
 * @Description: 业务逻辑层实体：流向单详情
-* @author 王春
+* @author 刘江涛
 * @date 2017年11月7日 上午10:41:44 
 *  
 */

@@ -3,7 +3,7 @@ package com.drp.service.impl;
  * 
 * @ClassName: ClientService 
 * @Description: 业务逻辑层实体：分销商
-* @author 王春
+* @author 刘江涛
 * @date 2017年11月1日 下午2:40:11 
 *
  */

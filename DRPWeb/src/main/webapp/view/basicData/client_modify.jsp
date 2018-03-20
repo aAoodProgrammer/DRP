@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--<%@ page import="java.util.*" %>    
-<%@ page import="com.demo.drp.basedata.manager.*" %>   
+<%--<%@ page import="java.util.*" %>
+<%@ page import="com.demo.drp.basedata.manager.*" %>
 <%@ page import="com.demo.drp.util.datadict.manager.*" %>
-<%@ page import="com.demo.drp.basedata.domain.*" %> 
+<%@ page import="com.demo.drp.basedata.domain.*" %>
 <%@ page import="com.demo.drp.util.datadict.domain.*" %>
 <%@ page import="com.demo.drp.util.*" %>
 <%
@@ -25,16 +25,17 @@
 		
 		ClientManager.getInstance().modifyRegionOrClient(client);
 		//out.println("修改成功！");
-%>	
-		<script type="text/javascript">
-			alert("修改成功！");
-		</script>
+%>
+<script type="text/javascript">
+	alert("修改成功！");
+</script>
 <%		
 	}
     Client client = ClientManager.getInstance().findRegionOrClientById(id);
   
-%>
---%><html>
+%> --%>
+<html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>修改分销商</title>
@@ -42,10 +43,10 @@
 		<script src="../../js/client_validate.js"></script>
 		<script language="javascript">
 			function validate(form) {
-				if (trim(form.clientName.value) == "") {
+				if(trim(form.clientName.value) == "") {
 					alert("分销商名称不能为空！");
 					return false;
-				}	
+				}
 				return true;
 			}
 		</script>
@@ -59,16 +60,14 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>&nbsp;
-							
+
 						</td>
 					</tr>
 				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="8">
+				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="8">
 					<tr>
 						<td width="522" class="p1" height="2" nowrap>
-							<img src="../../images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							<img src="../../images/mark_arrow_03.gif" width="14" height="14"> &nbsp;
 							<b>基础数据管理&gt;&gt;分销商维护&gt;&gt;修改分销商</b>
 						</td>
 					</tr>
@@ -82,8 +81,7 @@
 							</div>
 						</td>
 						<td width="78%">
-							<input name="clientId" type="text" class="text1" id="clientId"
-								size="10" maxlength="10" readonly="true" value=" getClientId() %>">
+							<input name="clientId" type="text" class="text1" id="clientId" size="10" maxlength="10" readonly="true" value=" getClientId() %>">
 						</td>
 					</tr>
 					<tr>
@@ -93,8 +91,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="clientName" type="text" class="text1"
-								id="clientName" size="40" maxlength="40" value=" getName() %>">
+							<input name="clientName" type="text" class="text1" id="clientName" size="40" maxlength="40" value=" getName() %>">
 						</td>
 					</tr>
 					<tr>
@@ -105,8 +102,8 @@
 						</td>
 						<td>
 							<select name="clientLevel" class="select1" id="clientLevel">
-							
-								<option value="getId()" selected="selected" >cl.getName()</option>
+
+								<option value="getId()" selected="selected">cl.getName()</option>
 							</select>
 						</td>
 					</tr>
@@ -117,8 +114,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="bankAcctNo" type="text" class="text1"
-								id="bankAcctNo" size="10" maxlength="10" value=" getBankAcctNo() %>">
+							<input name="bankAcctNo" type="text" class="text1" id="bankAcctNo" size="10" maxlength="10" value=" getBankAcctNo() %>">
 						</td>
 					</tr>
 					<tr>
@@ -128,8 +124,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="contactTel" type="text" class="text1"
-								id="contactTel" size="10" maxlength="10" value=" getContactTel() %>">
+							<input name="contactTel" type="text" class="text1" id="contactTel" size="10" maxlength="10" value=" getContactTel() %>">
 						</td>
 					</tr>
 					<tr>
@@ -139,8 +134,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="address" type="text" class="text1" id="address"
-								size="10" maxlength="10" value=" getAddress() %>">
+							<input name="address" type="text" class="text1" id="address" size="10" maxlength="10" value=" getAddress() %>">
 						</td>
 					</tr>
 					<tr>
@@ -150,20 +144,17 @@
 							</div>
 						</td>
 						<td>
-							<input name="zipCode" type="text" class="text1" id="zipCode"
-								size="10" maxlength="10" value=" getZipCode() %>">
+							<input name="zipCode" type="text" class="text1" id="zipCode" size="10" maxlength="10" value=" getZipCode() %>">
 						</td>
 					</tr>
 				</table>
 				<hr width="97%" align="center" size=0>
 				<div align="center">
-					<input name="btnModify" class="button1" type="submit"
-						id="btnModify" value="修改">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="返回" onClick="location='client_crud.jsp?id=id'" />
+					<input name="btnModify" class="button1" type="submit" id="btnModify" value="修改"> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="btnBack" class="button1" type="button" id="btnBack" value="返回" onClick="location='client_crud.jsp?id=id'" />
 				</div>
 			</div>
 		</form>
 	</body>
+
 </html>

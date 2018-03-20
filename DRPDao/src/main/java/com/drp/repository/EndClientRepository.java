@@ -1,7 +1,7 @@
 /**   
  * @Title: EndClientRepository.java 
  * @Package com.drp.repository 
- * @author 小灰灰	日期：2017年11月1日 上午10:41:39 
+ * @author 刘江涛	日期：2017年11月1日 上午10:41:39 
  * @version V1.0   
  */
 package com.drp.repository;
@@ -17,7 +17,7 @@ import com.drp.pojo.EndClient;
 /** 
  * @ClassName: EndClientRepository 
  * @Description: 终端客户持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:33:09 
  *  
  */

@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: Fiscal 
  * @Description: 实体：会计核算期
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月7日 上午11:44:29 
  *
  */

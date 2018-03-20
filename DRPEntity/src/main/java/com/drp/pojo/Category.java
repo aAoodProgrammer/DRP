@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: Category 
  * @Description: 数据字典1 分销商级别,2 物料类型,3 物料计量单位,4终端客户类型
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月7日 上午11:42:28 
  *
  */

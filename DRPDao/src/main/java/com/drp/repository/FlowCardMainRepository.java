@@ -12,7 +12,7 @@ import java.lang.String;
 /** 
  * @ClassName: FlowCardMainRepository 
  * @Description: 流向单主信息持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:25:55 
  *  
  */

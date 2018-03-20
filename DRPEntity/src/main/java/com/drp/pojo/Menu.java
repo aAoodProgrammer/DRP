@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * 
  * @ClassName: menu 
  * @Description: 实体：菜单
- * @author zyl
+ * @author 刘江涛
  * @date 2017年11月1日 下午5:49:38 
  *
  */

@@ -8,7 +8,7 @@ import com.drp.pojo.FlowCardDetail;
 /** 
  * @ClassName: FlowCardDetailRepository 
  * @Description: 流向单详情持久层
- * @author 小灰灰
+ * @author 刘江涛
  * @date 2017年11月1日 下午3:43:58 
  *  
  */

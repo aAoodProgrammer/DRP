@@ -16,7 +16,7 @@ import com.drp.util.StateAndMsg;
  * 
  * @ClassName: InventoryService
  * @Description: 业务逻辑层实体：库存管理
- * @author 王春
+ * @author 刘江涛
  * @date 2017年11月1日 下午2:41:03
  *
  */

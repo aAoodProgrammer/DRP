@@ -6,7 +6,7 @@ import com.drp.pojo.Item;
  * 
 * @ClassName: IItemService 
 * @Description: 业务逻辑层：物料
-* @author 王春
+* @author 刘江涛
 * @date 2017年11月1日 下午2:22:05 
 *
  */

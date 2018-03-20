@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <html>
+
 	<head>
 		<base href="<%=basePath%>">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,17 +15,17 @@
 		<script src="<%=path%>/js/client_validate.js"></script>
 		<script type="text/javascript">
 			function validateForm(form) {
-				if (trim(form.itemNo.value) == "") {
+				if(trim(form.itemNo.value) == "") {
 					alert("物料代码不能为空！");
 					form.itemNo.focus();
 					return false;
 				}
-				if (trim(form.itemName.value) == "") {
+				if(trim(form.itemName.value) == "") {
 					alert("物料名称不能为空！");
 					form.itemName.focus();
 					return false;
 				}
-				return true;	
+				return true;
 			}
 		</script>
 	</head>
@@ -35,16 +36,14 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>&nbsp;
-							
+
 						</td>
 					</tr>
 				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="25">
+				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="25">
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
-							<img src="<%=path%>/images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							<img src="<%=path%>/images/mark_arrow_03.gif" width="14" height="14"> &nbsp;
 							<b>基础数据管理&gt;&gt;物料维护&gt;&gt;添加</b>
 						</td>
 					</tr>
@@ -58,8 +57,7 @@
 							</div>
 						</td>
 						<td width="78%">
-							<input name="itemNo" type="text" class="text1" id="itemNo"
-								size="10" maxlength="10">
+							<input name="itemNo" type="text" class="text1" id="itemNo" size="10" maxlength="10">
 						</td>
 					</tr>
 					<tr>
@@ -69,8 +67,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="itemName" type="text" class="text1" id="itemName"
-								size="20" maxlength="20">
+							<input name="itemName" type="text" class="text1" id="itemName" size="20" maxlength="20">
 						</td>
 					</tr>
 					<tr>
@@ -93,8 +90,7 @@
 							</div>
 						</td>
 						<td>
-							<input name="pattern" type="text" class="text1" id="pattern"
-								size="20" maxlength="20">
+							<input name="pattern" type="text" class="text1" id="pattern" size="20" maxlength="20">
 						</td>
 					</tr>
 					<tr>
@@ -119,20 +115,18 @@
 						</td>
 						<td>
 							<select name="unit" class="select1" id="unit">
-									<option value="id">name</option>
+								<option value="id">name</option>
 							</select>
 						</td>
 					</tr>
 				</table>
 				<hr width="97%" align="center" size=0>
 				<div align="center">
-					<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-						value="添加">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="返回" onClick="location='<%=path%>/view/basicData/item_maint.jsp'">
+					<input name="btnAdd" class="button1" type="submit" id="btnAdd" value="添加"> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="btnBack" class="button1" type="button" id="btnBack" value="返回" onClick="location='<%=path%>/view/basicData/item_maint.jsp'">
 				</div>
 			</div>
 		</form>
 	</body>
+
 </html>
