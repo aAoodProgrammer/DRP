@@ -30,7 +30,7 @@
 					<a href="../view/inventory/inv_init_qty_confirm.html" target="main">分销商库存数量初始化确认</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
+					<a href="../view/inventory/flow_card_maint.html" target="main">流向单维护</a>
 				</li>
 				<li>
 					<a href="../view/inventory/flow_card_audit.html" target="main">流向单审核</a>
@@ -57,7 +57,13 @@
 					<a href="statement/client_level_chart.jsp" target="main">分销商级别分布图</a>
 				</li>
 				<li>
-					<a href="statement/flow_card_audit_report.html" target="main">流向单审核报告</a>
+					<a href="statement/flow_card_audit_report.html" target="main">流向单录入审核报告</a>
+				</li>
+				<li>
+					<a href="statement/flow_card_spot_test_report.html" target="main">流向单抽查报告</a>
+				</li>
+				<li>
+					<a href="statement/client_detail_month_per.html" target="main">分销商月度分销(调拨)明细表</a>
 				</li>
 				<li>
 					<a href="statement/client_stock_report.html" target="main">分销商库存台账</a>

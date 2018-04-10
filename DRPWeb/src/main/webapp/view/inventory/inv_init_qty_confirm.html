@@ -1,398 +1,133 @@
-<html>
+<!doctype html>
+<html class="no-js">
+
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
 		<title>分销商库存数量初始化确认</title>
-		<link rel="stylesheet" href="../../css/drp.css">
+		<link rel="icon" type="image/png" href="../../i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png">
+		<link rel="stylesheet" href="../../css/amazeui.min.css" />
+		<link rel="stylesheet" href="../../css/admin.css">
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/app.js"></script>
 	</head>
 
-	<body class="body1">
-		<form name="invInitQryForm">
-			<div align="center">
-				<table width="95%" border="0" cellspacing="2" cellpadding="2">
-					<tr>
-						<td>&nbsp;
-							
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="8">
-					<tr>
-						<td width="522" class="p1" height="2" nowrap>
-							<img src="../../images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
-							<b>分销商库存管理&gt;&gt;分销商库存数量初始化确认</b>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table height=8 width="95%">
-					<tr>
-						<td height=3></td>
-					</tr>
-				</table>
-				<table width="95%" height="20" border="0" cellspacing="0"
-					id="toolbar" class="rd1">
-					<tr>
-						<td class="rd19" width="434">
-							<font color="#FFFFFF">查询列表</font>
-						</td>
-						<td nowrap class="rd16" width="489">
-							<div align="right"></div>
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="1" cellspacing="0" cellpadding="0"
-					align="center" class="table1">
-					<tr>
-						<td width="31" height="32" class="rd6">
-							<input type="checkbox" name="ifAll" onClick="checkAll()">
-						</td>
-						<td width="86" class="rd6">
-							分销商代码
-						</td>
-						<td width="194" class="rd6">
-							分销商名称
-						</td>
-						<td width="93" class="rd6">
-							物料代码
-						</td>
-						<td width="144" class="rd6">
-							物料名称
-						</td>
-						<td width="119" class="rd6">
-							规格
-						</td>
-						<td width="110" class="rd6">
-							型号
-						</td>
-						<td width="79" class="rd6">
-							计量单位
-						</td>
-						<td width="94" class="rd6">
-							数量
-						</td>
-					</tr>
-					<tr>
-						<td width="31" class="rd8">
-							<input type="checkbox" name="selectFlag" class="checkbox1"
-								value="checkbox">
-						</td>
-						<td width="86" class="rd8">
-							1001
-						</td>
-						<td width="194" class="rd8">
-							北京医药股份有限公司
-						</td>
-						<td width="93" class="rd8">
-							2001
-						</td>
-						<td width="144" class="rd8">
-							青霉素
-						</td>
-						<td width="119" class="rd8">
-							xxxxx
-						</td>
-						<td width="110" class="rd8">
-							xxx-aa-dd
-						</td>
-						<td width="79" class="rd8">
-							盒
-						</td>
-						<td width="94" class="rd8">
-							100
-						</td>
-					</tr>
-					<tr>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-						<td class="rd8">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td width="31" class="rd7">&nbsp;
-							
-						</td>
-						<td width="86" class="rd7">&nbsp;
-							
-						</td>
-						<td width="194" class="rd7">&nbsp;
-							
-						</td>
-						<td width="93" class="rd7">&nbsp;
-							
-						</td>
-						<td width="144" class="rd7">&nbsp;
-							
-						</td>
-						<td width="119" class="rd7">&nbsp;
-							
-						</td>
-						<td width="110" class="rd7">&nbsp;
-							
-						</td>
-						<td width="79" class="rd7">&nbsp;
-							
-						</td>
-						<td width="94" class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td width="31" class="rd7">&nbsp;
-							
-						</td>
-						<td width="86" class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td width="194" class="rd7">&nbsp;
-							
-						</td>
-						<td width="93" class="rd7">&nbsp;
-							
-						</td>
-						<td width="144" class="rd7">&nbsp;
-							
-						</td>
-						<td width="119" class="rd7">&nbsp;
-							
-						</td>
-						<td width="110" class="rd7">&nbsp;
-							
-						</td>
-						<td width="79" class="rd7">&nbsp;
-							
-						</td>
-						<td width="94" class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-					<tr>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7" height="13">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-						<td class="rd7">&nbsp;
-							
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="30" class="rd1">
-					<tr>
-						<td nowrap class="rd19" height="2" width="66%">
-							<div align="left">
-								<font color="#FFFFFF">&nbsp;共&nbspxx&nbsp页</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<font color="#FFFFFF">当前第</font>&nbsp
-								<font color="#FF0000">x</font>&nbsp
-								<font color="#FFFFFF">页</font>
-							</div>
-						</td>
-						<td nowrap class="rd19" width="66%">
-							<div align="right">
-								<input name="btnTopPage" class="button1" type="button"
-									id="btnTopPage" value="|&lt;&lt; " title="首页">
-								<input name="btnPreviousPage" class="button1" type="button"
-									id="btnPreviousPage" value=" &lt;  " title="上页">
-								<input name="btnNextPage" class="button1" type="button"
-									id="btnNextPage" value="  &gt; " title="下页">
-								<input name="btnBottomPage" class="button1" type="button"
-									id="btnBottomPage" value=" &gt;&gt;|" title="尾页">
-								<input name="btnOk" class="button1" type="button" id="btnOk"
-									value="确认"">
-							</div>
-						</td>
-					</tr>
-				</table>
+	<body>
+
+		<div class="daohang">
+			<ul>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+
+			</ul>
+
+		</div>
+
+		<div class="admin-biaogelist">
+
+			<div class="listbiaoti am-cf">
+
+				<dl class="am-icon-home" style="float: left;">当前位置： 分销商库存管理 >
+					<a href="#">分销商库存数量初始化确认</a>
+				</dl>
+
 			</div>
-		</form>
+
+			<form class="am-form am-g">
+				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+					<thead>
+						<tr class="am-success">
+							<th class="table-check"><input type="checkbox" /></th>
+
+							<th class="table-id">分销商代码</th>
+							<th class="table-title">分销商名称</th>
+							<th class="table-type">物料代码</th>
+							<th class="table-author am-hide-sm-only">物料名称</th>
+							<th class="table-author am-hide-sm-only">规格</th>
+							<th class="table-date am-hide-sm-only">型号</th>
+							<th class="table-date am-hide-sm-only">计量单位</th>
+							<th class="table-date am-hide-sm-only">数量</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" /></td>
+
+							<td>1001</td>
+							<td>
+								<a href="#">北京医药股份有限公司</a>
+							</td>
+							<td>2001</td>
+							<td class="am-hide-sm-only">青霉素</td>
+							<td class="am-hide-sm-only">xxxxx</td>
+							<td class="am-hide-sm-only">xxx-aa-dd</td>
+							<td class="am-hide-sm-only">盒</td>
+							<td class="am-hide-sm-only">100</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+
+							<td>1002</td>
+							<td>
+								<a href="#">北京医药股份有限公司</a>
+							</td>
+							<td>2001</td>
+							<td class="am-hide-sm-only">青霉素</td>
+							<td class="am-hide-sm-only">xxxxx</td>
+							<td class="am-hide-sm-only">xxx-aa-dd</td>
+							<td class="am-hide-sm-only">盒</td>
+							<td class="am-hide-sm-only">100</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<ul class="am-pagination am-fr">
+					<li class="am-disabled">
+						<a href="#">«</a>
+					</li>
+					<li class="am-active">
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">»</a>
+					</li>
+					<li>
+						<a href="#">确认</a>
+					</li>
+				</ul>
+
+				<hr />
+				<p>注：共 xx 页 当前第 x 页</p>
+			</form>
+
+			<div class="foods">
+				<ul>
+					版权所有@2015. 模板收集自
+					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
+					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+				</ul>
+				<dl>
+					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
+				</dl>
+			</div>
+
+		</div>
+
+		<script src="../../js/amazeui.min.js"></script>
 	</body>
+
 </html>

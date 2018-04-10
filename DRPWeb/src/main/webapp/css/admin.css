@@ -68,7 +68,7 @@
 .table-main{font-size: 1.4rem;padding: .5rem}
 .table-main button{background: #fff}
 .table-check{width: 30px}
-.table-id{width: 50px}
+.table-id{width: 200px}
 
 @media only screen and (max-width: 640px){.table-select{margin-top: 10px;margin-left: 5px}
 }
