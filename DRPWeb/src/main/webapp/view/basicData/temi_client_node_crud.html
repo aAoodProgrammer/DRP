@@ -1,51 +1,85 @@
+<!doctype html>
 <html>
 
 	<head>
-		<link rel="stylesheet" href="../../css/drp.css" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>终端客户维护</title>
+		<meta charset="utf-8">
+		<title>DRP 分销资源计划</title>
+		<link rel="icon" type="image/png" href="../../i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
+		<link rel="stylesheet" href="../../css/amazeui.min.css" />
+		<link rel="stylesheet" href="../../css/admin.css">
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/app.js"></script>
+		<script type="text/javascript">
+			function addRegion() {
+				window.self.location = "client_node_add.jsp?id=id";
+			}
+
+			function modifyRegion() {
+				window.self.location = "client_node_modify.jsp?id=id";
+			}
+
+			function deleteRegion() {
+				window.self.location = "client_crud.jsp";
+				//		if (window.confirm("确认删除？")) {
+				//			with(document.forms[0]) {
+				//				action="client_node_crud.jsp";
+				//				method="post";
+				//				submit();				
+				//			}
+				//		}
+			}
+
+			function addClient() {
+				window.self.location = "client_add.jsp?id=id";
+			}
+		</script>
 	</head>
 
-	<body class="body1">
-		<form id="regionForm" name="regionForm" method="post" action="">
-			<table width="95%" border="0" cellspacing="0" cellpadding="0" height="8">
-				<tr>
-					<td width="522" class="p1" height="2" nowrap="nowrap">
-						<img src="../../images/mark_arrow_02.gif" width="14" height="14" /> &nbsp;
-						<b>基础数据管理&gt;&gt;终端客户维护</b>
-					</td>
-				</tr>
-			</table>
-			<hr width="97%" align="center" size="0" />
-			<p></p>
-			<p></p>
-			<table width="95%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="213">
-						<div align="right">
-							当前区域名称：
-						</div>
-					</td>
-					<td width="410">
-						<label>
-							<input name="name" type="text" class="text1" id="name" size="40"
-								maxlength="40" readonly="true" />
-						</label>
-					</td>
-				</tr>
-			</table>
-			<p></p>
-			<label>
-				<br />
-			</label>
-			<hr />
-			<p align="center">
-				<input name="btnAddRegion" type="button" class="button1" id="btnAddRegion" onClick="self.location='temi_client_node_add.html'" value="添加区域" /> &nbsp;
-				<input name="btnDeleteRegion" type="button" class="button1" id="btnDeleteRegion" onClick="self.location='temi_client_crud.html'" value="删除区域" /> &nbsp;
-				<input name="btnModifyRegion" type="button" class="button1" id="btnModifyRegion" onClick="self.location='temi_client_node_modify.html'" value="修改区域" /> &nbsp;
-				<input name="btnAddTemiClient" type="button" class="button1" id="btnAddTemiClient" onClick="self.location='temi_client_add.html'" value="添加终端客户" />
-			</p>
-		</form>
+	<body>
+		<div class="daohang">
+			<ul>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
+					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			</ul>
+		</div>
+		<div class="admin-biaogelist">
+			<div class="listbiaoti am-cf">
+				<dl class="am-icon-home" style="float: left;"> 当前位置： 基础数据管理 >
+					<a href="#">终端客户维护</a>
+				</dl>
+			</div>
+
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+				<ul>
+					<li>供方分销商名称:</li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="供方分销商名称" /></li>
+				</ul>
+			</div>
+
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+				<ul>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 550px;" name="add" onClick="addRegion()">添加</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="delete" onClick="deleteRegion()">删除</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="update" onClick="modifyRegion()">修改</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="addInvetory" onClick="addClient()">添加终端客户</button></li>
+				</ul>
+			</div>
+
+			<div class="foods">
+				<ul>
+					版权所有@2015. 模板收集自
+					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
+					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+				</ul>
+				<dl>
+					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
+				</dl>
+			</div>
+		</div>
+		<script src="../../js/amazeui.min.js"></script>
 	</body>
 
 </html>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 设置一个项目路径的变量  -->
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
@@ -75,19 +75,16 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="../view/basicData/fiscal_year_period_maint.jsp" target="main">会计核算期间维护</a>
+					<a href="../view/basicData/fiscal_year_period_maint.html" target="main">会计核算期间维护</a>
 				</li>
 				<li>
-					<a href="../view/basicData/item_maint.jsp" target="main">物料维护</a>
+					<a href="../view/basicData/item_maint.html" target="main">物料维护</a>
 				</li>
 				<li>
-					<a href="../view/basicData/client_node_crud.jsp" target="main">分销商维护</a>
+					<a href="../view/basicData/client_node_crud.html" target="main">分销商维护</a>
 				</li>
 				<li>
 					<a href="../view/basicData/temi_client_node_crud.html" target="main">终端客户维护</a>
-				</li>
-				<li>
-					<a href="basicData/item_maint.jsp" target="main">物料价格维护</a>
 				</li>
 			</ul>
 
@@ -96,7 +93,7 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="systemManager/user_maint.jsp" target="main">用户维护</a>
+					<a href="systemManager/user_maint.html" target="main">用户维护</a>
 				</li>
 				<li>
 					<a href="会员列表.html" target="main">菜单定义</a>

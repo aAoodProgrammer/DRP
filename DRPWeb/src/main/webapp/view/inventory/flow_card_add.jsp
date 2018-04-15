@@ -1,183 +1,186 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <html>
+
 	<head>
-		<base href="${basePath }">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>添加流向单维护</title>
-		<link rel="stylesheet" href="../../css/drp.css">
-		<link href="../../js/JSCalendar.css" rel=stylesheet type=text/css>
-		<script src="../../js/JSCalendar.js"></script>
-		<script src="../../js/client_validate.js"></script>
+		<meta charset="utf-8">
+		<title>DRP 分销资源计划</title>
+		<link rel="icon" type="image/png" href="../../i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
+		<link rel="stylesheet" href="../../css/amazeui.min.css" />
+		<link rel="stylesheet" href="../../css/admin.css">
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/app.js"></script>
+
 		<script language="javascript">
-    var rowIndex = 0;
-    
-    
-    function selectAimClient(index) {
-		window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', 'width=700, height=400, scrollbars=no');
-    }   
-     
-    function selectItem(index) {
-		window.open('item_select.jsp?index=' + index, '请选择物料', 'width=700, height=400, scrollbars=no');
-    } 
-     
-    function addOneLineOnClick() {
-		var row= document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
-		var col = row.insertCell(0);
-		col.innerHTML = "<input type=\"hidden\" name=\"aimInnerId\"><input readonly=\"true\" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient index=\""+ rowIndex +"\" onclick=\"selectAimClient(this.index)\">";
-		col = row.insertCell(1);
-		col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 readonly=\"true\">";
-		col = row.insertCell(2);
-		col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\""+ rowIndex +"\" onclick=\"selectItem(this.index)\">";
-		col = row.insertCell(3);
-		col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25 readonly=\"true\">";		
-		col = row.insertCell(4);
-		col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 readonly=\"true\">";
-		col = row.insertCell(5);
-		col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 readonly=\"true\">";
-		col = row.insertCell(6);
-		col.innerHTML = "<input id=unit name=unit size=4 maxlength=4 readonly=\"true\">";
-		col = row.insertCell(7);
-		col.innerHTML = "<input id=qty name=qty size=6 maxlength=6>";
-		col = row.insertCell(8);
-		col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
-		row.setAttribute("id", "row" + rowIndex);
-		rowIndex++;
-	}
-	
-	function DeleteRow(rowTag){
-	//alert(rowTag);
- 	    var i =  document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
- 		var j;
-		for(j=i;j<=rowIndex;j++) {	
-			document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
-			document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;	
-		}
-		//alert(i);
-       	document.getElementById("tblFlowCardDetail").deleteRow(i);
-		rowIndex--;
-	}
+			var rowIndex = 0;
+			
+			function choiceClient(index){
+				var width = 1000;
+				var height = 600;
+				var top = Math.round((window.screen.height - height) / 2);
+				var left = Math.round((window.screen.width - width) / 2);
+				window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+			}
 
-	function goBack() {
-		window.self.location="flow_card_maint.jsp"
-	}	
+			function selectAimClient(index) {
+				window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', 'width=700, height=400, scrollbars=no');
+			}
 
-</script>
+			function selectItem(index) {
+				window.open('item_select.jsp?index=' + index, '请选择物料', 'width=700, height=400, scrollbars=no');
+			}
+
+			function addOneLineOnClick() {
+				var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
+				var col = row.insertCell(0);
+				col.innerHTML = "<input type=\"hidden\" name=\"aimInnerId\"><input readonly=\"true\" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient index=\"" + rowIndex + "\" onclick=\"selectAimClient(this.index)\">";
+				col = row.insertCell(1);
+				col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
+				col = row.insertCell(2);
+				// language=HTML
+                col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
+				col = row.insertCell(3);
+				col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
+				col = row.insertCell(4);
+				col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
+				col = row.insertCell(5);
+				col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
+				col = row.insertCell(6);
+				col.innerHTML = "<input id=unit name=unit size=4 maxlength=4 >";
+				col = row.insertCell(7);
+				col.innerHTML = "<input id=qty name=qty size=6 maxlength=6>";
+				col = row.insertCell(8);
+				col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
+				row.setAttribute("id", "row" + rowIndex);
+				rowIndex++;
+			}
+
+			function DeleteRow(rowTag) {
+				//alert(rowTag);
+				var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+				var j;
+				for(j = i; j <= rowIndex; j++) {
+					document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+					document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
+				}
+				//alert(i);
+				document.getElementById("tblFlowCardDetail").deleteRow(i);
+				rowIndex--;
+			}
+
+			function goBack() {
+				window.self.location = "flow_card_maint.html"
+			}
+		</script>
 	</head>
 
-	<body class="body1">
-		<div align="center">
-			<form name="flowCardAddForm" method="post" action="servlet/flowcard/FlowcardServlet">
-				<input type="hidden" name="command" value="${add }">
-				<input type="hidden" name="clientInnerId" id="clientInnerId">
-				<table width="95%" border="0" cellspacing="2" cellpadding="2">
-					<tr>
-						<td>&nbsp;
-							
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="522" class="p1" height="2" nowrap>
-							<img src="../../images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
-							<b>分销商库存管理&gt;&gt;流向单维护&gt;&gt;添加</b>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table width="95%" border="0" cellpadding="0" cellspacing="0">
-					<tr id="row0">
-						<td width="15%" height="29">
-							<div align="right">
-								<font color="#FF0000">*</font>供方分销商代码:&nbsp;
-							</div>
-						</td>
-						<td width="16%">
-							<input name="clientId" type="text" class="text1" id="clientId"
-								size="10" maxlength="10" readonly="true">
-							<input name="btnSelectClient" type="button" id="btnSelectClient"
-								value="..." class="button1"
-								onClick="window.open('client_select.jsp', '选择分销商', 'width=700, height=400, scrollbars=no')">
-						</td>
-						<td width="16%">
-							<div align="right">
-								供方分销商名称:&nbsp;
-							</div>
-						</td>
-						<td width="29%">
-							<input name="clientName" type="text" class="text1"
-								id="clientName" size="40" maxlength="40" readonly="true">
-						</td>
-						<td width="7%">&nbsp;
-							
-						</td>
-						<td width="17%">
-							<label></label>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table width="95%" border="0" cellpadding="0" cellspacing="0"
-					name="tblFlowCardDetail" id="tblFlowCardDetail">
-					<tr>
-						<td nowrap>
-							<div align="left">
-								<font color="#FF0000">*</font>需方客户代码
-							</div>
-						</td>
-						<td nowrap>
-							<div align="left">
-								需方客户名称
-							</div>
-						</td>
-						<td nowrap>
-							<div align="left">
-								<font color="#FF0000">*</font>物料代码
-							</div>
-						</td>
-						<td nowrap>
-							<div align="left">
-								物料名称
-							</div>
-						</td>
-						<td nowrap>
-							规格
-						</td>
-						<td nowrap>
-							型号
-						</td>
-						<td nowrap>
-							计量单位
-						</td>
-						<td nowrap>
-							<font color="#FF0000">*</font>操作数量
-						</td>
-						<td nowrap>
-							<div align="left">
-								删除
-							</div>
-						</td>
-					</tr>
-				</table>
-				<p>
-					<input name="btnAddLine" type="button" id="btnAddLine"
-						onClick="return addOneLineOnClick()" value="加入一行">
-					<input name="btnSave" type="submit" id="btnSave" value="保存">
-					<input name="btnBack" type="button" id="btnBack" onClick="goBack()"
-						value="返回">
-				</p>
-				<p>&nbsp;
-					
-				</p>
-				<p>&nbsp;
-					
-				</p>
-			</form>
-			<p>&nbsp;
-				
-			</p>
+	<body>
+		<div class="daohang">
+			<ul>
+                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			</ul>
 		</div>
+		<div class="admin-biaogelist">
+			<div class="listbiaoti am-cf">
+				<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>
+					<a href="flow_card_maint.html">流向单维护</a>>
+					<a href="#">添加</a>
+				</dl>
+			</div>
+
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+				<ul>
+					<li>供方分销商代码:</li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
+					<li><span style="margin-left: 50px;"></span>供方分销商名称:</li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="供方分销商名称" /></li>
+				</ul>
+			</div>
+
+			<form class="am-form am-g">
+				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
+					<thead>
+						<tr class="am-success">
+							<th class="table-id">*需方客户代码</th>
+							<th class="table-id">需方客户名称</th>
+							<th class="table-title">*物料代码</th>
+							<th class="table-type">物料名称</th>
+							<th class="table-type">规格</th>
+							<th class="table-type">型号</th>
+							<th class="table-type">计量单位</th>
+							<th class="table-type">*操作数量</th>
+							<th class="table-type">删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>14</td>
+							<td>
+								Business managementas
+							</td>
+							<td>default</td>
+							<td class="am-hide-sm-only">张三</td>
+							<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+							<td>default</td>
+							<td class="am-hide-sm-only">张三</td>
+							<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                            <td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)" ></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<div class="am-btn-group am-btn-group-xs">
+						<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
+						<input name="btnSave" type="submit" id="btnSave" value="保存">
+						<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
+				</div>
+
+				<ul class="am-pagination am-fr">
+					<li class="am-disabled">
+						<a href="#">«</a>
+					</li>
+					<li class="am-active">
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">»</a>
+					</li>
+				</ul>
+
+				<hr />
+				<p>注： 共 页 当前第 页</p>
+			</form>
+
+			<div class="foods">
+				<ul>
+					版权所有@2015. 模板收集自
+					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
+					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+				</ul>
+				<dl>
+					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
+				</dl>
+			</div>
+		</div>
+		<script src="../../js/amazeui.min.js"></script>
 	</body>
+
 </html>
