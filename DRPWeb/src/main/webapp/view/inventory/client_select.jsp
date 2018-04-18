@@ -66,7 +66,7 @@
 				</table>
 
 				<div class="am-btn-group am-btn-group-xs">
-					<button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" onclick="selectOk()">确定</button>
+					<button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="selectOk()">确定</button>
 					<button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" onclick="window.close()">关闭</button>
 				</div>
 

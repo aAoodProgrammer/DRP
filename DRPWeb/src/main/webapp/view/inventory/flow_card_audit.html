@@ -10,13 +10,30 @@
 		<link rel="stylesheet" href="../../css/admin.css">
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/app.js"></script>
+		<script type="text/javascript">
+			function choiceClient(index) {
+				var width = 1000;
+				var height = 600;
+				var top = Math.round((window.screen.height - height) / 2);
+				var left = Math.round((window.screen.width - width) / 2);
+				window.open('client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+			}
+
+			//			function addForCard() {
+			//				window.self.location = "flow_card_add.jsp?id=id";
+			//			}
+			//
+			function modifyForCard() {
+				window.self.location = "flow_card_audit_modify.html";
+			}
+		</script>
 	</head>
 
 	<body>
 		<div class="daohang">
 			<ul>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
-					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 			</ul>
@@ -30,21 +47,23 @@
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
-					<li style="margin-right: 0;">
-						<span class="tubiao am-icon-calendar"></span>
-						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
-					</li>
-					<li style="margin-left: -4px;">
-						<span class="tubiao am-icon-calendar"></span>
-						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
-					</li>
-					<li>供方分销商代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">选择</button></li>
-					<li>供方分销商名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="供方分销商名称" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					<form action="" method="post">
+						<li style="margin-right: 0;">
+							<span class="tubiao am-icon-calendar"></span>
+							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
+						</li>
+						<li style="margin-left: -4px;">
+							<span class="tubiao am-icon-calendar"></span>
+							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
+						</li>
+						<li>供方分销商代码:</li>
+						<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+						<li>供方分销商名称:</li>
+						<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+						<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient(this.index)">选择</button></li>
+						<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
+						<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					</form>
 				</ul>
 			</div>
 
@@ -86,8 +105,8 @@
 				</table>
 
 				<div class="am-btn-group am-btn-group-xs">
-					<button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 审核</button>
-					<button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 调整</button>
+					<button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span>审核</button>
+					<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-archive"></span>调整</button>
 
 				</div>
 
@@ -116,20 +135,9 @@
 				</ul>
 
 				<hr />
-				<p>注：
- 共  页      当前第    页</p>
+				<p>注： 共 页 当前第 页</p>
 			</form>
 
-			<div class="foods">
-				<ul>
-					版权所有@2015. 模板收集自
-					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
-					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-				</ul>
-				<dl>
-					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-				</dl>
-			</div>
 		</div>
 		<script src="../../js/amazeui.min.js"></script>
 	</body>

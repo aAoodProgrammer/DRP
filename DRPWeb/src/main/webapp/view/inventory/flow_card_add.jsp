@@ -14,8 +14,8 @@
 
 		<script language="javascript">
 			var rowIndex = 0;
-			
-			function choiceClient(index){
+
+			function choiceClient(index) {
 				var width = 1000;
 				var height = 600;
 				var top = Math.round((window.screen.height - height) / 2);
@@ -39,7 +39,7 @@
 				col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
 				col = row.insertCell(2);
 				// language=HTML
-                col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
+				col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
 				col = row.insertCell(3);
 				col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
 				col = row.insertCell(4);
@@ -78,8 +78,8 @@
 	<body>
 		<div class="daohang">
 			<ul>
-                <li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
-					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 			</ul>
@@ -94,11 +94,14 @@
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
-					<li>供方分销商代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
-					<li><span style="margin-left: 50px;"></span>供方分销商名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="供方分销商名称" /></li>
+					<form action="" method="post">
+						<li>供方分销商代码:</li>
+						<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+						<li>供方分销商名称:</li>
+						<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+						<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
+						<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					</form>
 				</ul>
 			</div>
 
@@ -129,16 +132,16 @@
 							<td>default</td>
 							<td class="am-hide-sm-only">张三</td>
 							<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                            <td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)" ></td>
+							<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)"></td>
 						</tr>
 
 					</tbody>
 				</table>
 
 				<div class="am-btn-group am-btn-group-xs">
-						<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
-						<input name="btnSave" type="submit" id="btnSave" value="保存">
-						<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
+					<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
+					<input name="btnSave" type="submit" id="btnSave" value="保存">
+					<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 				</div>
 
 				<ul class="am-pagination am-fr">
@@ -169,16 +172,6 @@
 				<p>注： 共 页 当前第 页</p>
 			</form>
 
-			<div class="foods">
-				<ul>
-					版权所有@2015. 模板收集自
-					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
-					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-				</ul>
-				<dl>
-					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-				</dl>
-			</div>
 		</div>
 		<script src="../../js/amazeui.min.js"></script>
 	</body>

@@ -95,14 +95,11 @@ pageEncoding="UTF-8"%>
 				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 					<thead>
 						<tr class="am-success">
-							<th class="table-id">*需方客户代码</th>
-							<th class="table-id">需方客户名称</th>
-							<th class="table-title">*物料代码</th>
-							<th class="table-type">物料名称</th>
-							<th class="table-type">规格</th>
-							<th class="table-type">型号</th>
-							<th class="table-type">计量单位</th>
-							<th class="table-type">*操作数量</th>
+							<th class="table-id">流向单号</th>
+							<th class="table-id">供方分销商代码</th>
+							<th class="table-title">供方分销商名称</th>
+							<th class="table-type">录入人</th>
+							<th class="table-type">录入日期</th>
 							<th class="table-type">删除</th>
 						</tr>
 					</thead>
@@ -118,13 +115,7 @@ pageEncoding="UTF-8"%>
 								<input type="text" name="id"  value="张三" /></td>
 							<td class="am-hide-sm-only">
 								<input type="text" name="id"  value="2014年9月4日 7:28:47" /></td>
-							<td>
-								<input type="text" name="id" value="default" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id" value="张三" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="2014年9月4日 7:28:47" /></td>
-							<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )"></td>
+							<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
 						</tr>
 
 					</tbody>
@@ -158,21 +149,9 @@ pageEncoding="UTF-8"%>
 						<a href="#">»</a>
 					</li>
 				</ul>
-
 				<hr />
 				<p>注： 共 页 当前第 页</p>
 			</form>
-
-			<div class="foods">
-				<ul>
-					版权所有@2015. 模板收集自
-					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
-					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-				</ul>
-				<dl>
-					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-				</dl>
-			</div>
 		</div>
 		<script src="../../js/amazeui.min.js"></script>
 	</body>

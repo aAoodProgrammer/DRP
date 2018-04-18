@@ -28,7 +28,7 @@
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
-					<li>分销商代码/名称:</li>
+					<li>物料代码/名称:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
 					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
 				</ul>
@@ -39,34 +39,30 @@
 					<thead>
 						<tr class="am-success">
 							<th class="table-check"><input type="checkbox" /></th>
-							<th class="table-id">分销商代码</th>
-							<th class="table-title">分销商名称</th>
-							<th class="table-type">分销商类型</th>
+							<th class="table-id">物料代码</th>
+							<th class="table-title">物料名称</th>
+							<th class="table-type">物料规格</th>
+							<th class="table-id">物料型号</th>
+							<th class="table-title">类别</th>
+							<th class="table-type">计量单位</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><input type="checkbox" /></td>
-							<td>14</td>
-							<td>
-								<a href="#">Business management</a>
-							</td>
-							<td>default</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>15</td>
-							<td>
-								<a href="#">Business management</a>
-							</td>
-							<td>default</td>
+							<td>getItemNo()</td>
+							<td>getItemName()</td>
+							<td>getSpec()</td>
+							<td>getPattern()</td>
+							<td>getItemCategory().getName()</td>
+							<td>getItemUnit().getName()</td>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
 				<div class="am-btn-group am-btn-group-xs">
-					<button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" onclick="selectOk()">确定</button>
+					<button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="selectOk()">确定</button>
 					<button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" onclick="window.close()">关闭</button>
 				</div>
 
