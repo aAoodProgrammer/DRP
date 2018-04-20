@@ -113,6 +113,7 @@
 		</script>
 	</div>
 	<script src="../js/amazeui.min.js"></script>
+
 </body>
 
 </html>
