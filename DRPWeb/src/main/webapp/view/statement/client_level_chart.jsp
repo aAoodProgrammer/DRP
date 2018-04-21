@@ -113,7 +113,7 @@
 						</li>
 						<li style="margin-left: 200px;">
 							<input type="radio" value="0" name="picture">饼图</input>
-							<input type="radio" value="1" name="picture">柱状图</input>
+							<input type="radio" value="1" name="picture" style="margin-left: 20px;">柱状图</input>
 						</li>
 						<li style="margin-left: 200px;">
 							<button type="submit" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">查询</button>

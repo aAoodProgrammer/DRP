@@ -1,207 +1,133 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.text.*" %>
-<%@page import="java.util.*" %>
-<%--
-<%@page import="com.demo.drp.basedata.manager.*" %>
-<%@page import="com.demo.drp.basedata.domain.*" %>
-<%  
-	String command = request.getParameter("command");
-	if (command != null && command.equals("add")) { 
-		FiscalYearPeriod fiscalYearPeriod = new FiscalYearPeriod();
-		fiscalYearPeriod.setFiscalYear(Integer.parseInt(request.getParameter("fiscalYear")));
-		fiscalYearPeriod.setFiscalPeriod(Integer.parseInt(request.getParameter("fiscalPeriod")));
-		fiscalYearPeriod.setBeginDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("beginDate")));
-		fiscalYearPeriod.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("endDate")));
-		fiscalYearPeriod.setPeriodSts(request.getParameter("periodSts") == null?"N":"Y");
-		FiscalYearPeriodManager.getInstance().addFiscalYearPeriod(fiscalYearPeriod);
-		out.println("提示：添加核算期间成功！");
-	}
- %>--%>
+<%@ page contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>添加会计核算期间</title>
-		<link rel="stylesheet" href="../../css/drp.css">
-		<link href="../../css/JSCalendar.css" rel=stylesheet type=text/css>
-		<script src="../../js/JSCalendar.js"></script>
-		<script src="../../js/client_validate.js"></script>
-		<script type="text/javascript">
-			function init() {
-				document.getElementById("fiscalYear").focus();
+		<meta charset="utf-8">
+		<title>DRP 分销资源计划</title>
+		<link rel="icon" type="image/png" href="../../i/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
+		<link rel="stylesheet" href="../../css/amazeui.min.css" />
+		<link rel="stylesheet" href="../../css/admin.css">
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/app.js"></script>
+
+		<script language="javascript">
+			var rowIndex = 0;
+
+			function choiceClient(index) {
+				var width = 1000;
+				var height = 600;
+				var top = Math.round((window.screen.height - height) / 2);
+				var left = Math.round((window.screen.width - width) / 2);
+				window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
 			}
 
-			function addFiscalYearPeriod() {
-				if(!isinteger(trim(document.getElementById("fiscalYear").value))) {
-					alert("核算年必须为整数！");
-					document.getElementById("fiscalYear").focus();
-					return;
-				}
+			function selectAimClient(index) {
+				window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', 'width=700, height=400, scrollbars=no');
+			}
 
-				if(!isinteger(trim(document.getElementById("fiscalPeriod").value))) {
-					alert("核算月必须为整数！");
-					document.getElementById("fiscalPeriod").focus();
-					return;
-				}
+			function selectItem(index) {
+				window.open('item_select.jsp?index=' + index, '请选择物料', 'width=700, height=400, scrollbars=no');
+			}
 
-				if(document.getElementById("responseMsg").innerHTML != "") {
-					alert("核算年或核算月重复！");
-					document.getElementById("fiscalYear").focus();
-					return;
-				}
+			function addOneLineOnClick() {
+				var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
+				var col = row.insertCell(0);
+				col.innerHTML = "<input type=\"hidden\" name=\"aimInnerId\"><input readonly=\"true\" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient index=\"" + rowIndex + "\" onclick=\"selectAimClient(this.index)\">";
+				col = row.insertCell(1);
+				col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
+				col = row.insertCell(2);
+				// language=HTML
+				col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
+				col = row.insertCell(3);
+				col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
+				col = row.insertCell(4);
+				col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
+				col = row.insertCell(5);
+				col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
+				col = row.insertCell(6);
+				col.innerHTML = "<input id=unit name=unit size=4 maxlength=4 >";
+				col = row.insertCell(7);
+				col.innerHTML = "<input id=qty name=qty size=6 maxlength=6>";
+				col = row.insertCell(8);
+				col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
+				row.setAttribute("id", "row" + rowIndex);
+				rowIndex++;
+			}
 
-				if(trim(document.getElementById("beginDate").value) > trim(document.getElementById("endDate").value)) {
-					alert("开始日期必须小于等于结束日期！");
-					document.getElementById("beginDate").focus();
-					return;
+			function DeleteRow(rowTag) {
+				//alert(rowTag);
+				var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+				var j;
+				for(j = i; j <= rowIndex; j++) {
+					document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+					document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
 				}
-
-				with(document.getElementById("fiscalYearPeriodForm")) {
-					method = "post";
-					action = "fiscal_year_period_add.jsp?command=add";
-					submit();
-				}
+				//alert(i);
+				document.getElementById("tblFlowCardDetail").deleteRow(i);
+				rowIndex--;
 			}
 
 			function goBack() {
-				window.self.location = "fiscal_year_period_maint.jsp";
+				window.self.location = "fiscal_year_period_maint.html";
 			}
-
-			function fiscalPeriodOnkeyPress() {
-				if(!(window.event.keyCode >= 48 && window.event.keyCode <= 57)) {
-					window.event.keyCode = 0;
-				}
-			}
-
-			function fiscalYearOnkeypress() {
-				if(!(window.event.keyCode >= 48 && window.event.keyCode <= 57)) {
-					window.event.keyCode = 0;
-				}
-			}
-			//---------------------------Ajax begin----------------------------	
-			var xmlHttp;
-
-			function createXMLHttpRequest() {
-				if(window.XMLHttpRequest) {
-					xmlHttp = new XMLHttpRequest();
-				} else if(window.ActiveXObject) {
-					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-			}
-
-			function validate() {
-				if(trim(document.getElementById("fiscalYear").value) != "" &&
-					trim(document.getElementById("fiscalPeriod").value) != "") {
-					createXMLHttpRequest();
-					var fiscalYear = document.getElementById("fiscalYear");
-					var fiscalPeriod = document.getElementById("fiscalPeriod");
-					var url = "../servlet/FiscalYearPeriodValidateServlet?fiscalYear=" + fiscalYear.value + "&fiscalPeriod=" + fiscalPeriod.value + "&timestampt=" + new Date().getTime();
-					xmlHttp.open("GET", url, true);
-					xmlHttp.onreadystatechange = callback;
-					xmlHttp.send(null);
-				}
-			}
-
-			function callback() {
-				if(xmlHttp.readyState == 4) {
-					if(xmlHttp.status == 200) {
-						var responseMsgDiv = document.getElementById("responseMsg");
-						if(trim(xmlHttp.responseText) != "") {
-							responseMsgDiv.innerHTML = "<font color='red'>" + xmlHttp.responseText + "</font>";
-						} else {
-							responseMsgDiv.innerHTML = "";
-						}
-					}
-				}
-			}
-
-			//---------------------------Ajax end----------------------------
 		</script>
 	</head>
 
-	<body class="body1" onLoad="init()">
-		<form name="fiscalYearPeriodForm" target="_self" id="fiscalYearPeriodForm">
-			<div align="center">
-				<table width="95%" border="0" cellspacing="2" cellpadding="2">
-					<tr>
-						<td>&nbsp;
-
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="25">
-					<tr>
-						<td width="522" class="p1" height="25" nowrap>
-							<img src="../../images/mark_arrow_03.gif" width="14" height="14"> &nbsp;
-							<b>基础数据管理&gt;&gt;会计核算期间维护&gt;&gt;添加</b>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table width="95%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="22%" height="29">
-							<div align="right">
-								<font color="#FF0000">*</font>核算年:&nbsp;
-							</div>
-						</td>
-						<td width="78%">
-							<input name="fiscalYear" type="text" class="text1" "
-								id="fiscalYear " size="10 " maxlength="4 " onBlur="validate() " onKeyPress="fiscalYearOnkeypress() " > 
-						</td>
-					</tr>
-					<tr>
-						<td height="26 ">
-							<div align="right ">
-								<font color="#FF0000 ">*</font>核算月:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="fiscalPeriod " type="text " class="text1 "" id="fiscalPeriod" size="10" maxlength="2" onBlur="validate()" onKeyPress="fiscalPeriodOnkeyPress()">&nbsp<span id="responseMsg"></span>
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>开始日期:&nbsp;
-							</div>
-						</td>
-						<td>
-							<label>
-								<input type="text" name="beginDate" id="beginDate" size="10" maxlength="10"
-									value="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>" readonly="true" onClick=JSCalendar(this)>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="black">*</font>结束日期:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="endDate" type="text" id="endDate" onClick=JSCalendar(this) value="<%=new SimpleDateFormat(" yyyy-MM-dd ").format(new Date()) %>" size="10" maxlength="10" readonly="true">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="black">*</font>是否可用:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="periodSts" type="checkbox" class="checkbox1" id="periodSts">
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<div align="center">
-					<input name="btnAdd" class="button1" type="button" id="btnAdd" onClick="addFiscalYearPeriod()" value="添加"> &nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack" value="返回" onClick="goBack()">
-				</div>
+	<body>
+		<div class="daohang">
+			<ul>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			</ul>
+		</div>
+		<div class="admin-biaogelist">
+			<div class="listbiaoti am-cf">
+				<dl class="am-icon-home" style="float: left;"> 当前位置：基础数据管理>
+					<a href="#">会计核算期间维护</a>>添加
+				</dl>
 			</div>
-		</form>
+
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" style="height:200px;width:250px">
+				<form action="" method="post">
+					<ul>
+						<li>*核算年: </li>&nbsp;&nbsp;&nbsp;
+						<input type="text" /><br />
+					</ul>
+					<ul style="margin-top: 2px;">
+						<li>*核算月: </li>&nbsp;&nbsp;&nbsp;
+						<input type="text" /><br />
+					</ul>
+					<ul style="margin-top: 2px;">
+						<li>*开始日期:</li>
+						<li style="margin-right: 0;">
+							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
+						</li><br />
+					</ul>
+					<ul style="margin-top: 2px;">
+						<li>*结束日期:</li>
+						<li style="margin-right: 0;">
+							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
+						</li><br />
+					</ul>
+					<ul style="margin-top: 2px;">
+						<li>
+							*是否可用:
+						</li>
+						<input type="checkbox" /><br />
+					</ul>
+					<ul style="margin-top: 5px;">
+						<input type="submit" value="添加" />
+						<input type="reset" value="重置" />
+						<input type="button" value="返回"  onclick="goBack()"/>
+					</ul>
+				</form>
+			</div>
+		</div>
+		<script src="../../js/amazeui.min.js "></script>
 	</body>
 
 </html>
