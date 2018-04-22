@@ -1,132 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 设置一个项目路径的变量  -->
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
 
-	<head>
-		<base href="<%=basePath%>">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>添加物料</title>
-		<link rel="stylesheet" href="<%=path%>/css/drp.css">
-		<script src="<%=path%>/js/client_validate.js"></script>
-		<script type="text/javascript">
-			function validateForm(form) {
-				if(trim(form.itemNo.value) == "") {
-					alert("物料代码不能为空！");
-					form.itemNo.focus();
-					return false;
-				}
-				if(trim(form.itemName.value) == "") {
-					alert("物料名称不能为空！");
-					form.itemName.focus();
-					return false;
-				}
-				return true;
+<head>
+	<meta charset="utf-8">
+	<title>DRP 分销资源计划</title>
+	<link rel="icon" type="image/png" href="../../i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="../../css/amazeui.min.css" />
+	<link rel="stylesheet" href="../../css/admin.css">
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/app.js"></script>
+
+	<script language="javascript">
+		var rowIndex = 0;
+
+		function choiceClient(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('../inventory/client_select.jsp', '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function selectItem(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('../inventory/item_select.jsp', '请选择物料', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function addOneLineOnClick() {
+			var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
+			var col = row.insertCell(0);
+			col.innerHTML = "<input type=\"hidden\" name=\"aimInnerId\"><input readonly=\"true\" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
+			col = row.insertCell(1);
+			col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
+			col = row.insertCell(2);
+			// language=HTML
+			col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
+			col = row.insertCell(3);
+			col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
+			col = row.insertCell(4);
+			col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
+			col = row.insertCell(5);
+			col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
+			col = row.insertCell(6);
+			col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
+			row.setAttribute("id", "row" + rowIndex);
+			rowIndex++;
+		}
+
+		function DeleteRow(rowTag) {
+			//alert(rowTag);
+			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+			var j;
+			for(j = i; j <= rowIndex; j++) {
+				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
 			}
-		</script>
-	</head>
+			//alert(i);
+			document.getElementById("tblFlowCardDetail").deleteRow(i);
+			rowIndex--;
+		}
 
-	<body class="body1">
-		<form name="itemForm" target="_self" id="itemForm" action="servlet/basedata/AddItemServlet" method="post" onSubmit="return validateForm(this)">
-			<div align="center">
-				<table width="95%" border="0" cellspacing="2" cellpadding="2">
-					<tr>
-						<td>&nbsp;
+		function goBack() {
+			window.self.location = "item_maint.html"
+		}
+	</script>
+</head>
 
-						</td>
+<body>
+	<div class="daohang">
+		<ul>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+		</ul>
+	</div>
+	<div class="admin-biaogelist">
+		<div class="listbiaoti am-cf">
+			<dl class="am-icon-home" style="float: left;"> 当前位置：基础数据管理>
+				<a href="flow_card_maint.html">物料维护</a>>添加
+			</dl>
+		</div>
+
+		<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+			<ul>
+				<form action="" method="post">
+					<li>供方分销商代码:</li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+					<li>供方分销商名称:</li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
+					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+				</form>
+			</ul>
+		</div>
+
+		<form class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
+				<thead>
+					<tr class="am-success">
+						<th class="table-id">*物料代码</th>
+						<th class="table-id">*物料名称</th>
+						<th class="table-type">规格</th>
+						<th class="table-type">型号</th>
+						<th class="table-type">类别</th>
+						<th class="table-type">计量单位</th>
+						<th class="table-type">删除</th>
 					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="25">
-					<tr>
-						<td width="522" class="p1" height="25" nowrap>
-							<img src="<%=path%>/images/mark_arrow_03.gif" width="14" height="14"> &nbsp;
-							<b>基础数据管理&gt;&gt;物料维护&gt;&gt;添加</b>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table width="95%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="22%" height="29">
-							<div align="right">
-								<font color="#FF0000">*</font>物料代码:&nbsp;
-							</div>
-						</td>
-						<td width="78%">
-							<input name="itemNo" type="text" class="text1" id="itemNo" size="10" maxlength="10">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>物料名称:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="itemName" type="text" class="text1" id="itemName" size="20" maxlength="20">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								物料规格:&nbsp;
-							</div>
-						</td>
-						<td>
-							<label>
-								<input name="spec" type="text" class="text1" id="spec"
-									size="20" maxlength="20">
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								物料型号:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="pattern" type="text" class="text1" id="pattern" size="20" maxlength="20">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>类别:&nbsp;
-							</div>
-						</td>
-						<td>
-							<select name="category" class="select1" id="category">
-								<c:forEach items="${itemCategoryList}" var="ic">
-									<option value="${ic.id }">${ic.name }</option>
-								</c:forEach>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>计量单位:&nbsp;
-							</div>
-						</td>
-						<td>
-							<select name="unit" class="select1" id="unit">
-								<option value="id">name</option>
-							</select>
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<div align="center">
-					<input name="btnAdd" class="button1" type="submit" id="btnAdd" value="添加"> &nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack" value="返回" onClick="location='<%=path%>/view/basicData/item_maint.jsp'">
-				</div>
+				</thead>
+			</table>
+
+			<div class="am-btn-group am-btn-group-xs">
+				<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
+				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
+
+			<ul class="am-pagination am-fr">
+				<li class="am-disabled">
+					<a href="#">«</a>
+				</li>
+				<li class="am-active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">»</a>
+				</li>
+			</ul>
+
+			<hr />
+			<p>注： 共 页 当前第 页</p>
 		</form>
-	</body>
+
+	</div>
+	<script src="../../js/amazeui.min.js"></script>
+</body>
 
 </html>

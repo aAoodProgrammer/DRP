@@ -11,27 +11,20 @@
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/app.js"></script>
 		<script type="text/javascript">
-			function addRegion() {
-				window.self.location = "client_node_add.jsp?id=id";
+			function choiceClient(index) {
+				var width = 1000;
+				var height = 600;
+				var top = Math.round((window.screen.height - height) / 2);
+				var left = Math.round((window.screen.width - width) / 2);
+				window.open('temi_client_tree.html', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
 			}
 
-			function modifyRegion() {
-				window.self.location = "client_node_modify.jsp?id=id";
+			function addForCard() {
+				window.self.location = "temi_client_node_add.html";
 			}
 
-			function deleteRegion() {
-				window.self.location = "client_crud.jsp";
-				//		if (window.confirm("确认删除？")) {
-				//			with(document.forms[0]) {
-				//				action="client_node_crud.jsp";
-				//				method="post";
-				//				submit();				
-				//			}
-				//		}
-			}
-
-			function addClient() {
-				window.self.location = "client_add.jsp?id=id";
+			function modifyForCard() {
+				window.self.location = "temi_client_node_modify.html";
 			}
 		</script>
 	</head>
@@ -40,33 +33,129 @@
 		<div class="daohang">
 			<ul>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
-					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 			</ul>
 		</div>
 		<div class="admin-biaogelist">
 			<div class="listbiaoti am-cf">
-				<dl class="am-icon-home" style="float: left;"> 当前位置： 基础数据管理 >
-					<a href="#">终端客户维护</a>
-				</dl>
+				<dl class="am-icon-home" style="float: left;"> 当前位置： 基础数据管理 >终端客户维护</dl>
 			</div>
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
-					<li>供方分销商名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="供方分销商名称" /></li>
+					<form action="" method="post">
+						<li>终端客户代码/名称:</li>
+						<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+						<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient(this.index)">选择</button></li>
+						<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
+						<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					</form>
 				</ul>
 			</div>
 
-			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
-				<ul>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 550px;" name="add" onClick="addRegion()">添加</button></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="delete" onClick="deleteRegion()">删除</button></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="update" onClick="modifyRegion()">修改</button></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;" name="addInvetory" onClick="addClient()">添加终端客户</button></li>
+			<form class="am-form am-g">
+				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+					<thead>
+						<tr class="am-success">
+							<th class="table-check"><input type="checkbox" /></th>
+							<th class="table-id">终端客户代码</th>
+							<th class="table-id">终端客户名称</th>
+							<th class="table-title">终端客户类型</th>
+							<th class="table-type">联系人</th>
+							<th class="table-date am-hide-sm-only">联系电话</th>
+							<th class="table-type">地址</th>
+							<th class="table-type">邮编</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>1</td>
+							<td>达力士 卡泊三醇软膏</td>
+							<td>15g:0.75mg</td>
+							<td class="am-hide-sm-only">1</td>
+							<td class="am-hide-sm-only">软膏剂</td>
+							<td>盒</td>
+							<td>盒</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>2</td>
+							<td>达力士 卡泊三醇软膏</td>
+							<td>15g:0.75mg</td>
+							<td class="am-hide-sm-only">2</td>
+							<td class="am-hide-sm-only">软膏剂</td>
+							<td>盒</td>
+							<td>盒</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>3</td>
+							<td>达力士 卡泊三醇软膏</td>
+							<td>15g:0.75mg</td>
+							<td class="am-hide-sm-only">3</td>
+							<td class="am-hide-sm-only">软膏剂</td>
+							<td>盒</td>
+							<td>盒</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>4</td>
+							<td>达力士 卡泊三醇软膏</td>
+							<td>15g:0.75mg</td>
+							<td class="am-hide-sm-only">4</td>
+							<td class="am-hide-sm-only">软膏剂</td>
+							<td>盒</td>
+							<td>盒</td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>5</td>
+							<td>达力士 卡泊三醇软膏</td>
+							<td>15g:0.75mg</td>
+							<td class="am-hide-sm-only">5</td>
+							<td class="am-hide-sm-only">软膏剂</td>
+							<td>盒</td>
+							<td>盒</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="am-btn-group am-btn-group-xs">
+					<button type="button" class="am-btn am-btn-default" onClick="addForCard()"><span class="am-icon-plus"></span> 新增</button>
+					<button type="button" class="am-btn am-btn-default" onClick="deleteForCard()"><span class="am-icon-plus"></span> 删除</button>
+					<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-save"></span> 修改</button>
+				</div>
+
+				<ul class="am-pagination am-fr">
+					<li class="am-disabled">
+						<a href="#">«</a>
+					</li>
+					<li class="am-active">
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">»</a>
+					</li>
 				</ul>
-			</div>
+
+				<hr />
+				<p>注： 共 5页 &nbsp;&nbsp;&nbsp;当前第 1页</p>
+			</form>
 
 		</div>
 		<script src="../../js/amazeui.min.js"></script>

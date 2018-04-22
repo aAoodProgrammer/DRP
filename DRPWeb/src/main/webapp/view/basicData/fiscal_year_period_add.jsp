@@ -91,15 +91,15 @@
 				</dl>
 			</div>
 
-			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" style="height:200px;width:250px">
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" style="height:200px;width:300px">
 				<form action="" method="post">
 					<ul>
 						<li>*核算年: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text" /><br />
+						<input type="text" style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*核算月: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text" /><br />
+						<input type="text"  style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*开始日期:</li>
