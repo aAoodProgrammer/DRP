@@ -1,65 +1,71 @@
 package com.drp.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drp.pojo.Category;
 import com.drp.repository.CategoryRepository;
 import com.drp.service.ICategoryService;
-import com.drp.util.StateAndMsg;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * @author 刘江涛
  * @ClassName: CategoryService
  * @Description: 业务逻辑层实体：静态字典
- * @author 刘江涛
  * @date 2017年11月7日 上午10:37:35
- * 
  */
 @Service
 public class CategoryService implements ICategoryService {
-	@Autowired
-	private CategoryRepository categoryRepository;
 
-	@Override
-	public StateAndMsg add(Category t) {
-		if (t != null) {
-			categoryRepository.save(t);
-			return new StateAndMsg(1, "添加成功！");
-		} else {
-			return new StateAndMsg(-1, "参数有误！");
-		}
-	}
-
-	@Override
-	public void delete(List<Integer> ids) {
-
-	}
+    @Resource
+    private CategoryRepository categoryRepository;
 
 
-	@Override
-	public StateAndMsg update(Category t) {
-		if (t != null) {
-			if (t.getId() != null) {
-				categoryRepository.save(t);
-				return new StateAndMsg(1, "修改成功！");
-			} else {
-				return new StateAndMsg(-1, "Id不能为空！");
-			}
-		} else {
-			return new StateAndMsg(-1, "参数有误！");
-		}
-	}
+    @Override
+    public Category add(Category category) {
+        Category saveAndFlush = categoryRepository.saveAndFlush(category);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
 
-	@Override
-	public Category findById(Integer id) {
-		return categoryRepository.findById(id);
-	}
+    @Override
+    public void delete(Integer id) {
+        categoryRepository.delete(id);
+    }
 
-	@Override
-	public List<Category> findAll() {
-		return findAll();
-	}
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        for (Integer id : ids) {
+            categoryRepository.delete(id);
+        }
+    }
 
+    @Override
+    public Category update(Category category) {
+        Category saveAndFlush = categoryRepository.saveAndFlush(category);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public Category findOne(Integer id) {
+        Category category = categoryRepository.findOne(id);
+        if (category == null)
+            return null;
+        return category;
+    }
+
+    @Override
+    public List<Category> findAll() {
+        List<Category> categories = categoryRepository.findAll();
+        boolean empty = CollectionUtils.isEmpty(categories);
+        if (empty)
+            return null;
+        return categories;
+    }
 }

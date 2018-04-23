@@ -12,16 +12,17 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.drp.pojo.*;
 import com.drp.service.IUserService;
 
+import javax.annotation.Resource;
+
 @Controller
 public class CustomRealm extends AuthorizingRealm {
 
-    @Autowired
+    @Resource
     private IUserService userService;
 
     @Override
@@ -41,7 +42,7 @@ public class CustomRealm extends AuthorizingRealm {
 
         // 从token中 获取用户身份信息
         String username = (String) token.getPrincipal();
-        System.out.println(1111);
+        System.out.println(username);
         // 拿username从数据库中查询
         User activeUser = userService.login(username);
 
@@ -53,11 +54,10 @@ public class CustomRealm extends AuthorizingRealm {
         }
         // 因为用户登陆之后要将用户名显示出来 所以这里就不能够传递 用户名了而是将整个用户对象给传进去
         // 返回认证信息由父类AuthenticatingRealm进行认证
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
+        return new SimpleAuthenticationInfo(
                 activeUser,
                 activeUser.getUserPassword(),
                 getName());
-        return simpleAuthenticationInfo;
     }
 
     // 授权

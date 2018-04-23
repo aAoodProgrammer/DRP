@@ -7,18 +7,30 @@ import com.drp.pojo.Client;
 import com.drp.util.StateAndMsg;
 
 /**
- * 
-* @ClassName: IClientService 
-* @Description: 业务逻辑接口：分销商
-* @author 刘江涛
-* @date 2017年11月1日 下午2:17:54 
-*
+ * @author 刘江涛
+ * @ClassName: IClientService
+ * @Description: 业务逻辑接口：分销商
+ * @date 2017年11月1日 下午2:17:54
  */
-public interface IClientService extends IBaseService<Client>{
-	/**
-	 * 用于生成jsp页面的饼状图
-	 * @return
-	 */
-	List<CategoryDto> findByClientLevel();
+public interface IClientService {
+
+    Client add(Client client);
+
+    void delete(Integer id);
+
+    void deleteByIds(List<Integer> ids);
+
+    Client update(Client client);
+
+    Client findOne(Integer id);
+
+    List<Client> findAll();
+
+    /**
+     * 用于生成jsp页面的饼状图
+     *
+     * @return
+     */
+    List<CategoryDto> findByClientLevel();
 
 }

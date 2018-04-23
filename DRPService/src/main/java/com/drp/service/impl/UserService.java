@@ -9,6 +9,7 @@ import com.drp.repository.UserRepository;
 import com.drp.service.IUserService;
 import com.drp.util.Encryption;
 import com.drp.util.StateAndMsg;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 
@@ -25,16 +26,6 @@ public class UserService implements IUserService {
 
     @Resource
     private UserRepository userRepository;
-
-    public StateAndMsg add(User user) {
-        StateAndMsg stateAndMsg = judge(user);
-        if (stateAndMsg == null) {
-            userRepository.save(user);
-            return new StateAndMsg(1, "添加成功！");
-        }
-        return stateAndMsg;
-
-    }
 
     private StateAndMsg judge(User user) {
         if (user == null) {
@@ -66,27 +57,59 @@ public class UserService implements IUserService {
 
     }
 
-    public StateAndMsg update(User user) {
-        StateAndMsg stateAndMsg = judge(user);
-        if (stateAndMsg == null) {
-            userRepository.save(user);
-            return new StateAndMsg(1, "修改成功！");
+    @Override
+    public User add(User user) {
+        User saveAndFlush = userRepository.saveAndFlush(user);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        userRepository.delete(id);
+    }
+
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        for (Integer id : ids) {
+            userRepository.delete(id);
         }
-        return stateAndMsg;
+    }
+
+    @Override
+    public User update(User user) {
+        User saveAndFlush = userRepository.saveAndFlush(user);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public User findOne(Integer id) {
+        User user = userRepository.findOne(id);
+        if (user == null)
+            return null;
+        return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> users = userRepository.findAll();
+        boolean empty = CollectionUtils.isEmpty(users);
+        if (empty)
+            return null;
+        return users;
     }
 
     public User login(String userName) {
-
         if (userName != null) {
             User user = userRepository.findByUserName(userName);
             if (null != user) {
                 return user;
             }
-
-        } else {
             return null;
         }
-
         return null;
     }
 
@@ -103,24 +126,6 @@ public class UserService implements IUserService {
             return new StateAndMsg(-1, "输入信息有误！");
         }
 
-    }
-
-    @Override
-    public void delete(List<Integer> ids) {
-        for (Integer id : ids) {
-            userRepository.delete(id);
-        }
-    }
-
-    @Override
-    public User findById(Integer id) {
-        return userRepository.findOne(id);
-    }
-
-
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
     }
 
 }

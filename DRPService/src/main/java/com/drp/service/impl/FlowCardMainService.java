@@ -12,78 +12,61 @@ import com.drp.repository.FlowCardMainRepository;
 import com.drp.service.IFlowCardMainService;
 import com.drp.util.StateAndMsg;
 
-/** 
-* @ClassName: FlowCardMainService 
-* @Description: 业务逻辑层实体：流向单
-* @author 刘江涛
-* @date 2017年11月7日 上午10:42:04 
-*  
-*/
+/**
+ * @author 刘江涛
+ * @ClassName: FlowCardMainService
+ * @Description: 业务逻辑层实体：流向单
+ * @date 2017年11月7日 上午10:42:04
+ */
 @Service
-public class FlowCardMainService implements IFlowCardMainService{
+public class FlowCardMainService implements IFlowCardMainService {
 
-	@Resource
-	FlowCardMainRepository flowCardMainRepository;
-
-	@Override
-	public StateAndMsg add(FlowCardMain t) {
-		if(t!=null) {
-			if(t.getClient()!=null) {
-			if(t.getFlowCardDetails()!=null) {
-				flowCardMainRepository.save(t);
-				return new StateAndMsg(-1, "详情不能为空");
-			}else {
-				return new StateAndMsg(-1, "详情不能为空");
-			}
-		}else {
-			return new StateAndMsg(-1, "供方分销商不能为空");
-		}
-		}else {
-			return new StateAndMsg(-1,"参数有误！");
-		}
-		
-	}
-
-	@Override
-	public StateAndMsg update(FlowCardMain t) {
-		if(t!=null) {
-		if(t.getId()!=null) {
-			if(t.getClient()!=null) {
-				if(t.getFlowCardDetails()!=null) {
-					flowCardMainRepository.save(t);
-					return new StateAndMsg(-1, "详情不能为空");
-				}else {
-					return new StateAndMsg(-1, "详情不能为空");
-				}
-			}else {
-				return new StateAndMsg(-1, "供方分销商不能为空");
-			}
-		}else {
-			return new StateAndMsg(-1, "流向表id不能为空");
-		}	
-		}else {
-			return new StateAndMsg(-1,"参数有误！");
-		}
-		
-	}
-
-	@Override
-	public void delete(List<Integer> ids) {
-		for (Integer id : ids) {
-			flowCardMainRepository.delete(id);
-		}
-	}
-
-	@Override
-	public FlowCardMain findById(Integer id) {
-		return flowCardMainRepository.findOne(id);
-	}
+    @Resource
+    private FlowCardMainRepository flowCardMainRepository;
 
 
-	@Override
-	public List<FlowCardMain> findAll() {
-		return flowCardMainRepository.findAll();
-	}
-	
-	
+    @Override
+    public FlowCardMain add(FlowCardMain flowCardMain) {
+        FlowCardMain saveAndFlush = flowCardMainRepository.saveAndFlush(flowCardMain);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        flowCardMainRepository.delete(id);
+    }
+
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        for (Integer id : ids) {
+            flowCardMainRepository.delete(id);
+        }
+    }
+
+
+    @Override
+    public FlowCardMain update(FlowCardMain flowCardMain) {
+        FlowCardMain saveAndFlush = flowCardMainRepository.saveAndFlush(flowCardMain);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public FlowCardMain findOne(Integer id) {
+        FlowCardMain flowCardMain = flowCardMainRepository.findOne(id);
+        if (flowCardMain == null)
+            return null;
+        return flowCardMain;
+    }
+
+    @Override
+    public List<FlowCardMain> findAll() {
+        List<FlowCardMain> flowCardMains = flowCardMainRepository.findAll();
+        if (flowCardMains == null)
+            return null;
+        return flowCardMains;
+    }
 }

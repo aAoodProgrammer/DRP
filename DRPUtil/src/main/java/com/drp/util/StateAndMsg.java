@@ -8,6 +8,7 @@ package com.drp.util;
 *  
 */
 public class StateAndMsg {
+
 	private int state;//处理状态
 	private String msg;//提示语句
 	public int getState() {

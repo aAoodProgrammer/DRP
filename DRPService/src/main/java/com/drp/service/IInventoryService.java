@@ -10,9 +10,18 @@ import com.drp.pojo.Inventory;
  * @Description: 业务逻辑层接口：库存
  * @date 2017年11月1日 下午2:21:22
  */
-public interface IInventoryService extends IBaseService<Inventory> {
+public interface IInventoryService {
+    Inventory add(Inventory inventory);
 
-    List<Inventory> find();
+    void delete(Integer id);
+
+    void deleteByIds(List<Integer> ids);
+
+    Inventory update(Inventory inventory);
+
+    Inventory findOne(Integer id);
+
+    List<Inventory> findAll();
 
     List<Inventory> pageByClientId(Integer clientId, Integer itemId, Integer currentPage);
 }

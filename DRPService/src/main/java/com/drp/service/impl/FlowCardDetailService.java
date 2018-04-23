@@ -9,58 +9,64 @@ import com.drp.pojo.FlowCardDetail;
 import com.drp.repository.FlowCardDetailRepository;
 import com.drp.service.IFlowCardDetailService;
 import com.drp.util.StateAndMsg;
+import org.springframework.util.CollectionUtils;
 
-/** 
-* @ClassName: FlowCardDetailService 
-* @Description: 业务逻辑层实体：流向单详情
-* @author 刘江涛
-* @date 2017年11月7日 上午10:41:44 
-*  
-*/
+import javax.annotation.Resource;
+
+/**
+ * @author 刘江涛
+ * @ClassName: FlowCardDetailService
+ * @Description: 业务逻辑层实体：流向单详情
+ * @date 2017年11月7日 上午10:41:44
+ */
 @Service
-public class FlowCardDetailService implements IFlowCardDetailService{
-	@Autowired
-	private FlowCardDetailRepository flowCardDetailRepository=null;
-	@Override
-	public StateAndMsg add(FlowCardDetail t) {
-		if(t!=null) {
-			flowCardDetailRepository.save(t);
-			return new StateAndMsg(-1, "参数有误！");
-		}else {
-			return new StateAndMsg(-1, "参数有误！");
-		}
-	}
+public class FlowCardDetailService implements IFlowCardDetailService {
 
-	@Override
-	public StateAndMsg update(FlowCardDetail t) {
-		if(t!=null) {
-			if(t.getId()!=null) {
-				flowCardDetailRepository.save(t);
-				return new StateAndMsg(1, "修改成功！");
-			}else {
-					return new StateAndMsg(-1, "参数有误！");
-			}
-		}else {
-			return new StateAndMsg(-1, "参数有误！");
-		}
-	}
+    @Resource
+    private FlowCardDetailRepository flowCardDetailRepository;
 
-	@Override
-	public void delete(List<Integer> ids) {
-		for (Integer id : ids) {
-			flowCardDetailRepository.delete(id);
-		}
-	}
+    @Override
+    public FlowCardDetail add(FlowCardDetail flowCardDetail) {
+        FlowCardDetail saveAndFlush = flowCardDetailRepository.saveAndFlush(flowCardDetail);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
 
-	@Override
-	public FlowCardDetail findById(Integer id) {
-		return flowCardDetailRepository.findOne(id);
-	}
+    @Override
+    public void delete(Integer id) {
+        flowCardDetailRepository.delete(id);
+    }
 
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        for (Integer id : ids) {
+            flowCardDetailRepository.delete(id);
+        }
+    }
 
-	@Override
-	public List<FlowCardDetail> findAll() {
-		return flowCardDetailRepository.findAll();
-	}
-	
+    @Override
+    public FlowCardDetail update(FlowCardDetail flowCardDetail) {
+        FlowCardDetail saveAndFlush = flowCardDetailRepository.saveAndFlush(flowCardDetail);
+        if (saveAndFlush == null)
+            return null;
+        return saveAndFlush;
+    }
+
+    @Override
+    public FlowCardDetail findOne(Integer id) {
+        FlowCardDetail flowCardDetail = flowCardDetailRepository.findOne(id);
+        if (flowCardDetail == null)
+            return null;
+        return flowCardDetail;
+    }
+
+    @Override
+    public List<FlowCardDetail> findAll() {
+        List<FlowCardDetail> flowCardDetails = flowCardDetailRepository.findAll();
+        boolean empty = CollectionUtils.isEmpty(flowCardDetails);
+        if (empty)
+            return null;
+        return flowCardDetails;
+    }
 }
