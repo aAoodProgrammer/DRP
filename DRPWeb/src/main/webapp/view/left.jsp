@@ -90,7 +90,7 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="systemManager/user_maint.html" target="main">用户维护</a>
+					<a href="${ctx}/user_maint.action" target="main" id="userMaint">用户维护</a>
 				</li>
 			</ul>
 		</div>
@@ -104,6 +104,8 @@
 				triggerTime: 150, //鼠标延迟触发时间（默认150）
 				defaultPlay: false, //默认是否执行效果（默认true）
 			});
+			
+			
 		</script>
 	</div>
 	<script src="../js/amazeui.min.js"></script>

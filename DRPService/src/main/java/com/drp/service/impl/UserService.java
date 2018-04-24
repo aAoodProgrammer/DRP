@@ -2,6 +2,10 @@ package com.drp.service.impl;
 
 import java.util.List;
 
+import com.drp.util.BasePage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.drp.pojo.User;
 
@@ -9,7 +13,6 @@ import com.drp.repository.UserRepository;
 import com.drp.service.IUserService;
 import com.drp.util.Encryption;
 import com.drp.util.StateAndMsg;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 
@@ -94,11 +97,9 @@ public class UserService implements IUserService {
     @Override
     public List<User> findAll() {
         List<User> users = userRepository.findAll();
-        boolean empty = CollectionUtils.isEmpty(users);
-        if (empty)
-            return null;
         return users;
     }
+
 
     public User login(String userName) {
         if (userName != null) {

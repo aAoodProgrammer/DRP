@@ -9,6 +9,7 @@ import com.drp.pojo.Inventory;
 import com.drp.service.IInventoryService;
 
 import javax.annotation.Resource;
+import javax.sound.midi.Soundbank;
 
 @RestController
 @RequestMapping("/inventory")
@@ -22,10 +23,11 @@ public class InventoryController {
      *
      * @return
      */
-    @PostMapping("/add.action")
-    public String add(Inventory inventory) {
-        inventoryService.add(inventory);
-        return "";
+    @PostMapping("/add")
+    public Inventory add(@RequestBody Inventory inventory) {
+        String code = inventory.getClient().getCode();
+        System.out.println(code);
+        return inventoryService.add(inventory);
     }
 
     /**
@@ -45,9 +47,9 @@ public class InventoryController {
      * @return
      */
     @PutMapping("/update.action")
-    public String update(Inventory inventory) {
+    public String update(@RequestBody Inventory inventory) {
         inventoryService.update(inventory);
-        return "";
+        return "inventory/inv_init_qty_modify.jsp";
     }
 
     /**
@@ -66,8 +68,8 @@ public class InventoryController {
     public ModelAndView findAll() {
         ModelAndView modelAndView = new ModelAndView();
         List<Inventory> inventories = inventoryService.findAll();
-        modelAndView.addObject("inventories",inventories);
-        modelAndView.setViewName("inventory/inv_init_qty_maint.jsp");
+        modelAndView.addObject("inventories", inventories);
+        modelAndView.setViewName("inventory/inv_init_qty_maint");
         return modelAndView;
     }
 }

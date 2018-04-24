@@ -1,239 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import="java.text.*" %>
-<%--
-<%@ page import="com.demo.drp.util.*" %>
-<%@ page import="com.demo.drp.sysmgr.domain.*" %>
-<%@ page import="com.demo.drp.sysmgr.manager.*" %> --%>
-<%
-	String pageNoString = request.getParameter("pageNo");
-	String command = request.getParameter("command");
-	if ("del".equals(command)) {
-		//out.println(request.getParameter("selectFlag"));
-		String[] userIds = request.getParameterValues("selectFlag");
-		//for (int i=0; i<userIds.length; i++) {
-		//	UserManager.getInstance().delUser(userIds[i]);
-		//}
-		//UserManager.getInstance().delUser(userIds);
-		out.println("删除用户成功！");
-	}
-	int pageNo = 1;
-	if (pageNoString != null && !"".equals(pageNoString)) {
-		pageNo = Integer.parseInt(pageNoString);
-	}
-	int pageSize = 4;
-	//PageModel<User> pageModel = UserManager.getInstance().findAllUser(pageNo, pageSize);
-%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 设置一个项目路径的变量  -->
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>用户维护</title>
-		<link rel="stylesheet" href="../../css/drp.css">
-		<script type="text/javascript">
-			function addUser() {
-				window.self.location = "user_add.jsp";
-			}
+<head>
+	<meta charset="utf-8">
+	<title>DRP 分销资源计划</title>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
+	<script>
+		function addUser() {
+			window.self.location = "user_add.jsp";
+		}
 
-			function modifyUser() {
-				var selectFlags = document.getElementsByName("selectFlag");
-				//计数器
-				var count = 0;
-				//记录选中的checkbox索引号
-				var index = 0;
-				for(var i = 0; i < selectFlags.length; i++) {
-					if(selectFlags[i].checked) {
-						//记录选中的checkbox
-						count++;
-						index = i;
-					}
-				}
-				if(count == 0) {
-					alert("请选择需要修改的数据！");
-					return;
-				}
-				if(count > 1) {
-					alert("一次只能修改一个用户！");
-					return;
-				}
-				//alert(selectFlags[index].value);
+		function updateUser() {
+			window.self.location = "user_modify.jsp";
+		}
+	</script>
+</head>
 
-				window.self.location = "user_modify.jsp?userId=" + selectFlags[index].value;
-			}
+<body>
+	<div class="daohang">
+		<ul>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="../right.html" target="main">首页</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+		</ul>
+	</div>
+	<div class="admin-biaogelist">
+		<div class="listbiaoti am-cf">
+			<dl class="am-icon-home" style="float: left;"> 当前位置： 用户管理 >用户维护</dl>
+		</div>
 
-			function deleteUser() {
-				var selectFlags = document.getElementsByName("selectFlag");
-				var flag = false;
-				for(var i = 0; i < selectFlags.length; i++) {
-					if(selectFlags[i].checked) {
-						//已经有选中的checkbox
-						flag = true;
-						break;
-					}
-				}
-				if(!flag) {
-					alert("请选择需要删除的数据！");
-					return;
-				}
-				//删除提示
-				if(window.confirm("确认删除？")) {
-					with(document.getElementById("userform")) {
-						action = "user_maint.jsp";
-						method = "post";
-						submit();
-					}
-				}
-			}
-
-			function checkAll() {
-				var selectFlags = document.getElementsByName("selectFlag");
-				for(var i = 0; i < selectFlags.length; i++) {
-					selectFlags[i].checked = document.getElementById("ifAll").checked;
-					//采用getElementsByName代替getElementById
-					//selectFlags[i].checked = document.getElementsByName("ifAll")[0].checked;
-				}
-			}
-
-			function topPage() {
-				window.location = "user_maint.jsp?pageNo=getTopPageNo()%>"
-			}
-
-			function previousPage() {
-				window.location = "user_maint.jsp?pageNo=getPreviousPageNo()%>"
-			}
-
-			function nextPage() {
-				window.location = "user_maint.jsp?pageNo=getNextPageNo()%>"
-			}
-
-			function bottomPage() {
-				window.location = "user_maint.jsp?pageNo=getButtomPageNo()%>";
-			}
-		</script>
-	</head>
-
-	<body class="body1">
-		<form name="userform" id="userform">
-			<input type="hidden" name="command" value="del">
-			<div align="center">
-				<table width="95%" border="0" cellspacing="0" cellpadding="0" height="35">
-					<tr>
-						<td class="p1" height="18" nowrap>&nbsp;
-
-						</td>
+		<form class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+				<thead>
+					<tr class="am-success">
+						<th class="table-check"><input type="checkbox" /></th>
+						<th>用户代码</th>
+						<th>用户名称</th>
+						<th>联系电话</th>
+						<th>email</th>
+						<th>创建日期</th>
 					</tr>
-					<tr>
-						<td width="522" class="p1" height="17" nowrap>
-							<img src="../../images/mark_arrow_02.gif" width="14" height="14"> &nbsp;
-							<b>系统管理&gt;&gt;用户维护</b>
-						</td>
-					</tr>
-				</table>
-				<hr width="100%" align="center" size=0>
+				</thead>
+				<c:forEach items="${requestScope.users}" var="user" varStatus="stat">
+					<tbody>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td>${user.userCode}</td>
+							<td>${user.userName}</td>
+							<td>${user.userTel}</td>
+							<td>${user.userEmail}</td>
+							<td>${user.createDate}</td>
+						</tr>
+					</tbody>
+				</c:forEach>
+			</table>
+
+			<div class="am-btn-group am-btn-group-xs">
+				<button type="button" class="am-btn am-btn-default" onclick="addUser()"><span class="am-icon-plus"></span>新增</button>
+				<button type="button" class="am-btn am-btn-default" onclick="delUser()"><span class="am-icon-trash-o"></span>删除</button>
+				<button type="button" class="am-btn am-btn-default" onclick="updateUser()"><span class="am-icon-save"></span>修改</button>
 			</div>
-			<table width="95%" height="20" border="0" align="center" cellspacing="0" class="rd1" id="toolbar">
-				<tr>
-					<td width="49%" class="rd19">
-						<font color="#FFFFFF">查询列表</font>
-					</td>
-					<td width="27%" nowrap class="rd16">
-						<div align="right"></div>
-					</td>
-				</tr>
-			</table>
-			<table width="95%" border="1" cellspacing="0" cellpadding="0" align="center" class="table1">
-				<tr>
-					<td width="55" class="rd6">
-						<input type="checkbox" name="ifAll" onClick="checkAll()">
-					</td>
-					<td width="119" class="rd6">
-						用户代码
-					</td>
-					<td width="152" class="rd6">
-						用户名称
-					</td>
-					<td width="166" class="rd6">
-						联系电话
-					</td>
-					<td width="150" class="rd6">
-						email
-					</td>
-					<td width="153" class="rd6">
-						创建日期
-					</td>
-				</tr>
 
-				<tr>
-					<td class="rd8">
-						<input type="checkbox" name="selectFlag" class="checkbox1" value="getUserId() %>">
-					</td>
-					<td class="rd8">
-						getUserId() %>
-					</td>
-					<td class="rd8">
-						getUserName() %>
-					</td>
-					<td class="rd8">
-						getContactTel()%>
-					</td>
-					<td class="rd8">
-						getEmail() %>
-					</td>
-					<td class="rd8">
-						<%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) %>
-					</td>
-				</tr>
-				<tr>
-					<td class="rd8">
-						<input type="checkbox" name="selectFlag" class="checkbox1" value="getUserId() %>">
-					</td>
-					<td class="rd8">
-						getUserId() %>
-					</td>
-					<td class="rd8">
-						getUserName() %>
-					</td>
-					<td class="rd8">
-						getContactTel()%>
-					</td>
-					<td class="rd8">
-						getEmail() %>
-					</td>
-					<td class="rd8">
-						<%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) %>
-					</td>
-				</tr>
-				<tr></tr>
+			<ul class="am-pagination am-fr">
+				<li class="am-disabled">
+					<a href="#">«</a>
+				</li>
+				<li class="am-active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">»</a>
+				</li>
+			</ul>
 
-			</table>
-			<table width="95%" height="30" border="0" align="center" cellpadding="0" cellspacing="0" class="rd1">
-				<tr>
-					<td nowrap class="rd19" height="2">
-						<div align="left">
-							<font color="black">&nbsp;共&nbspgetTotalPages() %>&nbsp页</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<font color="black">当前第</font>&nbsp
-							<font color="black">getPageNo() %></font>&nbsp
-							<font color="black">页</font>
-						</div>
-					</td>
-					<td nowrap class="rd19">
-						<div align="right">
-							<input name="btnTopPage" class="button1" type="button" id="btnTopPage" value="|&lt;&lt; " title="首页" onClick="topPage()">
-							<input name="btnPreviousPage" class="button1" type="button" id="btnPreviousPage" value=" &lt;  " title="上页" onClick="previousPage()">
-							<input name="btnNextPage" class="button1" type="button" id="btnNextPage" value="  &gt; " title="下页" onClick="nextPage()">
-							<input name="btnBottomPage" class="button1" type="button" id="btnBottomPage" value=" &gt;&gt;|" title="尾页" onClick="bottomPage()">
-							<input name="btnAdd" type="button" class="button1" id="btnAdd" value="添加" onClick="addUser()">
-							<input name="btnDelete" class="button1" type="button" id="btnDelete" value="删除" onClick="deleteUser()">
-							<input name="btnModify" class="button1" type="button" id="btnModify" value="修改" onClick="modifyUser()">
-						</div>
-					</td>
-				</tr>
-			</table>
-			<p>&nbsp;
-
-			</p>
+			<hr />
+			<p>注： 共 页 当前第 页</p>
 		</form>
-	</body>
+
+	</div>
+	<script src="${ctx}/js/amazeui.min.js"></script>
+</body>
 
 </html>

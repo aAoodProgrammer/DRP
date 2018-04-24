@@ -6,6 +6,8 @@
  */
 package com.drp.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,19 +16,19 @@ import org.springframework.data.jpa.repository.Query;
 import com.drp.pojo.User;
 
 /**
+ * @author 刘江涛
  * @ClassName: UserRepository
  * @Description: 用户的持久层
- * @author 刘江涛
  * @date 2017年11月1日 下午3:58:57
- *
  */
 
 public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepository<User, Integer> {
 
     /**
      * 修改用户密码
+     *
      * @param userPassword 用户新密码
-     * @param uId 用户id
+     * @param uId          用户id
      */
     @Modifying
     @Query("update User u set u.userPassword=?1 where u.uId=?2")
@@ -55,11 +57,12 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
 
     /**
      * 修改用户
-     * @param userName 新的用户名
-     * @param userPassword    新的密码
-     * @param userTel 新的联系电话
-     * @param userEmail 新的邮箱
-     * @param uId 用户id
+     *
+     * @param userName     新的用户名
+     * @param userPassword 新的密码
+     * @param userTel      新的联系电话
+     * @param userEmail    新的邮箱
+     * @param uId          用户id
      */
     @Modifying
     @Query("update User u set u.userName=?1, u.userPassword=?2, u.userTel=?3, u.userEmail=?4 where u.uId=?5")
@@ -67,8 +70,8 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
 
     /**
      * 通过用户名查找用户
+     *
      * @param userName 用户名
-     * @return
      * @return user 对象
      */
     @Query("select u from User u where u.userName = ?1")
@@ -76,6 +79,7 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
 
     /**
      * 通过电话号查找
+     *
      * @param userTel
      * @return
      */
@@ -84,6 +88,7 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
 
     /**
      * 通过邮箱进行查找
+     *
      * @return
      */
     @Query("select u from User u where u.userEmail = ?1")
@@ -91,9 +96,13 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
 
     /**
      * 通过用户代码进行查找
+     *
      * @param userCode
      * @return
      */
 //	 @Query("select u from User u where u.userCode = ?1")
 //	 User findByUserCode(String userCode);
+
+    @Query("select u from User u order by u.createDate desc ")
+    Page<User> findAllOrderByCreateTime(Pageable pageable);
 }

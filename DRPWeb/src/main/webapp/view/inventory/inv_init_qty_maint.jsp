@@ -21,15 +21,23 @@
 			var height = 600;
 			var top = Math.round((window.screen.height - height) / 2);
 			var left = Math.round((window.screen.width - width) / 2);
-			window.open('client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+			window.open('../view/inventory/client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function choiceItem(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('../view/inventory/item_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
 		}
 
 		function addForCard() {
-			window.self.location = "flow_card_add.jsp?id=id";
+			window.self.location = "../view/inventory/inv_init_qty_add.jsp";
 		}
 
 		function modifyForCard() {
-			window.self.location = "flow_card_modify.html?id=id";
+			window.self.location = "../view/inventory/inv_init_qty_modify.jsp";
 		}
 	</script>
 </head>
@@ -65,7 +73,7 @@
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
 					<li>物料名称:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient(this.index)">选择</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceItem(this.index)">选择</button></li>
 					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">重置</button></li>
 				</ul>
 			</div>
@@ -89,7 +97,7 @@
 				<c:forEach items="${requestScope.inventories}" var="inventory" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox"/></td>
+							<td><input type="checkbox" /></td>
 							<td>${inventory.client.code}</td>
 							<td>${inventory.client.name}</td>
 							<td>${inventory.item.code}</td>

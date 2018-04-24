@@ -1,5 +1,8 @@
 package com.drp.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -40,7 +43,7 @@ public class User implements Serializable {
     private String userPassword;//用户密码
 
     @Column(length = 20)
-    private String userTel;        //用户密码
+    private String userTel;      //用户手机号
 
     @Column(length = 30)
     private String userEmail;    //用户邮箱

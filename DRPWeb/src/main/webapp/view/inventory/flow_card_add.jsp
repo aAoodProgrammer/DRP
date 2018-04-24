@@ -98,8 +98,7 @@
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
 			<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>
-				<a href="flow_card_maint.html">流向单维护</a>>
-				<a href="#">添加</a>
+				<a href="flow_card_maint.html">流向单维护</a>>添加
 			</dl>
 		</div>
 

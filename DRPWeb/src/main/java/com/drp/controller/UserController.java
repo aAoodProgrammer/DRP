@@ -3,11 +3,21 @@ package com.drp.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.drp.pojo.Inventory;
 import com.drp.pojo.User;
 import com.drp.service.IUserService;
 
+import com.drp.util.BasePage;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author 刘江涛
@@ -30,7 +40,20 @@ public class UserController {
         // 获取我们的错误信息
         String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
         System.out.println(exceptionClassName);
-        return "login.jsp";
+        return "login";
+    }
+
+    /**
+     * 查询所有
+     */
+    @RequestMapping("/user_maint.action")
+    public ModelAndView findAll() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<User> users = userService.findAll();
+        System.out.println(users);
+        modelAndView.addObject("users", users);
+        modelAndView.setViewName("systemManager/user_maint");
+        return modelAndView;
     }
 
 }
