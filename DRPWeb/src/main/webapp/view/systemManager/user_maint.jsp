@@ -16,11 +16,11 @@
 	<script src="${ctx}/js/app.js"></script>
 	<script>
 		function addUser() {
-			window.self.location = "user_add.jsp";
+			window.self.location = "${ctx}/view/systemManager/user_add.jsp";
 		}
 
 		function updateUser() {
-			window.self.location = "user_modify.jsp";
+			window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
 		}
 	</script>
 </head>

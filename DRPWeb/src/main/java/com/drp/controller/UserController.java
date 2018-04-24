@@ -12,7 +12,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
@@ -56,4 +58,11 @@ public class UserController {
         return modelAndView;
     }
 
+
+    @ResponseBody
+    @RequestMapping("/add.action")
+    public User add(@RequestBody User user) {
+        System.out.println(user);
+        return userService.add(user);
+    }
 }
