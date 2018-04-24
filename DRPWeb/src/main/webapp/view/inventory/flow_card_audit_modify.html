@@ -23,14 +23,6 @@ pageEncoding="UTF-8"%>
 				window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
 			}
 
-			function selectAimClient(index) {
-				window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', 'width=700, height=400, scrollbars=no');
-			}
-
-			function selectItem(index) {
-				window.open('item_select.jsp?index=' + index, '请选择物料', 'width=700, height=400, scrollbars=no');
-			}
-
 			function addOneLineOnClick() {
 				var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
 				var col = row.insertCell(0);
@@ -86,8 +78,7 @@ pageEncoding="UTF-8"%>
 		<div class="admin-biaogelist">
 			<div class="listbiaoti am-cf">
 				<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>
-					<a href="flow_card_maint.html">流向单审核</a>>
-					<a href="#">调整</a>
+					<a href="flow_card_maint.html">流向单审核</a>>调整
 				</dl>
 			</div>
 
@@ -122,23 +113,14 @@ pageEncoding="UTF-8"%>
 					<tbody>
 						<tr>
 							<td><input type="text" name="id" value="14" /></td>
-							<td>
-								<input type="text" name="id" value="Business managementas" />
-							</td>
-							<td>
-								<input type="text" name="id" value="default" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id" value="张三" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id" value="2014年9月4日 7:28:47" /></td>
+							<td><input type="text" name="id" value="Business managementas" /></td>
+							<td><input type="text" name="id" value="default" /></td>
+							<td><input type="text" name="id" value="张三" /></td>
+							<td><input type="text" name="id" value="2014年9月4日 7:28:47" /></td>
 							<td><input type="text" name="id" value="14" /></td>
-							<td>
-								<input type="text" name="id" value="Business managementas" />
-							</td>
-							<td>
-								<input type="text" name="id" value="default" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id" value="" /></td>
+							<td><input type="text" name="id" value="Business managementas" /></td>
+							<td><input type="text" name="id" value="default" /></td>
+							<td><input type="text" name="id" value="" /></td>
 						</tr>
 
 					</tbody>
@@ -174,19 +156,8 @@ pageEncoding="UTF-8"%>
 				</ul>
 
 				<hr />
-				<p>注： 共 页 当前第 页</p>
+				<p>注： 共5页 当前第1页</p>
 			</form>
-
-			<div class="foods">
-				<ul>
-					版权所有@2015. 模板收集自
-					<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - More Templates
-					<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-				</ul>
-				<dl>
-					<a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
-				</dl>
-			</div>
 		</div>
 		<script src="../../js/amazeui.min.js"></script>
 	</body>

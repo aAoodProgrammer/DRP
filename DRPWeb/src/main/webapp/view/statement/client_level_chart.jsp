@@ -78,7 +78,7 @@
 	<body>
 		<div class="daohang">
 			<ul>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="../right.html" target="main">首页</a></button>></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
@@ -86,8 +86,7 @@
 		</div>
 		<div class="admin-biaogelist">
 			<div class="listbiaoti am-cf">
-				<dl class="am-icon-home" style="float: left;"> 当前位置：统计报表管理>
-					<a href="#">分销商级别分布图</a>
+				<dl class="am-icon-home" style="float: left;"> 当前位置：统计报表管理>分销商级别分布图
 				</dl>
 			</div>
 

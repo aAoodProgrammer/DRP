@@ -24,10 +24,7 @@
 <body>
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
-			<dl class="am-icon-home" style="float: left;"> 当前位置： 分销商库存管理 >
-				<a href="#">流向单维护</a>>
-				<a href="#">添加</a>>
-				<a href="#">请选择需方客户</a>
+			<dl class="am-icon-home" style="float: left;"> 当前位置：请选择需方客户
 			</dl>
 		</div>
 
@@ -53,19 +50,14 @@
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td>14</td>
-						<td>
-							<a href="#">Business management</a>
-						</td>
+						<td>Business</td>
 						<td>default</td>
 					</tr>
 					<tr>
 						<td><input type="checkbox" /></td>
 						<td>15</td>
-						<td>
-							<a href="#">Business management</a>
-						</td>
+						<td>Business</td>
 						<td>default</td>
-						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -100,7 +92,7 @@
 			</ul>
 
 			<hr />
-			<p>注： 共 页 当前第 页</p>
+			<p>注： 共5页 当前第1页</p>
 		</form>
 
 	</div>

@@ -78,5 +78,4 @@ public class CustomRealm extends AuthorizingRealm {
         }
         return simpleAuthorizationInfo;
     }
-
 }

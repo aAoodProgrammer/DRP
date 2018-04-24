@@ -14,21 +14,13 @@ pageEncoding="UTF-8"%>
 
 		<script language="javascript">
 			var rowIndex = 0;
-			
-			function choiceClient(index){
+
+			function choiceClient(index) {
 				var width = 1000;
 				var height = 600;
 				var top = Math.round((window.screen.height - height) / 2);
 				var left = Math.round((window.screen.width - width) / 2);
 				window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-			}
-
-			function selectAimClient(index) {
-				window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', 'width=700, height=400, scrollbars=no');
-			}
-
-			function selectItem(index) {
-				window.open('item_select.jsp?index=' + index, '请选择物料', 'width=700, height=400, scrollbars=no');
 			}
 
 			function addOneLineOnClick() {
@@ -78,7 +70,7 @@ pageEncoding="UTF-8"%>
 		<div class="daohang">
 			<ul>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
-					<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 			</ul>
@@ -86,8 +78,7 @@ pageEncoding="UTF-8"%>
 		<div class="admin-biaogelist">
 			<div class="listbiaoti am-cf">
 				<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>
-					<a href="flow_card_maint.html">流向单维护</a>>
-					<a href="#">修改</a>
+					<a href="flow_card_maint.html">流向单维护</a>>修改
 				</dl>
 			</div>
 
@@ -105,25 +96,20 @@ pageEncoding="UTF-8"%>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" name="id"  value="14" /></td>
-							<td>
-								<input type="text" name="id"  value="Business managementas" />
-							</td>
-							<td>
-								<input type="text" name="id"  value="default" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="张三" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="2014年9月4日 7:28:47" /></td>
-							<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
+							<td><input type="text" name="id" value="14" /></td>
+							<td><input type="text" name="id" value="Business managementas" /></td>
+							<td><input type="text" name="id" value="default" /></td>
+							<td><input type="text" name="id" value="张三" /></td>
+							<td><input type="text" name="id" value="2014年9月4日 7:28:47" /></td>
+							<td><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
 						</tr>
 
 					</tbody>
 				</table>
 
 				<div class="am-btn-group am-btn-group-xs">
-						<input name="btnSave" type="submit" id="btnSave" value="保存">
-						<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
+					<input name="btnSave" type="submit" id="btnSave" value="保存">
+					<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 				</div>
 
 				<ul class="am-pagination am-fr">
@@ -150,7 +136,7 @@ pageEncoding="UTF-8"%>
 					</li>
 				</ul>
 				<hr />
-				<p>注： 共 页 当前第 页</p>
+				<p>注：共5页 &nbsp;&nbsp;&nbsp;&nbsp;当前第1页</p>
 			</form>
 		</div>
 		<script src="../../js/amazeui.min.js"></script>

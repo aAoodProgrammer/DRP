@@ -63,9 +63,6 @@
 					<a href="statement/flow_card_spot_test_report.html" target="main">流向单抽查报告</a>
 				</li>
 				<li>
-					<a href="statement/client_detail_month_per.html" target="main">分销商月度分销(调拨)明细表</a>
-				</li>
-				<li>
 					<a href="statement/client_stock_report.html" target="main">分销商库存台账</a>
 				</li>
 			</ul>
@@ -94,9 +91,6 @@
 			<ul class="slider">
 				<li>
 					<a href="systemManager/user_maint.html" target="main">用户维护</a>
-				</li>
-				<li>
-					<a href="会员列表.html" target="main">菜单定义</a>
 				</li>
 			</ul>
 		</div>

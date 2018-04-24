@@ -16,17 +16,17 @@ import org.springframework.stereotype.Repository;
 import com.drp.pojo.Client;
 
 /**
+ * @author 刘江涛
  * @ClassName: ClientRepository
  * @Description: 分销商持久层
- * @author 刘江涛
- * @date 2017年11月1日 下午3:25:42 
- *
+ * @date 2017年11月1日 下午3:25:42
  */
 @Repository
 public interface ClientRepository extends org.springframework.data.jpa.repository.JpaSpecificationExecutor<Client>, org.springframework.data.jpa.repository.JpaRepository<Client, Integer> {
 
     /**
      * 通过上一级通过上一级分销商（区域）id进行查找
+     *
      * @param upperId
      * @return
      */
@@ -35,13 +35,14 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 分销商名称  分销商级别  银行帐号 联系电话 地址 邮编
+     *
      * @param name
      * @param level_id
      * @param bankCardNum
      * @param address
      * @param contactTel
      * @param zipCode
-     * @param zipCode id
+     * @param zipCode     id
      */
     @Modifying
     @Query(value = "update t_client set name = ?1, level_id =?2, bankCardNum = ?3, address = ?4, contactTel = ?5, zipCode = ?6 where id = ?7", nativeQuery = true)
@@ -49,6 +50,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 修改区域名称
+     *
      * @param name
      * @param id
      */
@@ -59,6 +61,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
     /**
      * 查询分销商
      * 通过分销商的代码或名字进行模糊查询
+     *
      * @return
      */
     @Query("select c from Client c where c.code like concat('%',?1,'%') or c.name like concat('%',?1,'%')")
@@ -66,6 +69,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 查找所有的大区
+     *
      * @return
      */
     @Query("select c from Client c where c.client.id = 1 and c.isClient = '否' and c.isLeaf = '否'")
@@ -73,6 +77,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 查找所有的省份
+     *
      * @return
      */
     @Query("select c from Client c where not c.client.id = 1 and c.isClient = '否' and c.isLeaf = '否'")
@@ -80,6 +85,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 查找所有的省份
+     *
      * @return
      */
     @Query("select c from Client c where not c.client.id =1 and c.isClient = '否' and c.isLeaf = '否'")
@@ -87,6 +93,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 通过id进行查找
+     *
      * @param id
      * @return
      */
@@ -95,6 +102,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 通过代码进行查找
+     *
      * @param code
      * @return
      */
@@ -103,6 +111,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
 
     /**
      * 查询分销商级别为levelId的分销商数量
+     *
      * @param levelId
      * @return Integer 分销商级别为levelId的分销商数量
      */

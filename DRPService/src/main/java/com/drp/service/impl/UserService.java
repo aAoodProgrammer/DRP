@@ -14,8 +14,6 @@ import org.springframework.util.CollectionUtils;
 import javax.annotation.Resource;
 
 /**
- * /**
- *
  * @author 刘江涛
  * @ClassName: UserService
  * @Description: 业务逻辑层实体：用户
