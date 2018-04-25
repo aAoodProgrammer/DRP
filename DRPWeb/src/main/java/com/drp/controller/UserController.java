@@ -11,12 +11,13 @@ import com.drp.util.BasePage;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.List;
  */
 
 @Controller
-public class UserController {
+public class UserController implements Serializable {
 
     @Resource
     private IUserService userService;
@@ -58,11 +59,14 @@ public class UserController {
         return modelAndView;
     }
 
-
-    @ResponseBody
-    @RequestMapping("/add.action")
-    public User add(@RequestBody User user) {
+    @RequestMapping("/add")
+    public String add(@RequestBody User user) {
         System.out.println(user);
-        return userService.add(user);
+        User add = userService.add(user);
+        if (add == null) {
+            return null;
+        }
+        return "";
     }
+
 }

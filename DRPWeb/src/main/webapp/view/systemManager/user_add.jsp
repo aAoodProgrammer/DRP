@@ -18,6 +18,25 @@
 	<script language="javascript">
 		var rowIndex = 0;
 
+		function addOneLineOnClick() {
+			var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
+			var col = row.insertCell(0);
+			col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
+			col = row.insertCell(1);
+			col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
+			col = row.insertCell(2);
+			// language=HTML
+			col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
+			col = row.insertCell(3);
+			col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
+			col = row.insertCell(4);
+			col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
+			col = row.insertCell(5);
+			col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
+			row.setAttribute("id", "row" + rowIndex);
+			rowIndex++;
+		}
+
 		function DeleteRow(rowTag) {
 			//alert(rowTag);
 			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
@@ -33,31 +52,6 @@
 
 		function goBack() {
 			window.self.location = "user_maint.html"
-		}
-
-		var data1 = {
-			"userCode": $("#userCode").val(),
-			"userName": $("#userName").val(),
-			"userPassword": $("#userPassword").val(),
-			"userTel": $("#userTel").val(),
-			"userEmail": $("#userEmail").val(),
-		}
-		
-		alert(data1);
-
-		function addUser() {
-			$.ajax({
-				type: "POST", //方法类型
-				url: "${ctx}/add.action", //url
-				data: JSON.stringify(data1),
-				success: function(data) {
-					console.log(data); //打印服务端返回的数据(调试用)
-					window.location.href = "user_maint.jsp";
-				},
-				error: function() {
-					alert("异常！");
-				}
-			});
 		}
 	</script>
 </head>
@@ -82,36 +76,97 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
-						<th>*用户代码</th>
-						<th>*用户名称</th>
-						<th>密码</th>
-						<th>联系电话</th>
-						<th>邮箱</th>
-						<th>删除</th>
+						<th class="table-id">*用户代码</th>
+						<th class="table-id">*用户名称</th>
+						<th class="table-type">密码</th>
+						<th class="table-type">联系电话</th>
+						<th class="table-type">邮箱</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" name="userCode" /></td>
+						<td><input type="text" name="userCode" value="" /></td>
 						<td><input type="text" name="userName" value="" /></td>
-						<td><input type="password" name="userPassword" value="" /></td>
-						<td><input type="text" name="userTel" /></td>
-						<td><input type="text" name="userEmail" /></td>
-						<td><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
+						<td><input type="text" name="userPassword" value="" /></td>
+						<td><input type="text" name="userTel" value="" /></td>
+						<td><input type="text" name="userEmail" value="" /></td>
 					</tr>
 
 				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnSave" type="button" id="btnSave" value="保存" onclick="addUser()">
+				<input name="btnSave" type="button" id="btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
+			<ul class="am-pagination am-fr">
+				<li class="am-disabled">
+					<a href="#">«</a>
+				</li>
+				<li class="am-active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">»</a>
+				</li>
+			</ul>
+
+			<hr />
+			<p>注： 共 页 当前第 页</p>
 		</form>
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script language="javascript">
+		var rowIndex = 0;
+
+		function DeleteRow(rowTag) {
+			//alert(rowTag);
+			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+			var j;
+			for(j = i; j <= rowIndex; j++) {
+				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
+			}
+			//alert(i);
+			document.getElementById("tblFlowCardDetail").deleteRow(i);
+			rowIndex--;
+		}
+
+		function goBack() {
+			window.self.location = "user_maint.html"
+		}
+
+		$('#btnSave').click(
+			function() {
+				alert("$('#myForm').serializeArray()");
+				$.ajax({
+					type: "POST",
+					url: "add",
+					data: $('#myForm').serializeArray(),
+					error: function(data) { //失败的话
+						alert("Connection error");
+					},
+					success: function(data) { //成功
+						alert(data); //就将返回的数据显示出来
+						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
+					}
+				})
+			});
+	</script>
 </body>
 
 </html>
