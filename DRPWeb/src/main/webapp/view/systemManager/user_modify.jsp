@@ -14,27 +14,6 @@
 	<link rel="stylesheet" href="../../css/admin.css">
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/app.js"></script>
-
-	<script language="javascript">
-		var rowIndex = 0;
-
-		function DeleteRow(rowTag) {
-			//alert(rowTag);
-			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
-			var j;
-			for(j = i; j <= rowIndex; j++) {
-				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
-				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
-			}
-			//alert(i);
-			document.getElementById("tblFlowCardDetail").deleteRow(i);
-			rowIndex--;
-		}
-
-		function goBack() {
-			window.self.location = "user_maint.html"
-		}
-	</script>
 </head>
 
 <body>
@@ -53,7 +32,7 @@
 			</dl>
 		</div>
 
-		<form class="am-form am-g">
+		<form class="am-form am-g" id="myForm">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
@@ -88,36 +67,46 @@
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
-			<ul class="am-pagination am-fr">
-				<li class="am-disabled">
-					<a href="#">«</a>
-				</li>
-				<li class="am-active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">»</a>
-				</li>
-			</ul>
-
-			<hr />
-			<p>注： 共 页 当前第 页</p>
 		</form>
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script language="javascript">
+		var rowIndex = 0;
+
+		function DeleteRow(rowTag) {
+			//alert(rowTag);
+			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+			var j;
+			for(j = i; j <= rowIndex; j++) {
+				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
+			}
+			//alert(i);
+			document.getElementById("tblFlowCardDetail").deleteRow(i);
+			rowIndex--;
+		}
+
+		function goBack() {
+			window.self.location = "user_maint.html"
+		}
+		
+		$('#btnSave').click(
+			function() {
+				$.ajax({
+					type: "POST",
+					url: "${ctx}/update.action",
+					data: $("#myForm").serializeArray(),
+					success: function(data) { //成功
+						alert(data); //就将返回的数据显示出来
+						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
+					},
+					error: function(data) { //失败的话
+						alert("Connection error");
+					}
+				})
+			});
+	</script>
 </body>
 
 </html>

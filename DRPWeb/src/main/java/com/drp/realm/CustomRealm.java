@@ -42,11 +42,8 @@ public class CustomRealm extends AuthorizingRealm {
 
         // 从token中 获取用户身份信息
         String username = (String) token.getPrincipal();
-        System.out.println(username);
         // 拿username从数据库中查询
         User activeUser = userService.login(username);
-
-        System.out.println("数据库查出的用户信息：" + activeUser);
 
         // 如果查询不到则返回null
         if (null == activeUser) {// 这里模拟查询不到

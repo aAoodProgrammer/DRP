@@ -14,15 +14,7 @@
 	<link rel="stylesheet" href="${ctx}/css/admin.css">
 	<script src="${ctx}/js/jquery.min.js"></script>
 	<script src="${ctx}/js/app.js"></script>
-	<script>
-		function addUser() {
-			window.self.location = "${ctx}/view/systemManager/user_add.jsp";
-		}
-
-		function updateUser() {
-			window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
-		}
-	</script>
+	
 </head>
 
 <body>
@@ -101,6 +93,19 @@
 
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
+	<script>
+		function addUser() {
+			window.self.location = "${ctx}/view/systemManager/user_add.jsp";
+		}
+
+		function updateUser() {
+			window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
+		}
+		
+		function updateUser() {
+			
+		}
+	</script>
 </body>
 
 </html>

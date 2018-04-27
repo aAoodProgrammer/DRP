@@ -79,7 +79,7 @@
 		}
 
 		function goBack() {
-			window.self.location = "user_maint.html"
+			window.self.location = "${ctx}/user_maint.action"
 		}
 
 		$('#btnSave').click(
@@ -88,12 +88,9 @@
 					type: "POST",
 					url: "${ctx}/add.action",
 					data: $("#myForm").serializeArray(),
-					success: function(data) { //成功
-						alert(data); //就将返回的数据显示出来
-						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
-					},
-					error: function(data) { //失败的话
-						alert("Connection error");
+					success: function(result) { //成功
+						alert("注册成功！"); //就将返回的数据显示出来
+						window.location.href = "${ctx}/user_maint.action"
 					}
 				})
 			});

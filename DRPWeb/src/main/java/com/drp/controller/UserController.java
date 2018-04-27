@@ -8,6 +8,7 @@ import com.drp.pojo.User;
 import com.drp.service.IUserService;
 
 import com.drp.util.BasePage;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -38,12 +39,10 @@ public class UserController implements Serializable {
 
     @RequestMapping("login.action")
     public String login(HttpServletRequest request, User user) {
-        User user2 = userService.login(user.getUserName());
-        System.out.println("2222:" + user2);
+        userService.login(user.getUserName());
 
         // 获取我们的错误信息
-        String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
-        System.out.println(exceptionClassName);
+        request.getAttribute("shiroLoginFailure");
         return "login";
     }
 
@@ -62,11 +61,34 @@ public class UserController implements Serializable {
 
     @RequestMapping("/add.action")
     public String add(User user) {
+        String userPassword = user.getUserPassword();
+        Md5Hash md5Hash = new Md5Hash(userPassword,"drp",10);
+        userPassword = md5Hash.toString();
+        user.setUserPassword(userPassword);
+        user.setCreateDate(new Date());
         User add = userService.add(user);
         if (add == null) {
             return null;
         }
-        return "";
+        return "systemManager/user_maint";
+    }
+
+    @RequestMapping("/update.action")
+    public User update(User user) {
+        String userPassword = user.getUserPassword();
+        Md5Hash md5Hash = new Md5Hash(userPassword,"drp",10);
+        userPassword = md5Hash.toString();
+        user.setUserPassword(userPassword);
+        User update = userService.update(user);
+        if (update == null) {
+            return null;
+        }
+        return update;
+    }
+
+    @RequestMapping("/delete.action")
+    public void delete(Integer id) {
+        userService.delete(id);
     }
 
 }
