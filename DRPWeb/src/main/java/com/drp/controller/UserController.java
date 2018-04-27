@@ -15,6 +15,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.Serializable;
@@ -59,9 +60,8 @@ public class UserController implements Serializable {
         return modelAndView;
     }
 
-    @RequestMapping("/add")
-    public String add(@RequestBody User user) {
-        System.out.println(user);
+    @RequestMapping("/add.action")
+    public String add(User user) {
         User add = userService.add(user);
         if (add == null) {
             return null;
