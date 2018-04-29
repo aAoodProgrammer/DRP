@@ -37,6 +37,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     // 认证
+    
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
