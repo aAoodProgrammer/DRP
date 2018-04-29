@@ -43,23 +43,6 @@
 			document.getElementById("randImage").src = "images/image.jsp?" +
 				Math.random();
 		}
-
-		/* 	function submitForm() {
-		        var flag = false;
-		        if (trim(loginForm.userName.value).length == 0) {
-		            flag = true;
-		            document.getElementById("userIdSpan").innerHTML = "<font color='red'>用户代码不能为空</font>";
-		        }
-		        if (trim(loginForm.password.value).length == 0) {
-		            flag = true;
-		            document.getElementById("passwordSpan").innerHTML = "<font color='red'>密码不能为空</font>";
-		        }
-		        if (!flag) {
-		            loginForm.action = "login.jsp";
-		            loginForm.method = "post";
-		            loginForm.submit();
-		        }
-		    } */
 	</script>
 </head>
 
@@ -81,9 +64,7 @@
 					<INPUT name="password" id="password" type="password" size="21" maxlength="20"><span id="passwordSpan"></span></TD>
 			</TR>
 			<tr>
-				<td><input type="checkbox" name="rememberMe" /></td>
 				<TD><input type="submit" id="login_btn" value="登陆" /></TD>
-
 			</tr>
 		</table>
 	</form>
