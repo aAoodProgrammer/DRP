@@ -1,18 +1,13 @@
 package com.drp.service.impl;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.drp.pojo.Item;
 import com.drp.repository.ItemRepository;
 import com.drp.service.IItemService;
-import com.drp.util.StateAndMsg;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author 刘江涛

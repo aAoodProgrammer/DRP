@@ -81,7 +81,7 @@
 		}
 
 		function goBack() {
-			window.self.location = "flow_card_maint.html"
+			window.self.location = "${ctx}/view/inventory/flow_card_maint.jsp"
 		}
 	</script>
 </head>
@@ -119,30 +119,24 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
-						<th class="table-id">*需方客户代码</th>
-						<th class="table-id">需方客户名称</th>
+						<th class="table-id">分销商代码</th>
+						<th class="table-id">分销商名称</th>
 						<th class="table-title">*物料代码</th>
 						<th class="table-type">物料名称</th>
 						<th class="table-type">规格</th>
 						<th class="table-type">型号</th>
 						<th class="table-type">计量单位</th>
-						<th class="table-type">*操作数量</th>
+						<th class="table-type">初始数量</th>
 						<th class="table-type">删除</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>14</td>
-						<td>
-							Business managementas
-						</td>
-						<td>default</td>
-						<td class="am-hide-sm-only">张三</td>
-						<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-						<td>default</td>
-						<td class="am-hide-sm-only">张三</td>
-						<td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-						<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)"></td>
+						<td><input type="hidden" name="aimInnerId"><input readonly="true" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient onclick="selectAimClient(this.index)"></td>
+						<td><input type="text"></td>
+						<td><input type="hidden" name="aimInnerId"><input readonly="true" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient onclick="selectItem(this.index)"></td>
+						<td><input type="text"></td>
+						<td><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)"></td>
 					</tr>
 
 				</tbody>

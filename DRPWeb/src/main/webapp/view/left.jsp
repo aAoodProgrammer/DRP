@@ -27,25 +27,25 @@
 					<a href="${ctx}/inventory/inv_init_qty_maint.action" target="main">分销商库存数量初始化</a>
 				</li>
 				<li>
-					<a href="../view/inventory/inv_init_qty_confirm.html" target="main">分销商库存数量初始化确认</a>
+					<a href="../view/inventory/inv_init_qty_confirm.jsp" target="main">分销商库存数量初始化确认</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_maint.html" target="main">流向单维护</a>
+					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_audit.html" target="main">流向单审核</a>
+					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_spot_test.html" target="main">流向单抽查</a>
+					<a href="../view/inventory/flow_card_spot_test.jsp" target="main">流向单抽查</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_rehear.html" target="main">流向单复审</a>
+					<a href="../view/inventory/flow_card_rehear.jsp" target="main">流向单复审</a>
 				</li>
 				<li>
-					<a href="../view/inventory/checkvou_maint.html" target="main">盘点结果维护</a>
+					<a href="../view/inventory/checkvou_maint.jsp" target="main">盘点结果维护</a>
 				</li>
 				<li>
-					<a href="../view/inventory/checkvou_audit.html" target="main">盘点结果审核</a>
+					<a href="../view/inventory/checkvou_audit.jsp" target="main">盘点结果审核</a>
 				</li>
 			</ul>
 
@@ -56,15 +56,6 @@
 				<li>
 					<a href="statement/client_level_chart.jsp" target="main">分销商级别分布图</a>
 				</li>
-				<li>
-					<a href="statement/flow_card_audit_report.html" target="main">流向单录入审核报告</a>
-				</li>
-				<li>
-					<a href="statement/flow_card_spot_test_report.html" target="main">流向单抽查报告</a>
-				</li>
-				<li>
-					<a href="statement/client_stock_report.html" target="main">分销商库存台账</a>
-				</li>
 			</ul>
 
 			<h3 class="am-icon-volume-up">
@@ -72,16 +63,16 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="../view/basicData/fiscal_year_period_maint.html" target="main">会计核算期间维护</a>
+					<a href="../view/basicData/fiscal_year_period_maint.jsp" target="main">会计核算期间维护</a>
 				</li>
 				<li>
-					<a href="../view/basicData/item_maint.html" target="main">物料维护</a>
+					<a href="../view/basicData/item_maint.jsp" target="main">物料维护</a>
 				</li>
 				<li>
-					<a href="../view/basicData/client_node_crud.html" target="main">分销商维护</a>
+					<a href="../view/basicData/client_node_crud.jsp" target="main">分销商维护</a>
 				</li>
 				<li>
-					<a href="../view/basicData/temi_client_node_crud.html" target="main">终端客户维护</a>
+					<a href="../view/basicData/temi_client_node_crud.jsp" target="main">终端客户维护</a>
 				</li>
 			</ul>
 
@@ -104,8 +95,6 @@
 				triggerTime: 150, //鼠标延迟触发时间（默认150）
 				defaultPlay: false, //默认是否执行效果（默认true）
 			});
-			
-			
 		</script>
 	</div>
 	<script src="../js/amazeui.min.js"></script>

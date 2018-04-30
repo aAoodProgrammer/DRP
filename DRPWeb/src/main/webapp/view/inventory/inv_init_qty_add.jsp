@@ -4,139 +4,116 @@
 <!-- 设置一个项目路径的变量  -->
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>添加分销商库存数量</title>
-		<link rel="stylesheet" href="../../css/drp.css">
-		<script src="../../js/client_validate.js"></script>
-	</head>
 
-	<body class="body1">
-		<form action="inv_init_qty_maint.jsp" method="post" name="InvIniQtyForm" target="_self" id="InvIniQtyForm">
-			<div align="center">
-				<table width="95%" border="0" cellspacing="2" cellpadding="2">
-					<tr>
-						<td>&nbsp;
-							
-						</td>
+<head>
+	<meta charset="utf-8">
+	<title>DRP 分销资源计划</title>
+	<link rel="icon" type="image/png" href="../../i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="../../css/amazeui.min.css" />
+	<link rel="stylesheet" href="../../css/admin.css">
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/app.js"></script>
+
+	<script language="javascript">
+		var rowIndex = 0;
+
+		function choiceClient(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function selectAimClient(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function selectItem(index) {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('item_select.jsp?index=' + index, '请选择物料', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function DeleteRow(rowTag) {
+			//alert(rowTag);
+			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
+			var j;
+			for(j = i; j <= rowIndex; j++) {
+				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
+				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
+			}
+			//alert(i);
+			document.getElementById("tblFlowCardDetail").deleteRow(i);
+			rowIndex--;
+		}
+
+		function goBack() {
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_maint.jsp"
+		}
+	</script>
+</head>
+
+<body>
+	<div class="daohang">
+		<ul>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+		</ul>
+	</div>
+	<div class="admin-biaogelist">
+		<div class="listbiaoti am-cf">
+			<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>
+				<a href="flow_card_maint.html">分销商库存数量初始化</a>>添加
+			</dl>
+		</div>
+
+		<form class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
+				<thead>
+					<tr class="am-success">
+						<th>*需方客户代码</th>
+						<th>需方客户名称</th>
+						<th>*物料代码</th>
+						<th>物料名称</th>
+						<th>规格</th>
+						<th>型号</th>
+						<th>计量单位</th>
+						<th>*操作数量</th>
+						<th>删除</th>
 					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="8">
+				</thead>
+				<tbody>
 					<tr>
-						<td width="522" class="p1" height="2" nowrap>
-							<img src="../../images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
-							<b>分销商库存管理&gt;&gt;分销商库存数量初始化&gt;&gt;添加</b>
-						</td>
+						<td><input type="hidden" name="aimInnerId" /><input readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectAimClient(this.index)" /></td>
+						<td><input type="text" /></td>
+						<td><input type="hidden" name="aimInnerId" /><input readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectItem(this.index)" /></td>
+						<td><input type="text" /></td>
+						<td><input type="text" /></td>
+						<td><input type="text" /></td>
+						<td><input type="text" /></td>
+						<td><input type="text" /></td>
+						<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex)"></td>
 					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<table width="95%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="22%" height="29">
-							<div align="right">
-								<font color="#FF0000">*</font>分销商代码:&nbsp;
-							</div>
-						</td>
-						<td width="78%">
-							<input name="clientId" type="text" class="text1" id="clientId4"
-								size="10" maxlength="10" >
-							<input name="btnSelectClient" type="button" id="btnSelectClient"
-								value="..." class="button1"
-								onClick="window.open('${ctx}/view/inventory/client_select.jsp', '选择分销商', 'width=700, height=400, scrollbars=no')">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								分销商名称:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="clientName" type="text" class="text1"
-								id="clientName" size="10" maxlength="10" >
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>物料代码:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="itemNo" type="text" class="text1" id="itemNo"
-								size="10" maxlength="10" >
-							<input name="btnSelectItem" type="submit" id="btnSelectItem"
-								value="..." class="button1"
-								onClick="window.open('${ctx}/view/inventory/item_select.jsp', '选择物料', 'width=700, height=400, scrollbars=no')">
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								物料名称:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="itemName" type="text" class="text1" id="itemName"
-								size="10" maxlength="10" >
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								物料规格:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="spec" type="text" class="text1" id="spec" size="10"
-								maxlength="10" >
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								物料型号:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="pattern" type="text" class="text1" id="pattern"
-								size="10" maxlength="10" >
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								计量单位:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="unit" type="text" class="text1" id="unit" size="10"
-								maxlength="10" >
-						</td>
-					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>初始数量:&nbsp;
-							</div>
-						</td>
-						<td>
-							<input name="initQty" type="text" class="text1" id="initQty"
-								size="10" maxlength="10">
-						</td>
-					</tr>
-				</table>
-				<hr width="97%" align="center" size=0>
-				<div align="center">
-					<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-						value="添加">
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="返回" onClick="history.go(-1)">
-				</div>
+				</tbody>
+			</table>
+
+			<div class="am-btn-group am-btn-group-xs">
+				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 		</form>
-	</body>
+	</div>
+	<script src="../../js/amazeui.min.js"></script>
+</body>
+
 </html>

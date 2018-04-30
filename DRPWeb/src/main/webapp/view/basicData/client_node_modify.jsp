@@ -79,7 +79,7 @@
 		}
 
 		function goBack() {
-			window.self.location = "client_node_crud.html"
+			window.self.location = "${ctx}/view/basicData/client_node_crud.jsp"
 		}
 	</script>
 </head>

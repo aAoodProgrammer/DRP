@@ -33,12 +33,21 @@
 		}
 
 		function addForCard() {
-			window.self.location = "../view/inventory/inv_init_qty_add.jsp";
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
+		}
+		
+		function deleteForCard() {
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
 		}
 
 		function modifyForCard() {
-			window.self.location = "../view/inventory/inv_init_qty_modify.jsp";
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
 		}
+
+		//点击最上方的checkbox完成全选
+		$("#check_allAskMeetting").click(function() {
+			$(".check_itemAskMeetting").prop("checked", $(this).prop("checked"));
+		});
 	</script>
 </head>
 
@@ -82,7 +91,7 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input type="checkbox" /></th>
+						<th class="table-check"><input type="checkbox" id="check_allAskMeetting" /></th>
 						<th class="table-id">分销商代码</th>
 						<th class="table-id">分销商名称</th>
 						<th class="table-title">物料代码</th>
@@ -97,7 +106,7 @@
 				<c:forEach items="${requestScope.inventories}" var="inventory" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" class="check_itemAskMeetting" /></td>
 							<td>${inventory.client.code}</td>
 							<td>${inventory.client.name}</td>
 							<td>${inventory.item.code}</td>

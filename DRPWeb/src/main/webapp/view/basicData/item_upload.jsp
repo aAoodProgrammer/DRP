@@ -48,7 +48,7 @@
 		}
 
 		function goBack() {
-			window.self.location = "item_maint.html"
+			window.self.location = "${ctx}/view/basicData/item_maint.jsp"
 		}
 	</script>
 </head>

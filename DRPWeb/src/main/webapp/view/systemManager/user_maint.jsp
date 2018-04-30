@@ -103,9 +103,6 @@
 			window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
 		}
 		
-		function updateUser() {
-			
-		}
 	</script>
 </body>
 
