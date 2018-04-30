@@ -88,9 +88,9 @@
 		}
 
 		function goBack() {
-			window.self.location = "user_maint.html"
+			window.self.location = "${ctx}/view/systemManager/user_maint.jsp"
 		}
-		
+
 		$('#btnSave').click(
 			function() {
 				$.ajax({
@@ -99,7 +99,7 @@
 					data: $("#myForm").serializeArray(),
 					success: function(data) { //成功
 						alert(data); //就将返回的数据显示出来
-						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
+						window.location.href = "${ctx}/user_maint.action"
 					},
 					error: function(data) { //失败的话
 						alert("Connection error");
