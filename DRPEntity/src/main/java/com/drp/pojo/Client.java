@@ -226,11 +226,6 @@ public class Client implements Serializable {
                 ", contactTel='" + contactTel + '\'' +
                 ", isLeaf='" + isLeaf + '\'' +
                 ", isClient='" + isClient + '\'' +
-                ", level=" + level +
-                ", client=" + client +
-                ", clients=" + clients +
-                ", flowCardMains=" + flowCardMains +
-                ", inventories=" + inventories +
                 '}';
     }
 }

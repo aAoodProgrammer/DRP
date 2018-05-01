@@ -100,25 +100,34 @@
 			</dl>
 		</div>
 
-		<form class="am-form am-g">
-			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
+		<form id="addClient_nodeForm" class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
 						<th class="table-id">*分销商代码</th>
 						<th class="table-id">*分销商名称</th>
-						<th class="table-title">*分销商类型</th>
+						<th class="table-title">*是否是分销商</th>
 						<th class="table-type">银行帐号</th>
 						<th class="table-type">联系电话</th>
 						<th class="table-type">地址</th>
 						<th class="table-type">邮编</th>
-						<th class="table-type">删除</th>
 					</tr>
 				</thead>
+				<tbody>
+					<tr>
+						<td><input name="code" type="text" /></td>
+						<td><input name="name" type="text" /></td>
+						<td><input id="addClient_node_isClient" name="isClient" type="text" /></td>
+						<td><input name="bankCardNum" type="text" /></td>
+						<td><input name="contactTel" type="text" /></td>
+						<td><input name="address" type="text" /></td>
+						<td><input name="zipCode" type="text" /></td>
+					</tr>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input type="button" id="addClient_node_btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
@@ -152,6 +161,25 @@
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		
+		$("#addClient_node_btnSave").click(function(){
+			var len = $("#addClient_node_isClient")[0].value;
+			if(len.length != 1){
+				alert("是否是分销商只能填入一个字");
+				return;
+			}
+			$.ajax({
+				type:"post",
+				url:"${ctx}/addClient_node.action",
+				data:$("#addClient_nodeForm").serialize(),
+				success:function(data){
+					goBack();
+				}
+			});
+		});
+		
+	</script>
 </body>
 
 </html>

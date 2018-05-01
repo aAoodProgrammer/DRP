@@ -69,7 +69,7 @@
 			</dl>
 		</div>
 
-		<form class="am-form am-g">
+		<form id="updateItemForm" class="am-form am-g">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
@@ -78,29 +78,27 @@
 						<th class="table-type">规格</th>
 						<th class="table-type">型号</th>
 						<th class="table-type">类别</th>
-						<th class="table-type">计量单位</th>
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
-							<td><input type="text" name="id"  value="14" /></td>
-							<td>
-								<input type="text" name="id"  value="Business managementas" />
-							</td>
-							<td>
-								<input type="text" name="id"  value="default" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="张三" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="2014年9月4日 7:28:47" /></td>
-								<td><input type="text" name="id"  value="14" /></td>
-						</tr>
+					<tr>
+						<td><input type="text" name="code" id="updateItem_code" value="" /></td>
+						<td>
+							<input type="text" name="name" id="updateItem_name" value="" />
+						</td>
+						<td>
+							<input type="text" name="specification" id="updateItem_specification" value="" /></td>
+						<td class="am-hide-sm-only">
+							<input type="text" name="modelNum" id="updateItem_modelNum" value="" /></td>
+						<td class="am-hide-sm-only">
+							<input type="text" name="simplePhoto" id="updateItem_simplePhoto" value="" /></td>
+					</tr>
 
-					</tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input type="button" id="update_item_btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
@@ -134,6 +132,35 @@
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		//加载页面前将数据填写到其中
+		$(document).ready(function() {
+			$("#update_fiscal").attr("itemId", ${sessionScope.item.id});
+			var code = "${sessionScope.item.code}";
+			var name = "${sessionScope.item.name}";
+			var specification = "${sessionScope.item.specification}";
+			var modelNum = "${sessionScope.item.modelNum}";
+			var simplePhoto = "${sessionScope.item.simplePhoto}";
+
+			$("#updateItem_code")[0].value = code;
+			$("#updateItem_name")[0].value = name;
+			$("#updateItem_specification")[0].value = specification;
+			$("#updateItem_modelNum")[0].value = modelNum;
+			$("#updateItem_simplePhoto")[0].value = simplePhoto;
+
+		});
+		
+		$("#update_item_btnSave").click(function(){
+			$.ajax({
+				type:"post",
+				url:"${ctx}/updateItem.action",
+				data:$("#updateItemForm").serialize(),
+				success:function(data){
+					goBack();
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>
