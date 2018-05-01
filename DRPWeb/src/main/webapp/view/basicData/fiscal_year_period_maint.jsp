@@ -32,7 +32,6 @@
 				}
 				return;
 			}
-			
 			$.each($(".check_itemFiscal:checked"),function(){
 				var id = $(this).attr("fiscalId");
 				$.ajax({
