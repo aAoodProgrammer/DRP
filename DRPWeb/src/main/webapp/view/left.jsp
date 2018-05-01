@@ -30,18 +30,6 @@
 					<a href="../view/inventory/inv_init_qty_confirm.jsp" target="main">分销商库存数量初始化确认</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
-				</li>
-				<li>
-					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
-				</li>
-				<li>
-					<a href="../view/inventory/flow_card_spot_test.jsp" target="main">流向单抽查</a>
-				</li>
-				<li>
-					<a href="../view/inventory/flow_card_rehear.jsp" target="main">流向单复审</a>
-				</li>
-				<li>
 					<a href="../view/inventory/checkvou_maint.jsp" target="main">盘点结果维护</a>
 				</li>
 				<li>
@@ -50,11 +38,17 @@
 			</ul>
 
 			<h3 class="am-icon-volume-up">
-				<em></em> <a href="#">统计报表管理</a>
+				<em></em> <a href="#">流向单管理</a>
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="statement/client_level_chart.jsp" target="main">分销商级别分布图</a>
+					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
+				</li>
+				<li>
+					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
+				</li>
+				<li>
+					<a href="../view/inventory/flow_card_spot_test.jsp" target="main">流向单抽查</a>
 				</li>
 			</ul>
 
