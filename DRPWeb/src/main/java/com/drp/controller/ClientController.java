@@ -48,7 +48,7 @@ public class ClientController {
 
     @RequestMapping("/choiceOne.action")
     @ResponseBody
-    public Integer choiceOne(@RequestParam("ids") String ids, HttpServletRequest request) {
+    public Object choiceOne(@RequestParam("ids") String ids) {
         if (ids.length() == 0) {
             return 0;
         }
@@ -56,10 +56,7 @@ public class ClientController {
             return 1;
         }
         if (!ids.contains("-")) {
-            HttpSession session = request.getSession();
-            Client client = clientService.findOne(Integer.parseInt(ids));
-            session.setAttribute("client", client);
-            return 3;
+            return clientService.findOne(Integer.parseInt(ids));
         }
         return null;
     }

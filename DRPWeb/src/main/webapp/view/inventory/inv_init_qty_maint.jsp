@@ -32,7 +32,7 @@
 			</dl>
 		</div>
 		<form action="" method="post">
-			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" id="clientInfo">
 				<ul>
 					<li>供方分销商代码:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.code}" /></li>

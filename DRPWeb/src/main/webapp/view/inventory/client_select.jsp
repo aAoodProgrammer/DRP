@@ -98,6 +98,7 @@
 
 		function selectOk() {
 			var ids = "";
+			var tbody = window.opener.document.getElementById("clientInfo");
 			$.each($(".check_item:checked"), function() {
 				ids += $('#id').val() + "-";
 			});
@@ -114,8 +115,24 @@
 					} else if(e == 1) {
 						alert("只能选择一个分销商")
 					} else {
-						//window.location.href = "${ctx}/inventory/inv_init_qty_maint.action";
-						window.opener.location.reload();
+						var str = "";
+						var data = msg.data;
+
+						for(i in data) {
+							str += "<tr>" +
+								"<td>" + data[i].hotel_seq + "</td>" +
+								"<td>" + data[i].hotel_name + "</td>" +
+								"<td>" + data[i].order_no + "</td>" +
+								"<td>" + data[i].user_phone + "</td>" +
+								"<td>" + data[i].create_time + "</td>" +
+								"<td>" + data[i].user_id + "</td>" +
+								"<td>" + data[i].cellid + "</td>" +
+								"<td>" + data[i].gps_city + "</td>" +
+								"<td>" + data[i].cell_city + "</td>" +
+								"<td>" + data[i].distance + "</td>" +
+								"</tr>";
+						}
+						tbody.innerHTML = str;
 						window.close();
 					}
 				}

@@ -216,10 +216,21 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Client [id=" + id + ", name=" + name + ", code=" + code + ", bankCardNum=" + bankCardNum + ", address="
-                + address + ", zipCode=" + zipCode + ", isLeaf=" + isLeaf + ", isClient=" + isClient + ", clients="
-                + clients + "]";
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", bankCardNum='" + bankCardNum + '\'' +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", contactTel='" + contactTel + '\'' +
+                ", isLeaf='" + isLeaf + '\'' +
+                ", isClient='" + isClient + '\'' +
+                ", level=" + level +
+                ", client=" + client +
+                ", clients=" + clients +
+                ", flowCardMains=" + flowCardMains +
+                ", inventories=" + inventories +
+                '}';
     }
-
-
 }

@@ -50,12 +50,12 @@
 				<tbody>
 					<tr>
 						<td><input value="" readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectAimClient(this.index)" /></td>
-						<td><input type="text" value="" /></td>
+						<td><input type="text" readonly="true" value="" /></td>
 						<td><input value="" readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectItem(this.index)" /></td>
-						<td><input type="text" value="" /></td>
-						<td><input type="text" /></td>
-						<td><input type="text" /></td>
-						<td><input type="text" /></td>
+						<td><input type="text" readonly="true" value="" /></td>
+						<td><input type="text" readonly="true" /></td>
+						<td><input type="text" readonly="true" /></td>
+						<td><input type="text" readonly="true" /></td>
 						<td><input type="text" /></td>
 					</tr>
 				</tbody>
