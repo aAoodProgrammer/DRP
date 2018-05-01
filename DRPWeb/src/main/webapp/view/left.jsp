@@ -65,9 +65,9 @@
 				<li>
 					<a href="../view/basicData/client_node_crud.jsp" target="main">分销商维护</a>
 				</li>
-				<li>
-					<a href="../view/basicData/item_client_node_crud.jsp" target="main">终端客户维护</a>
-				</li>
+				<!--<li>
+					<a href="../view/basicData/temi_client_node_crud.jsp" target="main">终端客户维护</a>
+				</li>-->
 			</ul>
 
 			<h3 class="am-icon-gears">

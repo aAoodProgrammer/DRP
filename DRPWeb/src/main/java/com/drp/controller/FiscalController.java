@@ -73,6 +73,7 @@ public class FiscalController {
     @RequestMapping(value = "/addFiscal.action",method = RequestMethod.POST)
     @ResponseBody
     public String addFiscal(Fiscal fiscal){
+        fiscal.setId(null);
         System.out.println("保存的fiscal的信息:" + fiscal);
         if(fiscal.getPeriodFlag() == null){
             fiscal.setPeriodFlag("否");
@@ -98,17 +99,20 @@ public class FiscalController {
 
     /**
      * 修改Fiscal
-     * 即使前端没有传递id过来，Fiscal中的id一样能够设置正确，是因为查询出来的Fiscal放在了session中，因此
-     * 没有传递过来的id，从session中获取到了
      * @param fiscal
      * @return
      */
     @RequestMapping(value = "/updateFiscal.action",method = RequestMethod.POST)
-    //@ResponseBody
+    @ResponseBody
     public String updateFiscal(Fiscal fiscal){
         System.out.println("修改的fiscal:" + fiscal);
+        if(fiscal.getPeriodFlag().equals("on")){
+            fiscal.setPeriodFlag("是");
+        }else {
+            fiscal.setPeriodFlag("否");
+        }
         iFiscalService.update(fiscal);
-        return "basicData/fiscal_year_period_maint";
+        return "success";
     }
 
 }

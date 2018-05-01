@@ -100,8 +100,8 @@
 			</dl>
 		</div>
 
-		<form class="am-form am-g">
-			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
+		<form id="updateClient_nodeFrom" class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" >
 				<thead>
 					<tr class="am-success">
 						<th class="table-id">*分销商代码</th>
@@ -111,32 +111,29 @@
 						<th class="table-type">联系电话</th>
 						<th class="table-type">地址</th>
 						<th class="table-type">邮编</th>
-						<th class="table-type">删除</th>
 					</tr>
 				</thead>
 				<tbody>
 						<tr>
-							<td><input type="text" name="id"  value="14" /></td>
+							<td><input type="text" name="code"  value="${sessionScope.client.code}" /></td>
 							<td>
-								<input type="text" name="id"  value="Business managementas" />
+								<input type="text" name="name"  value="${sessionScope.client.name}" />
 							</td>
 							<td>
-								<input type="text" name="id"  value="default" /></td>
+								<input type="text" name="isClient"  value="${sessionScope.client.isClient}" /></td>
 							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="张三" /></td>
+								<input type="text" name="bankCardNum"  value="${sessionScope.client.bankCardNum}" /></td>
 							<td class="am-hide-sm-only">
-								<input type="text" name="id"  value="2014年9月4日 7:28:47" /></td>
-								<td><input type="text" name="id"  value="14" /></td>
-								<td><input type="text" name="id"  value="14" /></td>
-							<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
+								<input type="text" name="contactTel"  value="${sessionScope.client.contactTel}" /></td>
+							<td><input type="text" name="address"  value="${sessionScope.client.address}" /></td>
+							<td><input type="text" name="zipCode"  value="${sessionScope.client.zipCode}" /></td>
 						</tr>
 
 					</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input name="btnSave" type="button" id="update_Client_node_btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
@@ -170,6 +167,20 @@
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		
+		$("#update_Client_node_btnSave").click(function(){
+			$.ajax({
+				type:"post",
+				url:"${ctx}/updateClient_node.action",
+				data:$("#updateClient_nodeFrom").serialize(),
+				success:function(data){
+					goBack();
+				}
+			});
+		});
+		
+	</script>
 </body>
 
 </html>

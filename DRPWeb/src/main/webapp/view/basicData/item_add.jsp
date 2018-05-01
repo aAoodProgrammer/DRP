@@ -64,7 +64,7 @@
 				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
 			}
 			//alert(i);
-			document.getElementById("tblFlowCardDetail").deleteRow(i);
+			document.getElementsByClassName("tblFlowCardDetail").deleteRow(i);
 			rowIndex--;
 		}
 
@@ -90,7 +90,7 @@
 			</dl>
 		</div>
 
-		<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+	<!--	<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 			<ul>
 				<form action="" method="post">
 					<li>供方分销商代码:</li>
@@ -101,9 +101,9 @@
 					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</form>
 			</ul>
-		</div>
+		</div>-->
 
-		<form class="am-form am-g">
+		<form id="add_itemForm" class="am-form am-g">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
@@ -112,16 +112,22 @@
 						<th class="table-type">规格</th>
 						<th class="table-type">型号</th>
 						<th class="table-type">类别</th>
-						<th class="table-type">计量单位</th>
-						<th class="table-type">删除</th>
 					</tr>
 				</thead>
+				<tbody>
+					<tr>
+						<td><input name="code" type="text" /></td>
+						<td><input name="name" type="text" /></td>
+						<td><input name="specification" type="text" /></td>
+						<td><input name="modelNum" type="text" /></td>
+						<td><input name="simplePhoto" type="text" /></td>
+					</tr>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnAddLine" type="button" id="btnAddLine" onClick="return addOneLineOnClick()" value="加入一行">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
-				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
+				<input type="button" id="add_item_btnSave" value="保存">
+				<input type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
 			<ul class="am-pagination am-fr">
@@ -154,6 +160,20 @@
 
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		
+		$("#add_item_btnSave").click(function(){
+			$.ajax({
+				type:"post",
+				url:"${ctx}/addItem.action",
+				data:$("#add_itemForm").serialize(),
+				success:function(data){
+					window.self.location = "${ctx}/view/basicData/item_maint.jsp";
+				}
+			});
+		});
+		
+	</script>
 </body>
 
 </html>
