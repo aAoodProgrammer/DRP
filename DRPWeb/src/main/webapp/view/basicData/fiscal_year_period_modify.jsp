@@ -95,41 +95,83 @@
 			</div>
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" style="height:200px;width:250px">
-				<form action="" method="post">
+				<form id="updateFiscalForm">
 					<ul>
 						<li>*核算年: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text" value="2018" style="width: 100px;"/><br />
+						<input id="updateFiscal_fiscalYear" name="fiscalYear" type="text" value="${sessionScope.fiscal.fiscalYear}" style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*核算月: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text" value="4" style="width: 100px;"/><br />
+						<input id="updateFiscal_fiscalPeriod" name="fiscalPeriod" type="text" value="${sessionScope.fiscal.fiscalPeriod}" style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*开始日期:</li>
 						<li style="margin-right: 0;">
-							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" data-am-datepicker="{theme: 'success',}" value="2018-04-21" />
+							<input id="updateFiscal_beginDate" name="beginDate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" data-am-datepicker="{theme: 'success',}" value="${sessionScope.fiscal.beginDate}" />
 						</li><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*结束日期:</li>
 						<li style="margin-right: 0;">
-							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" data-am-datepicker="{theme: 'success',}" value="2018-04-21" />
+							<input id="updateFiscal_endDate" name="endDate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" data-am-datepicker="{theme: 'success',}" value="${sessionScope.fiscal.endDate}" />
 						</li><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>
 							*是否可用:
 						</li>
-						<input type="checkbox" /><br />
+						<input id="updateFiscal_periodFlag" name="periodFlag" type="checkbox"/><br />
 					</ul>
 					<ul style="margin-top: 5px;">
-						<input type="submit" value="修改" />
+						<input id="update_fiscal" type="button" value="修改" />
 						<input type="button" value="返回" onclick="goBack()" />
 					</ul>
 				</form>
 			</div>
 		</div>
 		<script src="../../js/amazeui.min.js "></script>
+		<script type="text/javascript">
+			
+			//加载页面前将数据填写到其中
+			$(document).ready(function() {
+				//从session中获取要修改的信息
+				$("#update_fiscal").attr("fiscalId",${sessionScope.fiscal.id})
+				var fiscalYear = "${sessionScope.fiscal.fiscalYear}";
+				var fiscalPeriod = "${sessionScope.fiscal.fiscalPeriod}";
+				var beginDate = "${sessionScope.fiscal.beginDate}";
+				var endDate = "${sessionScope.fiscal.endDate}";
+				var periodFlag = "${sessionScope.fiscal.periodFlag}";
+				
+				/*$("#updateFiscal_fiscalYear")[0].value = fiscalYear;
+				$("#updateFiscal_fiscalPeriod")[0].value = fiscalPeriod;
+				$("#updateFiscal_beginDate")[0].value = beginDate;
+				$("#updateFiscal_endDate")[0].value = endDate;*/
+				
+				//判断是否，选中checkbox
+				/*if(periodFlag == "是"){
+					$("#updateFiscal_periodFlag").prop("checked",true);;
+				}*/
+			});
+			
+			$("#update_fiscal").click(function(){
+				//发送ajax清除session
+				$.ajax({
+					type:"post",
+					url:"",
+					async:true
+				});
+				var id = $(this).attr("fiscalId");
+				alert(id);
+				$.ajax({
+					url:"${ctx}/updateFiscal.action",
+					type:"post",
+					data:$("#addFiscalForm").serializeArray(),
+					success:function(data){
+						window.self.location = "${ctx}/view/basicData/fiscal_year_period_maint.jsp";
+					}
+				});
+			});
+		</script>
 	</body>
 
 </html>

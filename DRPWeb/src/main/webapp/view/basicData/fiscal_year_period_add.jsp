@@ -95,35 +95,35 @@
 			</div>
 
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" style="height:200px;width:300px">
-				<form action="" method="post">
+				<form id="addFiscalForm">
 					<ul>
 						<li>*核算年: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text" style="width: 100px;"/><br />
+						<input name="fiscalYear" type="text" style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*核算月: </li>&nbsp;&nbsp;&nbsp;
-						<input type="text"  style="width: 100px;"/><br />
+						<input name="fiscalPeriod" type="text"  style="width: 100px;"/><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*开始日期:</li>
 						<li style="margin-right: 0;">
-							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
+							<input name="beginDate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
 						</li><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>*结束日期:</li>
 						<li style="margin-right: 0;">
-							<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
+							<input name="endDate" type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar"  data-am-datepicker="{theme: 'success',}" />
 						</li><br />
 					</ul>
 					<ul style="margin-top: 2px;">
 						<li>
 							*是否可用:
 						</li>
-						<input type="checkbox" /><br />
+						<input name="periodFlag" type="checkbox" /><br />
 					</ul>
 					<ul style="margin-top: 5px;">
-						<input type="submit" value="添加" />
+						<input id="add_fiscal" type="button" value="添加" />
 						<input type="reset" value="重置" />
 						<input type="button" value="返回"  onclick="goBack()"/>
 					</ul>
@@ -131,6 +131,20 @@
 			</div>
 		</div>
 		<script src="../../js/amazeui.min.js "></script>
+		<script type="text/javascript">
+			
+			$("#add_fiscal").click(function(){
+				$.ajax({
+					url:"${ctx}/addFiscal.action",
+					type:"post",
+					data:$("#addFiscalForm").serialize(),
+					success:function(data){
+						window.self.location = "${ctx}/view/basicData/fiscal_year_period_maint.jsp";
+					}
+				});
+			});
+			
+		</script>
 	</body>
 
 </html>
