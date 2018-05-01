@@ -45,7 +45,7 @@ public class Client implements Serializable {
     private String zipCode;        //邮编
 
     @Column(length = 15)
-    private String contactTel;        //联系电话
+    private String contactTel;      //联系电话
 
     @Column(length = 1, nullable = false)
     private String isLeaf;    //是否是叶子节点

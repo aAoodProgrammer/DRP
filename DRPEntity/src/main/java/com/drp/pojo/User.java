@@ -179,4 +179,21 @@ public class User implements Serializable {
         this.flowReview = flowReview;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uId=" + uId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userTel='" + userTel + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userCode='" + userCode + '\'' +
+                ", createDate=" + createDate +
+                ", items=" + items +
+                ", flowRecoed=" + flowRecoed +
+                ", flowAdjust=" + flowAdjust +
+                ", flowSpot=" + flowSpot +
+                ", flowReview=" + flowReview +
+                '}';
+    }
 }

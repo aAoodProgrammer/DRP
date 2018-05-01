@@ -38,32 +38,22 @@
 					<tr class="am-success">
 						<th class="table-id">*用户代码</th>
 						<th class="table-id">*用户名称</th>
-						<th class="table-type">密码</th>
 						<th class="table-type">联系电话</th>
 						<th class="table-type">邮箱</th>
-						<th class="table-type">删除</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" name="id" value="14" /></td>
-						<td>
-							<input type="text" name="id" value="Business managementas" />
-						</td>
-						<td>
-							<input type="text" name="id" value="default" /></td>
-						<td class="am-hide-sm-only">
-							<input type="text" name="id" value="张三" /></td>
-						<td class="am-hide-sm-only">
-							<input type="text" name="id" value="2014年9月4日 7:28:47" /></td>
-						<td class="am-hide-sm-only"><input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick="return DeleteRow(row + rowIndex )" style="margin-top: 5px;"></td>
+						<td><input type="hidden" name="uId" value="${sessionScope.byUserCode.uId}" /><input type="text" name="userCode" value="${sessionScope.byUserCode.userCode}" /></td>
+						<td><input type="text" name="userName" value="${sessionScope.byUserCode.userName}" /></td>
+						<td><input type="text" name="userTel" value="${sessionScope.byUserCode.userTel}" /></td>
+						<td><input type="text" name="userEmail" value="${sessionScope.byUserCode.userEmail}" /></td>
 					</tr>
-
 				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input name="btnSave" type="button" id="btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
@@ -72,25 +62,9 @@
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
 	<script language="javascript">
-		var rowIndex = 0;
-
-		function DeleteRow(rowTag) {
-			//alert(rowTag);
-			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
-			var j;
-			for(j = i; j <= rowIndex; j++) {
-				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
-				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
-			}
-			//alert(i);
-			document.getElementById("tblFlowCardDetail").deleteRow(i);
-			rowIndex--;
-		}
-
 		function goBack() {
-			window.self.location = "${ctx}/view/systemManager/user_maint.jsp"
+			window.self.location = "${ctx}/user_maint.action"
 		}
-
 		$('#btnSave').click(
 			function() {
 				$.ajax({
@@ -98,11 +72,7 @@
 					url: "${ctx}/update.action",
 					data: $("#myForm").serializeArray(),
 					success: function(data) { //成功
-						alert(data); //就将返回的数据显示出来
 						window.location.href = "${ctx}/user_maint.action"
-					},
-					error: function(data) { //失败的话
-						alert("Connection error");
 					}
 				})
 			});

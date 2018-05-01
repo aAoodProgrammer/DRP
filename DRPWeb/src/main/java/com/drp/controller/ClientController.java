@@ -3,13 +3,17 @@ package com.drp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.drp.dto.CategoryDto;
+import com.drp.pojo.Client;
 import com.drp.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -20,15 +24,43 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
+@RequestMapping("/client")
 public class ClientController {
 
     @Resource
-    private IClientService clientService = null;
+    private IClientService clientService;
 
     @RequestMapping("getPie.action")
     @ResponseBody
     public List<CategoryDto> getClientPieData() {
         List<CategoryDto> categoryDtos = clientService.findByClientLevel();
         return categoryDtos;
+    }
+
+    @RequestMapping("/findAllClient.action")
+    @ResponseBody
+    public Boolean findAll(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        List<Client> clients = clientService.findAll();
+        session.setAttribute("clients", clients);
+        return clients != null;
+    }
+
+    @RequestMapping("/choiceOne.action")
+    @ResponseBody
+    public Integer choiceOne(@RequestParam("ids") String ids, HttpServletRequest request) {
+        if (ids.length() == 0) {
+            return 0;
+        }
+        if (ids.contains("-")) {
+            return 1;
+        }
+        if (!ids.contains("-")) {
+            HttpSession session = request.getSession();
+            Client client = clientService.findOne(Integer.parseInt(ids));
+            session.setAttribute("client", client);
+            return 3;
+        }
+        return null;
     }
 }
