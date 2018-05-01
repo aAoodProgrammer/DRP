@@ -14,6 +14,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.drp.pojo.User;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * @author 刘江涛
@@ -65,6 +67,7 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
      * @param uId          用户id
      */
     @Modifying
+    @Transactional
     @Query("update User u set u.userName=?1, u.userPassword=?2, u.userTel=?3, u.userEmail=?4 where u.uId=?5")
     void updateUser(String userName, String userPassword, String userTel, String userEmail, Integer uId);
 
@@ -76,6 +79,9 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
      */
     @Query("select u from User u where u.userName = ?1")
     User findByUserName(String userName);
+
+    @Query("select u from User u where u.userCode = ?1")
+    User findByUserCode(String userCode);
 
     /**
      * 通过电话号查找
@@ -97,12 +103,15 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, JpaRepos
     /**
      * 通过用户代码进行查找
      *
-     * @param userCode
      * @return
      */
 //	 @Query("select u from User u where u.userCode = ?1")
 //	 User findByUserCode(String userCode);
-
     @Query("select u from User u order by u.createDate desc ")
     Page<User> findAllOrderByCreateTime(Pageable pageable);
+
+    @Modifying
+    @Transactional
+    @Query("delete from User u where u.userCode = ?1")
+    void deleteAllByUserCode(String userCodes);
 }

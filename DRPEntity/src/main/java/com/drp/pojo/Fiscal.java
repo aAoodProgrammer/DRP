@@ -43,7 +43,7 @@ public class Fiscal implements Serializable {
     private Set<FlowCardMain> flowCardMains;//流向单主信息 一对多
 
     @OneToMany(mappedBy = "fiscal")
-    private Set<Inventory> inventories;        //库存
+    private Set<Inventory> inventories;      //库存
 
     public Fiscal() {
     }

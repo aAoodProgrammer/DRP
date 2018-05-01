@@ -40,11 +40,11 @@ public class Inventory implements Serializable {
     private Client client;
 
     @ManyToOne()
-    @JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn(name = "item_id")
     private Item item;
 
     @ManyToOne()
-    @JoinColumn(name = "fiscalPeriodId", nullable = false)
+    @JoinColumn(name = "fiscalPeriodId")
     private Fiscal fiscal;
 
     public Inventory() {
@@ -138,9 +138,15 @@ public class Inventory implements Serializable {
 
     @Override
     public String toString() {
-        return "Inventory [id=" + id + ", initialNum=" + initialNum + ", inNum=" + inNum + ", outNum=" + outNum
-                + ", client=" + client + ", item=" + item + ", fiscal=" + fiscal + "]";
+        return "Inventory{" +
+                "id=" + id +
+                ", initialNum=" + initialNum +
+                ", inNum=" + inNum +
+                ", outNum=" + outNum +
+                ", isVerify='" + isVerify + '\'' +
+                ", client=" + client +
+                ", item=" + item +
+                ", fiscal=" + fiscal +
+                '}';
     }
-
-
 }

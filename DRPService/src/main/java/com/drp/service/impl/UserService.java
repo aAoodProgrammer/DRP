@@ -79,6 +79,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void deleteAllByUserCode(String userCode) {
+        userRepository.deleteAllByUserCode(userCode);
+    }
+
+    @Override
     public User update(User user) {
         User saveAndFlush = userRepository.saveAndFlush(user);
         if (saveAndFlush == null)
@@ -125,6 +130,11 @@ public class UserService implements IUserService {
             return new StateAndMsg(-1, "输入信息有误！");
         }
 
+    }
+
+    @Override
+    public User findByUserCode(String userCode) {
+        return userRepository.findByUserCode(userCode);
     }
 
 }

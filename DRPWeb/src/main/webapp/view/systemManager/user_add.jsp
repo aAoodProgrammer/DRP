@@ -63,20 +63,6 @@
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
 	<script language="javascript">
-		var rowIndex = 0;
-
-		function DeleteRow(rowTag) {
-			//alert(rowTag);
-			var i = document.getElementById("tblFlowCardDetail").rows(rowTag).rowIndex;
-			var j;
-			for(j = i; j <= rowIndex; j++) {
-				document.getElementById("tblFlowCardDetail").rows(j).cells(0).all("btnSelectAimClient").index--;
-				document.getElementById("tblFlowCardDetail").rows(j).cells(2).all("btnSelectItem").index--;
-			}
-			//alert(i);
-			document.getElementById("tblFlowCardDetail").deleteRow(i);
-			rowIndex--;
-		}
 
 		function goBack() {
 			window.self.location = "${ctx}/user_maint.action"
@@ -89,7 +75,9 @@
 					url: "${ctx}/add.action",
 					data: $("#myForm").serializeArray(),
 					success: function(result) { //成功
-						alert("注册成功！"); //就将返回的数据显示出来
+						if(result == null) {
+							alert("注册失败")
+						}
 						window.location.href = "${ctx}/user_maint.action"
 					}
 				})

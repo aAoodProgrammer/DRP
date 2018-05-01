@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="${ctx}/css/admin.css">
 	<script src="${ctx}/js/jquery.min.js"></script>
 	<script src="${ctx}/js/app.js"></script>
-	
+
 </head>
 
 <body>
@@ -35,7 +35,7 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input type="checkbox" /></th>
+						<th class="table-check"><input type="checkbox" id="check_all" /></th>
 						<th>用户代码</th>
 						<th>用户名称</th>
 						<th>联系电话</th>
@@ -46,7 +46,7 @@
 				<c:forEach items="${requestScope.users}" var="user" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" class="check_item" /></td>
 							<td>${user.userCode}</td>
 							<td>${user.userName}</td>
 							<td>${user.userTel}</td>
@@ -59,7 +59,7 @@
 
 			<div class="am-btn-group am-btn-group-xs">
 				<button type="button" class="am-btn am-btn-default" onclick="addUser()"><span class="am-icon-plus"></span>新增</button>
-				<button type="button" class="am-btn am-btn-default" onclick="delUser()"><span class="am-icon-trash-o"></span>删除</button>
+				<button type="button" class="am-btn am-btn-default" id="deleteUser"><span class="am-icon-trash-o"></span>删除</button>
 				<button type="button" class="am-btn am-btn-default" onclick="updateUser()"><span class="am-icon-save"></span>修改</button>
 			</div>
 
@@ -99,10 +99,66 @@
 		}
 
 		function updateUser() {
-			
-			window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/user_findOne.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择用户")
+					} else if(e == 1) {
+						alert("只能选择一个用户")
+					} else {
+						window.self.location = "${ctx}/view/systemManager/user_modify.jsp";
+					}
+				}
+			});
 		}
-		
+
+		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
+		$("#check_all").click(function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+		});
+		$(document).on("click", ".check_item", function() {
+			var flag = $(".check_item:checked").length == $(".check_item").length;
+			$("#check_all").prop("checked", flag);
+		});
+
+		//批量删除
+		$("#deleteUser").click(function() {
+			var ids = "";
+			var meettingTitles = "";
+			$.each($(".check_item:checked"), function() {
+				meettingTitles += $(this).parents("tr").find("td:eq(2)").text() + "-";
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			//去除多余的横线
+			meettingTitles = meettingTitles.substring(0, meettingTitles.length - 1);
+			ids = ids.substring(0, ids.length - 1);
+			if(ids.length == 0) {
+				alert("请选择需要删除的用户");
+			}
+			if(confirm("确定删除用户？\n" + meettingTitles)) {
+				$.ajax({
+					url: "${ctx}/deleteUser.action",
+					data: {
+						"ids": ids
+					},
+					type: "post",
+					success: function(e) {
+						alert("删除成功！");
+						window.location.href = "${ctx}/user_maint.action"
+					}
+				});
+			}
+		});
 	</script>
 </body>
 

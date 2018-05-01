@@ -17,6 +17,8 @@ public interface IUserService {
 
     void deleteByIds(List<Integer> ids);
 
+    void deleteAllByUserCode(String userCode);
+
     User update(User user);
 
     User findOne(Integer id);
@@ -28,5 +30,7 @@ public interface IUserService {
 
     //修改密码
     Object alterPassword(Integer uId, String password, String newPassword);
+
+    User findByUserCode(String userCode);
 
 }

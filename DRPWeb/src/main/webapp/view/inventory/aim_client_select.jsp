@@ -16,6 +16,7 @@
 	<script src="../../js/app.js"></script>
 	<script language="javascript">
 		function selectOk(clientId, clientName) {
+
 			window.close();
 		}
 	</script>
@@ -41,23 +42,19 @@
 				<thead>
 					<tr class="am-success">
 						<th class="table-check"><input type="checkbox" /></th>
-						<th class="table-id">需方客户代码</th>
-						<th class="table-title">需方客户名称</th>
-						<th class="table-type">需方客户类型</th>
+						<th>需方客户代码</th>
+						<th>需方客户名称</th>
+						<th>需方客户类型</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="checkbox" /></td>
-						<td>14</td>
-						<td>Business</td>
-						<td>default</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td>15</td>
-						<td>Business</td>
-						<td>default</td>
+						<c:forEach items="${sessionScope.clients}" var="client" varStatus="stat">
+							<td><input type="checkbox" /></td>
+							<td><input type="hidden" name="id" id="id" value="${client.id}" />${client.code}</td>
+							<td>${client.name}</td>
+							<td>${client.level.name}</td>
+						</c:forEach>
 					</tr>
 				</tbody>
 			</table>

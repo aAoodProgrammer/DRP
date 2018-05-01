@@ -15,40 +15,6 @@
 	<script src="${ctx}/js/jquery.min.js"></script>
 	<script src="${ctx}/js/app.js"></script>
 
-	<script type="text/javascript">
-		function choiceClient(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('../view/inventory/client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
-		function choiceItem(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('../view/inventory/item_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
-		function addForCard() {
-			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
-		}
-		
-		function deleteForCard() {
-			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
-		}
-
-		function modifyForCard() {
-			window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
-		}
-
-		//点击最上方的checkbox完成全选
-		$("#check_allAskMeetting").click(function() {
-			$(".check_itemAskMeetting").prop("checked", $(this).prop("checked"));
-		});
-	</script>
 </head>
 
 <body>
@@ -69,10 +35,10 @@
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
 					<li>供方分销商代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.code}" /></li>
 					<li>供方分销商名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient(this.index)">选择</button></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.name}" /></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
 					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
 				</ul>
 			</div>
@@ -82,7 +48,7 @@
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
 					<li>物料名称:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceItem(this.index)">选择</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceItem()">选择</button></li>
 					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">重置</button></li>
 				</ul>
 			</div>
@@ -91,23 +57,23 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input type="checkbox" id="check_allAskMeetting" /></th>
-						<th class="table-id">分销商代码</th>
-						<th class="table-id">分销商名称</th>
-						<th class="table-title">物料代码</th>
-						<th class="table-type">物料名称</th>
-						<th class="table-date am-hide-sm-only">规格</th>
-						<th class="table-title">型号</th>
-						<th class="table-type">计量单位</th>
-						<th class="table-type">数量</th>
+						<th class="table-check"><input type="checkbox" id="check_all" /></th>
+						<th>分销商代码</th>
+						<th>分销商名称</th>
+						<th>物料代码</th>
+						<th>物料名称</th>
+						<th>规格</th>
+						<th>型号</th>
+						<th>计量单位</th>
+						<th>数量</th>
 					</tr>
 				</thead>
 
 				<c:forEach items="${requestScope.inventories}" var="inventory" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" class="check_itemAskMeetting" /></td>
-							<td>${inventory.client.code}</td>
+							<td><input type="checkbox" class="check_item" /></td>
+							<td><input type="hidden" name="id" id="id" value="${inventory.id}" />${inventory.client.code}</td>
 							<td>${inventory.client.name}</td>
 							<td>${inventory.item.code}</td>
 							<td>${inventory.item.name}</td>
@@ -121,9 +87,9 @@
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<button type="button" class="am-btn am-btn-default" onClick="addForCard()"><span class="am-icon-plus"></span>  新增</button>
-				<button type="button" class="am-btn am-btn-default" onClick="deleteForCard()"><span class="am-icon-trash-o"></span> 删除</button>
-				<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-save"></span> 修改</button>
+				<button type="button" class="am-btn am-btn-default" onClick="addInventory()"><span class="am-icon-plus"></span>新增</button>
+				<button type="button" class="am-btn am-btn-default" id="deleteInventory"><span class="am-icon-trash-o"></span>删除</button>
+				<button type="button" class="am-btn am-btn-default" onClick="updateInventory()"><span class="am-icon-save"></span>修改</button>
 			</div>
 
 			<ul class="am-pagination am-fr">
@@ -155,6 +121,98 @@
 		</form>
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		function choiceClient() {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+
+			$.ajax({
+				url: "${ctx}/client/findAllClient.action",
+				data: {},
+				type: "get",
+				success: function(e) {
+					window.open('${ctx}/view/inventory/client_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+				}
+			});
+		}
+
+		function choiceItem() {
+			var width = 1000;
+			var height = 600;
+			var top = Math.round((window.screen.height - height) / 2);
+			var left = Math.round((window.screen.width - width) / 2);
+			window.open('${ctx}/view/inventory/item_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
+		}
+
+		function addInventory() {
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
+		}
+
+		function updateInventory() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $('#id').val() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/inventory/findOne.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择用户")
+					} else if(e == 1) {
+						alert("只能选择一个用户")
+					} else {
+						window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
+					}
+				}
+			});
+		}
+
+		//批量删除
+		$("#deleteInventory").click(function() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $('#id').val() + "-";
+			});
+			//去除多余的横线
+			ids = ids.substring(0, ids.length - 1);
+			if(ids.length == 0) {
+				alert("请选择");
+			}
+			if(confirm("确定删除？")) {
+				$.ajax({
+					url: "${ctx}/inventory/deleteInventory.action",
+					data: {
+						"ids": ids
+					},
+					type: "post",
+					success: function(e) {
+						alert("删除成功！");
+						window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
+					}
+				});
+			}
+		});
+
+		function modifyForCard() {
+			window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
+		}
+
+		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
+		$("#check_all").click(function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+		});
+		$(document).on("click", ".check_item", function() {
+			var flag = $(".check_item:checked").length == $(".check_item").length;
+			$("#check_all").prop("checked", flag);
+		});
+	</script>
 </body>
 
 </html>
