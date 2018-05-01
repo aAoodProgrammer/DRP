@@ -37,6 +37,7 @@ public class FiscalController {
     @RequestMapping(value = "/getFiscalAll.action",method = RequestMethod.GET)
     @ResponseBody
     public String getFiscalAll(){
+
         System.out.println("请求Fiscal的数据");
         List<Fiscal> fiscalList = iFiscalService.findAll();
         System.out.println("======fiscalList=======");
