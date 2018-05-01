@@ -8,12 +8,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>DRP 分销资源计划</title>
-	<link rel="icon" type="image/png" href="../../i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
-	<link rel="stylesheet" href="../../css/amazeui.min.css" />
-	<link rel="stylesheet" href="../../css/admin.css">
-	<script src="../../js/jquery.min.js"></script>
-	<script src="../../js/app.js"></script>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
 </head>
 
 <body>
@@ -36,9 +36,9 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
-						<th class="table-id">*用户代码</th>
-						<th class="table-id">*用户名称</th>
-						<th class="table-type">联系电话</th>
+						<th>用户代码</th>
+						<th>用户名称</th>
+						<th>联系电话</th>
 						<th class="table-type">邮箱</th>
 					</tr>
 				</thead>
@@ -60,7 +60,7 @@
 		</form>
 
 	</div>
-	<script src="../../js/amazeui.min.js"></script>
+	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
 			window.self.location = "${ctx}/user_maint.action"

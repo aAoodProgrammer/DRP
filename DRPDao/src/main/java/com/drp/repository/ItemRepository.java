@@ -86,5 +86,5 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @return
      */
     @Query("select i from Item i where i.code = ?1")
-    List<Item> findByCode(String code);
+    Item findByCode(String code);
 }

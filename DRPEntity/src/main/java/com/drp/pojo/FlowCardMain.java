@@ -56,28 +56,24 @@ public class FlowCardMain implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date reviewDate;    //复审时间
 
-    @OneToOne()
-    @JoinColumn(name = "recoederId", nullable = false)
-    private User recoeder;        //记录人
+    @Column(name = "recoederId")
+    private Integer recoeder;        //记录人
 
-    @OneToOne()
-    @JoinColumn(name = "adjusterId", nullable = false)
-    private User adjuster;        //调整人
+    @Column(name = "adjusterId")
+    private Integer adjuster;        //调整人
 
-    @OneToOne()
-    @JoinColumn(name = "spoterId")
-    private User spoter;        //抽查人
+    @Column(name = "spoterId")
+    private Integer spoter;        //抽查人
 
-    @OneToOne()
-    @JoinColumn(name = "reviewerId")
-    private User reviewer;        //复审人
+    @Column(name = "reviewerId")
+    private Integer reviewer;        //复审人
 
-    @OneToOne()
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;        //分销商
+    @Column(name = "client_id")
+    private Integer clientId;        //分销商
 
-    @ManyToOne()
-    @JoinColumn(name = "fiscal_id", nullable = false)
+    private Integer status;         //0初始态，1审核中，2审核通过
+
+    @JoinColumn(name = "fiscal_id")
     private Fiscal fiscal;        //审核周期
 
     @OneToMany(mappedBy = "flowCardMain")
@@ -86,11 +82,7 @@ public class FlowCardMain implements Serializable {
     public FlowCardMain() {
     }
 
-    public FlowCardMain(Integer id, String flowCardNum, String operateType, Date recoedDate, String spotDescribe,
-                        Date adjustData, Date spotDate, String spotMark, Date reviewDate, User recoeder, User adjuster, User spoter,
-                        User reviewer, Client client, Fiscal fiscal) {
-        super();
-        this.id = id;
+    public FlowCardMain(String flowCardNum, String operateType, Date recoedDate, String spotDescribe, Date adjustData, Date spotDate, String spotMark, Date reviewDate, Integer recoeder, Integer adjuster, Integer spoter, Integer reviewer, Integer clientId, Fiscal fiscal, Set<FlowCardDetail> flowCardDetails) {
         this.flowCardNum = flowCardNum;
         this.operateType = operateType;
         this.recoedDate = recoedDate;
@@ -103,10 +95,10 @@ public class FlowCardMain implements Serializable {
         this.adjuster = adjuster;
         this.spoter = spoter;
         this.reviewer = reviewer;
-        this.client = client;
+        this.clientId = clientId;
         this.fiscal = fiscal;
+        this.flowCardDetails = flowCardDetails;
     }
-
 
     public Integer getId() {
         return id;
@@ -140,11 +132,11 @@ public class FlowCardMain implements Serializable {
         this.recoedDate = recoedDate;
     }
 
-    public String getspotDescribe() {
+    public String getSpotDescribe() {
         return spotDescribe;
     }
 
-    public void setspotDescribe(String spotDescribe) {
+    public void setSpotDescribe(String spotDescribe) {
         this.spotDescribe = spotDescribe;
     }
 
@@ -180,44 +172,44 @@ public class FlowCardMain implements Serializable {
         this.reviewDate = reviewDate;
     }
 
-    public User getRecoeder() {
+    public Integer getRecoeder() {
         return recoeder;
     }
 
-    public void setRecoeder(User recoeder) {
+    public void setRecoeder(Integer recoeder) {
         this.recoeder = recoeder;
     }
 
-    public User getAdjuster() {
+    public Integer getAdjuster() {
         return adjuster;
     }
 
-    public void setAdjuster(User adjuster) {
+    public void setAdjuster(Integer adjuster) {
         this.adjuster = adjuster;
     }
 
-    public User getSpoter() {
+    public Integer getSpoter() {
         return spoter;
     }
 
-    public void setSpoter(User spoter) {
+    public void setSpoter(Integer spoter) {
         this.spoter = spoter;
     }
 
-    public User getReviewer() {
+    public Integer getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(User reviewer) {
+    public void setReviewer(Integer reviewer) {
         this.reviewer = reviewer;
     }
 
-    public Client getClient() {
-        return client;
+    public Integer getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public Fiscal getFiscal() {
@@ -235,13 +227,4 @@ public class FlowCardMain implements Serializable {
     public void setFlowCardDetails(Set<FlowCardDetail> flowCardDetails) {
         this.flowCardDetails = flowCardDetails;
     }
-
-    @Override
-    public String toString() {
-        return "FlowCardMain [id=" + id + ", operateType=" + operateType + ", recoedDate=" + recoedDate + ", spotDescribe="
-                + spotDescribe + ", adjustData=" + adjustData + ", spotDate=" + spotDate + ", spotMark=" + spotMark
-                + ", reviewDate=" + reviewDate + ", recoeder=" + recoeder + ", adjuster=" + adjuster + ", spoter="
-                + spoter + ", reviewer=" + reviewer + ", client=" + client + ", fiscal=" + fiscal + "]";
-    }
-
 }

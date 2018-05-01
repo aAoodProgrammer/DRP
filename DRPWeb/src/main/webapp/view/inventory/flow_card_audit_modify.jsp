@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 设置一个项目路径的变量  -->
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
 
 	<head>
@@ -13,39 +16,7 @@ pageEncoding="UTF-8"%>
 		<script src="../../js/app.js"></script>
 
 		<script language="javascript">
-			var rowIndex = 0;
 
-			function choiceClient(index) {
-				var width = 1000;
-				var height = 600;
-				var top = Math.round((window.screen.height - height) / 2);
-				var left = Math.round((window.screen.width - width) / 2);
-				window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-			}
-
-			function addOneLineOnClick() {
-				var row = document.getElementById("tblFlowCardDetail").insertRow(document.getElementById("tblFlowCardDetail").rows.length);
-				var col = row.insertCell(0);
-				col.innerHTML = "<input type=\"hidden\" name=\"aimInnerId\"><input readonly=\"true\" maxLength=6 size=6 name=aimId><input type=button  value =...   name=btnSelectAimClient index=\"" + rowIndex + "\" onclick=\"selectAimClient(this.index)\">";
-				col = row.insertCell(1);
-				col.innerHTML = "<input id=aimName name=aimName size=25 maxlength=25 >";
-				col = row.insertCell(2);
-				col.innerHTML = "<input readonly=\"true\" maxLength=6 size=6 name=itemNo><input type=button  value =...   name=btnSelectItem index=\"" + rowIndex + "\" onclick=\"selectItem(this.index)\">";
-				col = row.insertCell(3);
-				col.innerHTML = "<input id=itemName name=itemName size=25 maxlength=25  >";
-				col = row.insertCell(4);
-				col.innerHTML = "<input id=spec name=spec size=10 maxlength=10 >";
-				col = row.insertCell(5);
-				col.innerHTML = "<input id=pattern name=pattern size=10 maxlength=10 >";
-				col = row.insertCell(6);
-				col.innerHTML = "<input id=unit name=unit size=4 maxlength=4 >";
-				col = row.insertCell(7);
-				col.innerHTML = "<input id=qty name=qty size=6 maxlength=6>";
-				col = row.insertCell(8);
-				col.innerHTML = "<input type='button' value='删除' id=btnDeleteLine name=btnDeleteLine onclick=\"return DeleteRow('row" + rowIndex + "')\">";
-				row.setAttribute("id", "row" + rowIndex);
-				rowIndex++;
-			}
 
 			function DeleteRow(rowTag) {
 				//alert(rowTag);

@@ -36,19 +36,11 @@
 				<ul>
 					<li>供方分销商代码:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.code}" /></li>
-					<li>供方分销商名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.name}" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient()">选择</button></li>
 					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
 				</ul>
-			</div>
-			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 				<ul>
 					<li>物料代码:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li>物料名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceItem()">选择</button></li>
 					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">重置</button></li>
 				</ul>
 			</div>
@@ -64,23 +56,24 @@
 						<th>物料名称</th>
 						<th>规格</th>
 						<th>型号</th>
-						<th>计量单位</th>
-						<th>数量</th>
+						<th>初始数量</th>
+						<th>是否确认</th>
 					</tr>
 				</thead>
 
-				<c:forEach items="${requestScope.inventories}" var="inventory" varStatus="stat">
+				<c:forEach items="${requestScope.inventoryDtos}" var="inventory" varStatus="stat">
 					<tbody>
 						<tr>
 							<td><input type="checkbox" class="check_item" /></td>
-							<td><input type="hidden" name="id" id="id" value="${inventory.id}" />${inventory.client.code}</td>
-							<td>${inventory.client.name}</td>
-							<td>${inventory.item.code}</td>
-							<td>${inventory.item.name}</td>
-							<td>${inventory.item.specification}</td>
-							<td>${inventory.item.modelNum}</td>
-							<td>${inventory.item.unitType.name}</td>
+							<td style="display: none;">${inventory.id}</td>
+							<td>${inventory.clientCode}</td>
+							<td>${inventory.clientName}</td>
+							<td>${inventory.itemCode}</td>
+							<td>${inventory.itemName}</td>
+							<td>${inventory.specification}</td>
+							<td>${inventory.modelNum}</td>
 							<td>${inventory.initialNum}</td>
+							<td>${inventory.isVerify}</td>
 						</tr>
 					</tbody>
 				</c:forEach>
@@ -117,35 +110,11 @@
 			</ul>
 
 			<hr />
-			<p>注： 共xx页&nbsp;&nbsp;&nbsp;&nbsp;当前第xx页</p>
+			<p>注： 共5页&nbsp;&nbsp;&nbsp;&nbsp;当前第1页</p>
 		</form>
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script type="text/javascript">
-		function choiceClient() {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-
-			$.ajax({
-				url: "${ctx}/client/findAllClient.action",
-				data: {},
-				type: "get",
-				success: function(e) {
-					window.open('${ctx}/view/inventory/client_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-				}
-			});
-		}
-
-		function choiceItem() {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('${ctx}/view/inventory/item_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
 		function addInventory() {
 			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
 		}
@@ -153,7 +122,7 @@
 		function updateInventory() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $('#id').val() + "-";
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
 			});
 			ids = ids.substring(0, ids.length - 1);
 			$.ajax({
@@ -164,10 +133,11 @@
 				type: "get",
 				success: function(e) {
 					if(e == 0) {
-						alert("请选择用户")
+						alert("请选择")
 					} else if(e == 1) {
-						alert("只能选择一个用户")
+						alert("只能选择一个")
 					} else {
+						console.log(e);
 						window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
 					}
 				}
@@ -178,14 +148,13 @@
 		$("#deleteInventory").click(function() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $('#id').val() + "-";
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
 			});
 			//去除多余的横线
 			ids = ids.substring(0, ids.length - 1);
 			if(ids.length == 0) {
 				alert("请选择");
-			}
-			if(confirm("确定删除？")) {
+			} else if(confirm("确定删除？")) {
 				$.ajax({
 					url: "${ctx}/inventory/deleteInventory.action",
 					data: {

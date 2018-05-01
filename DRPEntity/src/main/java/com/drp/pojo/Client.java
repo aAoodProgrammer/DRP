@@ -64,18 +64,11 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client", cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     private Set<Client> clients;//分销商集合
 
-    @OneToMany(mappedBy = "client")
-    private Set<FlowCardMain> flowCardMains;    //流向单主信息 一对多
-
-    @OneToMany(mappedBy = "client")
-    private Set<Inventory> inventories;            //库存信息  一对多
-
     public Client() {
     }
 
     public Client(Integer id, String name, String code, String bankCardNum, String address, String zipCode,
-                  String isLeaf, String isClient, Client client, Set<Client> clients, Set<FlowCardMain> flowCardMains,
-                  Set<Inventory> inventories) {
+                  String isLeaf, String isClient, Client client, Set<Client> clients) {
         super();
         this.id = id;
         this.name = name;
@@ -87,8 +80,6 @@ public class Client implements Serializable {
         this.isClient = isClient;
         this.client = client;
         this.clients = clients;
-        this.flowCardMains = flowCardMains;
-        this.inventories = inventories;
     }
 
     public Client(Integer id, String name, String code, String isLeaf, String isClient, Client client) {
@@ -182,21 +173,7 @@ public class Client implements Serializable {
         this.clients = clients;
     }
 
-    public Set<FlowCardMain> getFlowCardMains() {
-        return flowCardMains;
-    }
 
-    public void setFlowCardMains(Set<FlowCardMain> flowCardMains) {
-        this.flowCardMains = flowCardMains;
-    }
-
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
-
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
 
     public Category getLevel() {
         return level;
@@ -226,6 +203,9 @@ public class Client implements Serializable {
                 ", contactTel='" + contactTel + '\'' +
                 ", isLeaf='" + isLeaf + '\'' +
                 ", isClient='" + isClient + '\'' +
+                ", level=" + level +
+                ", client=" + client +
+                ", clients=" + clients +
                 '}';
     }
 }

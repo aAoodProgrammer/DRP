@@ -8,12 +8,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>DRP 分销资源计划</title>
-	<link rel="icon" type="image/png" href="../../i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
-	<link rel="stylesheet" href="../../css/amazeui.min.css" />
-	<link rel="stylesheet" href="../../css/admin.css">
-	<script src="../../js/jquery.min.js"></script>
-	<script src="../../js/app.js"></script>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
 
 </head>
 
@@ -38,25 +38,15 @@
 				<thead>
 					<tr class="am-success">
 						<th>需方客户代码</th>
-						<th>需方客户名称</th>
 						<th>物料代码</th>
-						<th>物料名称</th>
-						<th>规格</th>
-						<th>型号</th>
-						<th>计量单位</th>
-						<th>操作数量</th>
+						<th>初始数量</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input value="" readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectAimClient(this.index)" /></td>
-						<td><input type="text" readonly="true" value="" /></td>
-						<td><input value="" readonly="true" maxLength=6 size=6 name=aimId /><input type=button value=... name=btnSelectAimClient onclick="selectItem(this.index)" /></td>
-						<td><input type="text" readonly="true" value="" /></td>
-						<td><input type="text" readonly="true" /></td>
-						<td><input type="text" readonly="true" /></td>
-						<td><input type="text" readonly="true" /></td>
-						<td><input type="text" /></td>
+						<td><input type="text" name="clientCode" /></td>
+						<td><input type="text" name="itemCode" /></td>
+						<td><input type="text" name="initialNum" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -67,34 +57,8 @@
 			</div>
 		</form>
 	</div>
-	<script src="../../js/amazeui.min.js"></script>
+	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
-		var rowIndex = 0;
-
-		function choiceClient(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('client_select.jsp?index=' + index, '请选择分销商', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
-		function selectAimClient(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('aim_client_select.jsp?index=' + index, '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
-		function selectItem(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('item_select.jsp?index=' + index, '请选择物料', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
 		function goBack() {
 			window.self.location = "${ctx}/inventory/inv_init_qty_maint.action"
 		}
@@ -106,9 +70,6 @@
 					url: "${ctx}/inventory/add.action",
 					data: $("#myForm").serializeArray(),
 					success: function(result) { //成功
-						if(result == null) {
-							alert("注册失败")
-						}
 						window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
 					}
 				})

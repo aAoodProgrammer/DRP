@@ -27,20 +27,8 @@
 					<a href="${ctx}/inventory/inv_init_qty_maint.action" target="main">分销商库存数量初始化</a>
 				</li>
 				<li>
-					<a href="../view/inventory/inv_init_qty_confirm.jsp" target="main">分销商库存数量初始化确认</a>
+					<a href="${ctx}/inventory/inv_init_qty_confirm.action" target="main">分销商库存数量初始化确认</a>
 				</li>
-				<li>
-					<a href="../view/inventory/checkvou_maint.jsp" target="main">盘点结果维护</a>
-				</li>
-				<li>
-					<a href="../view/inventory/checkvou_audit.jsp" target="main">盘点结果审核</a>
-				</li>
-			</ul>
-
-			<h3 class="am-icon-volume-up">
-				<em></em> <a href="#">流向单管理</a>
-			</h3>
-			<ul class="slider">
 				<li>
 					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
 				</li>
@@ -51,7 +39,6 @@
 					<a href="../view/inventory/flow_card_spot_test.jsp" target="main">流向单抽查</a>
 				</li>
 			</ul>
-
 			<h3 class="am-icon-volume-up">
 				<em></em> <a href="#">基础数据管理</a>
 			</h3>

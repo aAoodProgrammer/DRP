@@ -46,12 +46,6 @@ public class Item implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "item")
-    private Set<FlowCardDetail> flowCardDetail = new HashSet<FlowCardDetail>();
-
-    @OneToMany(mappedBy = "item")
-    private Set<Inventory> inventories = new HashSet<Inventory>();
-
     @ManyToOne()
     @JoinColumn(name = "itemType_id")
     private Category itemType;
@@ -119,21 +113,6 @@ public class Item implements Serializable {
         this.user = user;
     }
 
-    public Set<FlowCardDetail> getFlowCardDetail() {
-        return flowCardDetail;
-    }
-
-    public void setFlowCardDetail(Set<FlowCardDetail> flowCardDetail) {
-        this.flowCardDetail = flowCardDetail;
-    }
-
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
-
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
 
     public Category getItemType() {
         return itemType;

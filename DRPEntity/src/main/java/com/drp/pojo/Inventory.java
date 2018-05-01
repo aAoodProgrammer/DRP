@@ -35,13 +35,11 @@ public class Inventory implements Serializable {
 
     private String isVerify;    //是否确认
 
-    @ManyToOne()
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @Column(name = "client_id")
+    private Integer clientId;
 
-    @ManyToOne()
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @Column(name = "item_id")
+    private Integer itemId;
 
     @ManyToOne()
     @JoinColumn(name = "fiscalPeriodId")
@@ -50,16 +48,13 @@ public class Inventory implements Serializable {
     public Inventory() {
     }
 
-    public Inventory(Integer id, Integer initialNum, Integer inNum, Integer outNum, String isVerify, Client client,
-                     Item item, Fiscal fiscal) {
+    public Inventory(Integer id, Integer initialNum, Integer inNum, Integer outNum, String isVerify, Fiscal fiscal) {
         super();
         this.id = id;
         this.initialNum = initialNum;
         this.inNum = inNum;
         this.outNum = outNum;
         this.isVerify = isVerify;
-        this.client = client;
-        this.item = item;
         this.fiscal = fiscal;
     }
 
@@ -70,6 +65,22 @@ public class Inventory implements Serializable {
         this.inNum = inNum;
         this.outNum = outNum;
         this.isVerify = isVerify;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
     public Integer getId() {
@@ -104,21 +115,6 @@ public class Inventory implements Serializable {
         this.outNum = outNum;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 
     public Fiscal getFiscal() {
         return fiscal;
@@ -144,8 +140,8 @@ public class Inventory implements Serializable {
                 ", inNum=" + inNum +
                 ", outNum=" + outNum +
                 ", isVerify='" + isVerify + '\'' +
-                ", client=" + client +
-                ", item=" + item +
+                ", clientId=" + clientId +
+                ", itemId=" + itemId +
                 ", fiscal=" + fiscal +
                 '}';
     }

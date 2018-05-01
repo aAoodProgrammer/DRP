@@ -56,17 +56,6 @@ public class User implements Serializable {
 
     @OneToOne(mappedBy = "user")
     private Item items;
-    @OneToOne(mappedBy = "recoeder")
-    private FlowCardMain flowRecoed;
-
-    @OneToOne(mappedBy = "adjuster")
-    private FlowCardMain flowAdjust;
-
-    @OneToOne(mappedBy = "spoter")
-    private FlowCardMain flowSpot;
-
-    @OneToOne(mappedBy = "reviewer")
-    private FlowCardMain flowReview;
 
     public User() {
     }
@@ -147,37 +136,6 @@ public class User implements Serializable {
         this.items = items;
     }
 
-    public FlowCardMain getFlowRecoed() {
-        return flowRecoed;
-    }
-
-    public void setFlowRecoed(FlowCardMain flowRecoed) {
-        this.flowRecoed = flowRecoed;
-    }
-
-    public FlowCardMain getFlowAdjust() {
-        return flowAdjust;
-    }
-
-    public void setFlowAdjust(FlowCardMain flowAdjust) {
-        this.flowAdjust = flowAdjust;
-    }
-
-    public FlowCardMain getFlowSpot() {
-        return flowSpot;
-    }
-
-    public void setFlowSpot(FlowCardMain flowSpot) {
-        this.flowSpot = flowSpot;
-    }
-
-    public FlowCardMain getFlowReview() {
-        return flowReview;
-    }
-
-    public void setFlowReview(FlowCardMain flowReview) {
-        this.flowReview = flowReview;
-    }
 
     @Override
     public String toString() {
@@ -190,10 +148,6 @@ public class User implements Serializable {
                 ", userCode='" + userCode + '\'' +
                 ", createDate=" + createDate +
                 ", items=" + items +
-                ", flowRecoed=" + flowRecoed +
-                ", flowAdjust=" + flowAdjust +
-                ", flowSpot=" + flowSpot +
-                ", flowReview=" + flowReview +
                 '}';
     }
 }

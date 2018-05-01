@@ -5,110 +5,139 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html class="no-js">
 
-	<head>
-		<meta charset="utf-8">
-		<title>分销商库存数量初始化确认</title>
-		<link rel="icon" type="image/png" href="../../i/favicon.png">
-		<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png">
-		<link rel="stylesheet" href="../../css/amazeui.min.css" />
-		<link rel="stylesheet" href="../../css/admin.css">
-		<script src="../../js/jquery.min.js"></script>
-		<script src="../../js/app.js"></script>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>分销商库存数量初始化确认</title>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
+</head>
 
-	<body>
+<body>
 
-		<div class="daohang">
-			<ul>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</button></li>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			</ul>
+	<div class="daohang">
+		<ul>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">首页</button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+		</ul>
 
+	</div>
+
+	<div class="admin-biaogelist">
+
+		<div class="listbiaoti am-cf">
+			<dl class="am-icon-home" style="float: left;">当前位置： 分销商库存管理 >分销商库存数量初始化确认
+			</dl>
 		</div>
 
-		<div class="admin-biaogelist">
-
-			<div class="listbiaoti am-cf">
-				<dl class="am-icon-home" style="float: left;">当前位置： 分销商库存管理 >分销商库存数量初始化确认
-				</dl>
-			</div>
-
-			<form class="am-form am-g">
-				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
-					<thead>
-						<tr class="am-success">
-							<th class="table-check"><input type="checkbox" /></th>
-							<th class="table-id">分销商代码</th>
-							<th class="table-title">分销商名称</th>
-							<th class="table-type">物料代码</th>
-							<th class="table-author am-hide-sm-only">物料名称</th>
-							<th class="table-author am-hide-sm-only">规格</th>
-							<th class="table-date am-hide-sm-only">型号</th>
-							<th class="table-date am-hide-sm-only">计量单位</th>
-							<th class="table-date am-hide-sm-only">数量</th>
-						</tr>
-					</thead>
+		<form class="am-form am-g">
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
+				<thead>
+					<tr class="am-success">
+						<th class="table-check"><input type="checkbox" id="check_all" /></th>
+						<th>分销商代码</th>
+						<th>分销商名称</th>
+						<th>物料代码</th>
+						<th>物料名称</th>
+						<th>规格</th>
+						<th>型号</th>
+						<th>初始数量</th>
+						<th>是否确认</th>
+					</tr>
+				</thead>
+				<c:forEach items="${requestScope.inventoryDtoList}" var="inventory" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
-							<td>1001</td>
-							<td>北京医药股份有限公司</td>
-							<td>2001</td>
-							<td>青霉素</td>
-							<td>xxxxx</td>
-							<td>xxx-aa-dd</td>
-							<td>盒</td>
-							<td>100</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>1002</td>
-							<td>北京医药股份有限公司</td>
-							<td>2001</td>
-							<td>青霉素</td>
-							<td>xxxxx</td>
-							<td>xxx-aa-dd</td>
-							<td>盒</td>
-							<td>100</td>
+							<td><input type="checkbox" class="check_item" /></td>
+							<td style="display: none;">${inventory.id}</td>
+							<td>${inventory.clientCode}</td>
+							<td>${inventory.clientName}</td>
+							<td>${inventory.itemCode}</td>
+							<td>${inventory.itemName}</td>
+							<td>${inventory.specification}</td>
+							<td>${inventory.modelNum}</td>
+							<td>${inventory.initialNum}</td>
+							<td>${inventory.isVerify}</td>
 						</tr>
 					</tbody>
-				</table>
+				</c:forEach>
+			</table>
 
-				<div class="am-btn-group am-btn-group-xs">
-					<button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">确认</button>
-				</div>
+			<div class="am-btn-group am-btn-group-xs">
+				<button type="button" onclick="updateIsVerify()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">确认</button>
+			</div>
 
-				<ul class="am-pagination am-fr">
-					<li class="am-disabled">
-						<a href="#">«</a>
-					</li>
-					<li class="am-active">
-						<a href="#">1</a>
-					</li>
-					<li>
-						<a href="#">2</a>
-					</li>
-					<li>
-						<a href="#">3</a>
-					</li>
-					<li>
-						<a href="#">4</a>
-					</li>
-					<li>
-						<a href="#">5</a>
-					</li>
-					<li>
-						<a href="#">»</a>
-					</li>
-				</ul>
+			<ul class="am-pagination am-fr">
+				<li class="am-disabled">
+					<a href="#">«</a>
+				</li>
+				<li class="am-active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">»</a>
+				</li>
+			</ul>
 
-				<hr />
-				<p>注：共 xx 页 &nbsp;&nbsp;&nbsp;&nbsp; 当前第 x 页</p>
-			</form>
-		</div>
-		<script src="../../js/amazeui.min.js"></script>
-	</body>
+			<hr />
+			<p>注：共 5 页 &nbsp;&nbsp;&nbsp;&nbsp; 当前第 1 页</p>
+		</form>
+	</div>
+	<script src="${ctx}/js/amazeui.min.js"></script>
+	<script type="text/javascript">
+		function updateIsVerify() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/inventory/updateIsVerify.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择")
+					} else if(e == 1) {
+						alert("只能选择一个")
+					} else if(e == 2) {
+						alert("请勿重复确认")
+					} else {
+						alert("确认成功！")
+						window.self.location = "${ctx}/inventory/inv_init_qty_confirm.action";
+					}
+				}
+			});
+		}
+
+		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
+		$("#check_all").click(function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+		});
+		$(document).on("click", ".check_item", function() {
+			var flag = $(".check_item:checked").length == $(".check_item").length;
+			$("#check_all").prop("checked", flag);
+		});
+	</script>
+</body>
 
 </html>
