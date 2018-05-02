@@ -32,16 +32,13 @@ public class FlowCardMain implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;            //流向单主键
 
-    @Column(length = 1, nullable = false)
     private String flowCardNum;    //流向单单号
 
-    @Column(length = 1, nullable = false)
     private String operateType;    //审核标记
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date recoedDate;    //录入时间
 
-    @Column(length = 1, nullable = false)
     private String spotDescribe;//抽查结果描述
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,7 +51,7 @@ public class FlowCardMain implements Serializable {
     private String spotMark;    //抽查标记
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date reviewDate;    //复审时间
+    private Date reviewDate;    //审核时间
 
     @Column(name = "recoederId")
     private Integer recoeder;        //记录人
@@ -66,10 +63,18 @@ public class FlowCardMain implements Serializable {
     private Integer spoter;        //抽查人
 
     @Column(name = "reviewerId")
-    private Integer reviewer;        //复审人
+    private Integer reviewer;        //审核人
 
     @Column(name = "client_id")
     private Integer clientId;        //分销商
+
+    @Column(length = 30)
+    private String adjustReason;//调整原因
+
+    @Column(name = "item_id")
+    private Integer itemId;         //物料id
+
+    private Integer initialNum;     //初始数量
 
     private Integer status;         //0初始态，1审核中，2审核通过
 
@@ -98,6 +103,30 @@ public class FlowCardMain implements Serializable {
         this.clientId = clientId;
         this.fiscal = fiscal;
         this.flowCardDetails = flowCardDetails;
+    }
+
+    public String getAdjustReason() {
+        return adjustReason;
+    }
+
+    public void setAdjustReason(String adjustReason) {
+        this.adjustReason = adjustReason;
+    }
+
+    public Integer getInitialNum() {
+        return initialNum;
+    }
+
+    public void setInitialNum(Integer initialNum) {
+        this.initialNum = initialNum;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
     public Integer getStatus() {

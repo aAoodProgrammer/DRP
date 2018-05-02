@@ -169,10 +169,6 @@
 			}
 		});
 
-		function modifyForCard() {
-			window.self.location = "${ctx}/view/inventory/inv_init_qty_modify.jsp";
-		}
-
 		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
 		$("#check_all").click(function() {
 			$(".check_item").prop("checked", $(this).prop("checked"));

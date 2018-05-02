@@ -30,10 +30,10 @@
 					<a href="${ctx}/inventory/inv_init_qty_confirm.action" target="main">分销商库存数量初始化确认</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
+					<a href="${ctx}/flowCard/flow_card_maint.action" target="main">流向单维护</a>
 				</li>
 				<li>
-					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
+					<a href="${ctx}/flowCard/flow_card_audit.action" target="main">流向单审核</a>
 				</li>
 			</ul>
 			<h3 class="am-icon-volume-up">

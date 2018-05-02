@@ -10,8 +10,19 @@ public class FlowCardDto implements Serializable {
     private String clientName;
     private String recoederName;
     private String recoedDate;
+    private String itemCode;
+    private Integer initialNum;
+    private String adjustReason;
 
     public FlowCardDto() {
+    }
+
+    public FlowCardDto(Integer id, String flowCardNum, String clientCode, String recoederName, String recoedDate) {
+        this.id = id;
+        this.flowCardNum = flowCardNum;
+        this.clientCode = clientCode;
+        this.recoederName = recoederName;
+        this.recoedDate = recoedDate;
     }
 
     public FlowCardDto(Integer id, String flowCardNum, String clientCode, String clientName, String recoederName, String recoedDate) {
@@ -21,6 +32,30 @@ public class FlowCardDto implements Serializable {
         this.clientName = clientName;
         this.recoederName = recoederName;
         this.recoedDate = recoedDate;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public Integer getInitialNum() {
+        return initialNum;
+    }
+
+    public void setInitialNum(Integer initialNum) {
+        this.initialNum = initialNum;
+    }
+
+    public String getAdjustReason() {
+        return adjustReason;
+    }
+
+    public void setAdjustReason(String adjustReason) {
+        this.adjustReason = adjustReason;
     }
 
     public String getRecoederName() {

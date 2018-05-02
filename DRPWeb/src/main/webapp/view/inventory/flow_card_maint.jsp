@@ -55,7 +55,7 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input type="checkbox" /></th>
+						<th class="table-check"><input type="checkbox" id="check_all" /></th>
 						<th>流向单号</th>
 						<th>供方分销商代码</th>
 						<th>供方分销商名称</th>
@@ -66,7 +66,7 @@
 				<c:forEach items="${requestScope.flowCardDtos}" var="flowCardDto" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" class="check_item" /></td>
 							<td style="display: none;">${flowCardDto.id}</td>
 							<td>${flowCardDto.flowCardNum}</td>
 							<td>${flowCardDto.clientCode}</td>
@@ -82,7 +82,7 @@
 				<button type="button" class="am-btn am-btn-default" onClick="addForCard()"><span class="am-icon-plus"></span>新增</button>
 				<button type="button" class="am-btn am-btn-default" onClick="deleteForCard()"><span class="am-icon-trash-o"></span>删除</button>
 				<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-save"></span>修改</button>
-				<button type="submit" class="am-btn am-btn-default" onClick="submitForCensorship()"><span class="am-icon-archive"></span>送审</button>
+				<button type="button" class="am-btn am-btn-default" onClick="submitForCensorship()"><span class="am-icon-archive"></span>送审</button>
 			</div>
 
 			<ul class="am-pagination am-fr">
@@ -120,8 +120,88 @@
 		}
 
 		function modifyForCard() {
-			window.self.location = "${ctx}/view/inventory/flow_card_modify.jsp";
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/flowCard/findOne.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择")
+					} else if(e == 1) {
+						alert("只能选择一个")
+					} else {
+						console.log(e);
+						window.self.location = "${ctx}/view/inventory/flow_card_modify.jsp";
+					}
+				}
+			});
 		}
+
+		function submitForCensorship() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/flowCard/submitForCensorship.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择")
+					} else if(e == 1) {
+						alert("只能选择一个")
+					} else {
+						alert("送审成功！")
+						window.self.location = "${ctx}/flowCard/flow_card_maint.action";
+					}
+				}
+			});
+		}
+
+		//批量删除
+		function deleteForCard() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			//去除多余的横线
+			ids = ids.substring(0, ids.length - 1);
+			if(ids.length == 0) {
+				alert("请选择");
+			} else if(confirm("确定删除？")) {
+				$.ajax({
+					url: "${ctx}/flowCard/delete.action",
+					data: {
+						"ids": ids
+					},
+					type: "post",
+					success: function(e) {
+						alert("删除成功！");
+						window.location.href = "${ctx}/flowCard/flow_card_maint.action"
+					}
+				});
+			}
+		}
+
+		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
+		$("#check_all").click(function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+		});
+		$(document).on("click", ".check_item", function() {
+			var flag = $(".check_item:checked").length == $(".check_item").length;
+			$("#check_all").prop("checked", flag);
+		});
 	</script>
 </body>
 

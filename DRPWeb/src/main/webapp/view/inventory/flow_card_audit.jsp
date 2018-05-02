@@ -8,12 +8,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>DRP 分销资源计划</title>
-	<link rel="icon" type="image/png" href="../../i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
-	<link rel="stylesheet" href="../../css/amazeui.min.css" />
-	<link rel="stylesheet" href="../../css/admin.css">
-	<script src="../../js/jquery.min.js"></script>
-	<script src="../../js/app.js"></script>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
 
 </head>
 
@@ -55,7 +55,7 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input type="checkbox" /></th>
+						<th class="table-check"><input type="checkbox" id="check_all" /></th>
 						<th>流向单号</th>
 						<th>供方分销商代码</th>
 						<th>供方分销商名称</th>
@@ -66,7 +66,7 @@
 				<c:forEach items="${requestScope.flowCardDtoList}" var="flowCardDto" varStatus="stat">
 					<tbody>
 						<tr>
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" class="check_item" /></td>
 							<td style="display: none;">${flowCardDto.id}</td>
 							<td>${flowCardDto.flowCardNum}</td>
 							<td>${flowCardDto.clientCode}</td>
@@ -79,32 +79,32 @@
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span>审核</button>
-				<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-archive"></span>调整</button>
+				<button type="button" class="am-btn am-btn-default" onClick="shenhe()"><span class=" am-icon-save"></span>审核</button>
+				<button type="button" class="am-btn am-btn-default" onClick="tiaozheng()"><span class="am-icon-archive"></span>调整</button>
 
 			</div>
 
-			<ul class="am-pagination am-fr">
-				<li class="am-disabled">
-					<a href="#">«</a>
+			<ul class="am-pagination am-fr ">
+				<li class="am-disabled ">
+					<a href="# ">«</a>
 				</li>
-				<li class="am-active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
+				<li class="am-active ">
+					<a href="# ">1</a>
 				</li>
 				<li>
-					<a href="#">3</a>
+					<a href="# ">2</a>
 				</li>
 				<li>
-					<a href="#">4</a>
+					<a href="# ">3</a>
 				</li>
 				<li>
-					<a href="#">5</a>
+					<a href="# ">4</a>
 				</li>
 				<li>
-					<a href="#">»</a>
+					<a href="# ">5</a>
+				</li>
+				<li>
+					<a href="# ">»</a>
 				</li>
 			</ul>
 
@@ -113,11 +113,67 @@
 		</form>
 
 	</div>
-	<script src="../../js/amazeui.min.js"></script>
-	<script type="text/javascript">
-		function modifyForCard() {
-			window.self.location = "${ctx}/view/inventory/flow_card_audit_modify.jsp";
+	<script src="${ctx}/js/amazeui.min.js "></script>
+	<script type="text/javascript ">
+		function tiaozheng() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/flowCard/findOne1.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择");
+					} else if(e == 1) {
+						alert("只能选择一个");
+					}
+					if(e == 3) {
+						console.log(e);
+						window.self.location = "${ctx}/view/inventory/flow_card_audit_modify.jsp";
+					}
+				}
+			});
 		}
+
+		function shenhe() {
+			var ids = "";
+			$.each($(".check_item:checked"), function() {
+				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+			});
+			ids = ids.substring(0, ids.length - 1);
+			$.ajax({
+				url: "${ctx}/flowCard/shenhe.action",
+				data: {
+					"ids": ids
+				},
+				type: "get",
+				success: function(e) {
+					if(e == 0) {
+						alert("请选择 ");
+					} else if(e == 1) {
+						alert("只能选择一个 ");
+					} else {
+						alert("审核成功！ ");
+						window.self.location = "${ctx}/flowCard/flow_card_audit.action ";
+					}
+				}
+			});
+		}
+
+		/* **********mymessage.jsp页面:完成CheckBox全选和删除*********** */
+		$("#check_all").click(function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+		});
+		$(document).on("click", ".check_item", function() {
+			var flag = $(".check_item:checked").length == $(".check_item").length;
+			$("#check_all").prop("checked", flag);
+		});
 	</script>
 </body>
 

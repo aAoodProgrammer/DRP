@@ -29,8 +29,10 @@ public class UserController implements Serializable {
 
     @RequestMapping("login.action")
     public String login(HttpServletRequest request, User user) {
-        userService.login(user.getUserName());
+        HttpSession session = request.getSession();
 
+        userService.login(user.getUserName());
+        session.setAttribute("userName",user.getUserName());
         // 获取我们的错误信息
         request.getAttribute("shiroLoginFailure");
         return "login";

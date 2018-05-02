@@ -24,9 +24,9 @@
 		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 			<ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
 				<li class="kuanjie">
-					<a href="#">欢迎系统管理员</a>
+					<a href="#">欢迎!${sessionScope.userName}</a>
 					<a href="systemManager/password_modify.jsp" target="main">修改密码</a>
-					<a href="login.jsp" target="_blank">退出</a>
+					<a href="index.jsp" target="_blank">退出</a>
 				</li>
 			</ul>
 		</div>

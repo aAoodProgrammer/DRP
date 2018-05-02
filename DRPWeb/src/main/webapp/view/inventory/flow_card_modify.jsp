@@ -8,12 +8,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>DRP 分销资源计划</title>
-	<link rel="icon" type="image/png" href="../../i/favicon.png">
-	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
-	<link rel="stylesheet" href="../../css/amazeui.min.css" />
-	<link rel="stylesheet" href="../../css/admin.css">
-	<script src="../../js/jquery.min.js"></script>
-	<script src="../../js/app.js"></script>
+	<link rel="icon" type="image/png" href="${ctx}/i/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="${ctx}/i/app-icon72x72@2x.png" type="text/css">
+	<link rel="stylesheet" href="${ctx}/css/amazeui.min.css" />
+	<link rel="stylesheet" href="${ctx}/css/admin.css">
+	<script src="${ctx}/js/jquery.min.js"></script>
+	<script src="${ctx}/js/app.js"></script>
 
 </head>
 
@@ -45,26 +45,41 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" name="id" value="14" /></td>
-						<td><input type="text" name="id" value="Business managementas" /></td>
-						<td><input type="text" name="id" value="张三" /></td>
-						<td><input type="text" name="id" value="2014年9月4日 7:28:47" /></td>
+						<input type="hidden" name="id" id="id" value="${sessionScope.flowCardDto.id}" />
+						<td><input type="text" readonly="true" name="flowCardNum" value="${sessionScope.flowCardDto.flowCardNum}" /></td>
+						<td><input type="text" name="clientCode" id="clientCode" value="${sessionScope.flowCardDto.clientCode}" /></td>
+						<td><input type="text" readonly="true" name="recoederName" value="${sessionScope.flowCardDto.recoederName}" /></td>
+						<td><input type="text" readonly="true" name="recoedDate" value="${sessionScope.flowCardDto.recoedDate}" /></td>
 					</tr>
 				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
-				<input name="btnSave" type="submit" id="btnSave" value="保存">
+				<input name="btnSave" type="button" id="btnSave" value="保存">
 				<input name="btnBack" type="button" id="btnBack" onClick="goBack()" value="返回">
 			</div>
 
 		</form>
 	</div>
-	<script src="../../js/amazeui.min.js"></script>
+	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/view/inventory/flow_card_maint.jsp"
+			window.self.location = "${ctx}/flowCard/flow_card_maint.action"
 		}
+
+		$('#btnSave').click(function() {
+			$.ajax({
+				type: "POST",
+				url: "${ctx}/flowCard/update.action",
+				data: {
+					"id": $('#id').val(),
+					"clientCode": $('#clientCode').val()
+				},
+				success: function(data) { //成功
+					window.location.href = "${ctx}/flowCard/flow_card_maint.action"
+				}
+			})
+		});
 	</script>
 </body>
 

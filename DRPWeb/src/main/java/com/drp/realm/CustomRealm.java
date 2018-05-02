@@ -65,7 +65,7 @@ public class CustomRealm extends AuthorizingRealm {
 
         // 根据用户id从数据库中查询权限数据
         // ....这里使用静态数据模拟
-        List<String> permissions = new ArrayList<String>();
+        List<String> permissions = new ArrayList<>();
         permissions.add("user:create");
         permissions.add("user:update");
 

@@ -64,22 +64,21 @@
 			window.self.location = "${ctx}/inventory/inv_init_qty_maint.action"
 		}
 
-		$('#btnSave').click(
-			function() {
-				$.ajax({
-					type: "POST",
-					url: "${ctx}/inventory/update.action",
-					data: {
-						"id": $('#id').val(),
-						"clientCode": $('#clientCode').val(),
-						"itemCode": $('#itemCode').val(),
-						"initialNum": $('#initialNum').val()
-					},
-					success: function(data) { //成功
-						window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
-					}
-				})
-			});
+		$('#btnSave').click(function() {
+			$.ajax({
+				type: "POST",
+				url: "${ctx}/inventory/update.action",
+				data: {
+					"id": $('#id').val(),
+					"clientCode": $('#clientCode').val(),
+					"itemCode": $('#itemCode').val(),
+					"initialNum": $('#initialNum').val()
+				},
+				success: function(data) { //成功
+					window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
+				}
+			})
+		});
 	</script>
 </body>
 
