@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.drp.pojo.FlowCardMain;
 
 import java.lang.String;
+import java.util.List;
 
 /**
  * @author 刘江涛
@@ -46,5 +47,12 @@ public interface FlowCardMainRepository extends org.springframework.data.jpa.rep
     @Query("select fm from FlowCardMain fm where fm.flowCardNum = ?1")
     FlowCardMain findByFlowCardNum(String flowcardnum);
 
+    @Query("select fcm from FlowCardMain fcm where fcm.status =0")
+    List<FlowCardMain> findAllByStatus0();
 
+    @Query("select fcm from FlowCardMain fcm where fcm.status =1")
+    List<FlowCardMain> findAllByStatus01();
+
+    @Query("select fcm from FlowCardMain fcm where fcm.status =2")
+    List<FlowCardMain> findAllByStatus02();
 }

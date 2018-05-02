@@ -35,9 +35,6 @@
 				<li>
 					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
 				</li>
-				<li>
-					<a href="../view/inventory/flow_card_spot_test.jsp" target="main">流向单抽查</a>
-				</li>
 			</ul>
 			<h3 class="am-icon-volume-up">
 				<em></em> <a href="#">基础数据管理</a>
