@@ -7,7 +7,10 @@ import com.drp.dto.InventoryDto;
 import com.drp.pojo.Client;
 import com.drp.pojo.Item;
 import com.drp.repository.ClientRepository;
+import com.drp.repository.InventoryRepository;
 import com.drp.repository.ItemRepository;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,31 +28,14 @@ public class InventoryController {
 
     @Resource
     private IInventoryService inventoryService;
+
+    @Resource
+    private InventoryRepository inventoryRepository;
     @Resource
     private ClientRepository clientRepository;
     @Resource
     private ItemRepository itemRepository;
 
-    /**
-     * 查询所有
-     */
-    @RequestMapping("/inv_init_qty_maint.action")
-    public ModelAndView findAll() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<Inventory> inventories = inventoryService.findAll();
-        List<InventoryDto> inventoryDtos = new ArrayList<>();
-        for (Inventory inventory : inventories) {
-            Integer clientId = inventory.getClientId();
-            Client client = clientRepository.findOne(clientId);
-            Integer itemId = inventory.getItemId();
-            Item item = itemRepository.findOne(itemId);
-            inventoryDtos.add(new InventoryDto(inventory.getId(), clientId, itemId, client.getCode(), client.getName(), item.getCode(),
-                    item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
-        }
-        modelAndView.addObject("inventoryDtos", inventoryDtos);
-        modelAndView.setViewName("inventory/inv_init_qty_maint");
-        return modelAndView;
-    }
 
     @RequestMapping("/inv_init_qty_confirm.action")
     public ModelAndView findAll1() {
@@ -150,6 +136,45 @@ public class InventoryController {
             }
         }
         return null;
+    }
+
+    @RequestMapping("/findByClientCodeOrItemCode.action")
+    @ResponseBody
+    public String findByClientCodeOrItemCode(String clientCode, String itemCode) {
+        if (clientCode != null && !clientCode.equals("") && itemCode != null && !itemCode.equals("")) {
+            Client client = clientRepository.findByCode(clientCode);
+            Item item = itemRepository.findByCode(itemCode);
+            List<Inventory> inventoryList = inventoryRepository.findAllByClientIdAndItemId(client.getId(), item.getId());
+            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("inventoryList", jsonArray);
+            return jsonObject.toString();
+        } else if (clientCode == null && itemCode != null && !itemCode.equals("")) {
+            Item item = itemRepository.findByCode(itemCode);
+            List<Inventory> inventoryList = inventoryRepository.findAllByItemId(item.getId());
+            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("inventoryList", jsonArray);
+            return jsonObject.toString();
+        } else if (itemCode == null && clientCode != null && !clientCode.equals("")) {
+            Client client = clientRepository.findByCode(clientCode);
+            List<Inventory> inventoryList = inventoryRepository.findAllByClientId(client.getId());
+            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("inventoryList", jsonArray);
+            return jsonObject.toString();
+        } else
+            return null;
+    }
+
+    @RequestMapping("/findAll.action")
+    @ResponseBody
+    public String findAll() {
+        List<Inventory> inventoryList = inventoryService.findAll();
+        JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("inventoryList", jsonArray);
+        return jsonObject.toString();
     }
 }
 

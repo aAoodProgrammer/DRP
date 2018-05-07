@@ -25,19 +25,19 @@
 			<dl class="am-icon-home" style="float: left;"> 当前位置：分销商库存管理>分销商库存数量初始化
 			</dl>
 		</div>
-		<form action="" method="post">
+		<form id="searchForm">
 			<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf" id="clientInfo">
 				<ul>
 					<li>供方分销商代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.code}" /></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" id="clientCode" value="" /></li>
 					<li>物料代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
-					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" id="itemCode" style="margin-left: 48px;" /></li>
+					<li><button type="button" onclick="search()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
+					<li><button type="reset" onclick="resetValue()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</ul>
 			</div>
 		</form>
-		<form class="am-form am-g">
+		<form class="am-form am-g" id="inventoryForm">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
@@ -53,22 +53,8 @@
 					</tr>
 				</thead>
 
-				<c:forEach items="${requestScope.inventoryDtos}" var="inventory" varStatus="stat">
-					<tbody>
-						<tr>
-							<td><input type="checkbox" class="check_item" /></td>
-							<td style="display: none;">${inventory.id}</td>
-							<td>${inventory.clientCode}</td>
-							<td>${inventory.clientName}</td>
-							<td>${inventory.itemCode}</td>
-							<td>${inventory.itemName}</td>
-							<td>${inventory.specification}</td>
-							<td>${inventory.modelNum}</td>
-							<td>${inventory.initialNum}</td>
-							<td>${inventory.isVerify}</td>
-						</tr>
-					</tbody>
-				</c:forEach>
+				<tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
@@ -107,6 +93,80 @@
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script type="text/javascript">
+		function search() {
+			var itemCode = $('#itemCode').val();
+			var clientCode = $('#clientCode').val();
+			console.log("itemCode:" + itemCode + "clientCode:" + clientCode);
+			$.ajax({
+				url: "${ctx}/inventory/findByClientCodeOrItemCode.action",
+				data: {
+					"clientCode": $('#clientCode').val(),
+					"itemCode": $('#itemCode').val()
+				},
+				type: "get",
+				success: function(data) {
+					$("#inventoryForm tbody").empty();
+					var inventoryList = eval('(' + data + ')');
+					$.each(inventoryList.inventoryList, function(index, inventory) {
+						var checkBox = $("<td><input type='checkbox' inventoryId='" + inventory.id + "' class='check_itemItem' /></td>");
+						var clientCode = $("<td></td>").append(inventory.clientCode);
+						var clientName = $("<td></td>").append(inventory.clientName);
+						var itemCode = $("<td></td>").append(inventory.itemCode);
+						var itemName = $("<td></td>").append(inventory.itemName);
+						var specification = $("<td></td>").append(inventory.specification);
+						var modelNum = $("<td></td>").append(inventory.modelNum);
+						var initialNum = $("<td></td>").append(inventory.initialNum);
+						var isVerify = $("<td></td>").append(inventory.isVerify);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(clientCode)
+							.append(clientName)
+							.append(itemCode)
+							.append(itemName)
+							.append(specification)
+							.append(modelNum)
+							.append(initialNum)
+							.append(isVerify)
+							.appendTo("#inventoryForm tbody");
+					});
+				}
+			});
+		}
+
+		function resetValue() {
+			$.ajax({
+				url: "${ctx}/inventory/findAll.action",
+				data: {},
+				type: "get",
+				success: function(data) {
+					$("#inventoryForm tbody").empty();
+					var inventoryList = eval('(' + data + ')');
+					$.each(inventoryList.inventoryList, function(index, inventory) {
+						var checkBox = $("<td><input type='checkbox' inventoryId='" + inventory.id + "' class='check_itemItem' /></td>");
+						var clientCode = $("<td></td>").append(inventory.clientCode);
+						var clientName = $("<td></td>").append(inventory.clientName);
+						var itemCode = $("<td></td>").append(inventory.itemCode);
+						var itemName = $("<td></td>").append(inventory.itemName);
+						var specification = $("<td></td>").append(inventory.specification);
+						var modelNum = $("<td></td>").append(inventory.modelNum);
+						var initialNum = $("<td></td>").append(inventory.initialNum);
+						var isVerify = $("<td></td>").append(inventory.isVerify);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(clientCode)
+							.append(clientName)
+							.append(itemCode)
+							.append(itemName)
+							.append(specification)
+							.append(modelNum)
+							.append(initialNum)
+							.append(isVerify)
+							.appendTo("#inventoryForm tbody");
+					});
+				}
+			});
+		}
+
 		function addInventory() {
 			window.self.location = "${ctx}/view/inventory/inv_init_qty_add.jsp";
 		}

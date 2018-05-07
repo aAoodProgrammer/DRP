@@ -30,4 +30,13 @@ public interface InventoryRepository extends org.springframework.data.jpa.reposi
 
     @Query(value = "select * from t_inventory  where client_id=?1 and item_id=?2 limit ?3,?4", nativeQuery = true)
     List<Inventory> pageByClientId(Integer clientId, Integer itemId, Integer currentPage, Integer pageSize);
+
+    @Query("select  i from Inventory i where i.clientId=?1 and i.itemId = ?2")
+    List<Inventory> findAllByClientIdAndItemId(Integer clientId, Integer itemId);
+
+    @Query("select i from Inventory i where i.itemId = ?1")
+    List<Inventory> findAllByItemId(Integer itemId);
+
+    @Query("select i from Inventory i where i.clientId = ?1")
+    List<Inventory> findAllByClientId(Integer clientId);
 }
