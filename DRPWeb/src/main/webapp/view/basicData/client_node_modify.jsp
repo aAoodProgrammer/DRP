@@ -86,12 +86,6 @@
 
 <body>
 	<div class="daohang">
-		<ul>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button>></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-		</ul>
 	</div>
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
@@ -101,7 +95,7 @@
 		</div>
 
 		<form id="updateClient_nodeFrom" class="am-form am-g">
-			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" >
+			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
 						<th class="table-id">*分销商代码</th>
@@ -114,22 +108,22 @@
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
-							<td><input type="text" name="code"  value="${sessionScope.client.code}" /></td>
-							<td>
-								<input type="text" name="name"  value="${sessionScope.client.name}" />
-							</td>
-							<td>
-								<input type="text" name="isClient"  value="${sessionScope.client.isClient}" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="bankCardNum"  value="${sessionScope.client.bankCardNum}" /></td>
-							<td class="am-hide-sm-only">
-								<input type="text" name="contactTel"  value="${sessionScope.client.contactTel}" /></td>
-							<td><input type="text" name="address"  value="${sessionScope.client.address}" /></td>
-							<td><input type="text" name="zipCode"  value="${sessionScope.client.zipCode}" /></td>
-						</tr>
+					<tr>
+						<td><input type="text" name="code" value="${sessionScope.client.code}" /></td>
+						<td>
+							<input type="text" name="name" value="${sessionScope.client.name}" />
+						</td>
+						<td>
+							<input type="text" name="isClient" value="${sessionScope.client.isClient}" /></td>
+						<td class="am-hide-sm-only">
+							<input type="text" name="bankCardNum" value="${sessionScope.client.bankCardNum}" /></td>
+						<td class="am-hide-sm-only">
+							<input type="text" name="contactTel" value="${sessionScope.client.contactTel}" /></td>
+						<td><input type="text" name="address" value="${sessionScope.client.address}" /></td>
+						<td><input type="text" name="zipCode" value="${sessionScope.client.zipCode}" /></td>
+					</tr>
 
-					</tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
@@ -168,18 +162,16 @@
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
 	<script type="text/javascript">
-		
-		$("#update_Client_node_btnSave").click(function(){
+		$("#update_Client_node_btnSave").click(function() {
 			$.ajax({
-				type:"post",
-				url:"${ctx}/updateClient_node.action",
-				data:$("#updateClient_nodeFrom").serialize(),
-				success:function(data){
+				type: "post",
+				url: "${ctx}/updateClient_node.action",
+				data: $("#updateClient_nodeFrom").serialize(),
+				success: function(data) {
 					goBack();
 				}
 			});
 		});
-		
 	</script>
 </body>
 

@@ -8,33 +8,33 @@
 <head>
 	<title>登录页面</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link href="${ctx}/css/default.css" rel="stylesheet" type="text/css" />
-	<link href="${ctx}/css/styles.css" rel="stylesheet" type="text/css" />
-	<link href="${ctx}/css/demo.css" rel="stylesheet" type="text/css" />
-	<link href="${ctx}/css/loaders.css" rel="stylesheet" type="text/css" />
-	<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-	<link href="${ctx}/css/font-awesome.min.css" rel="stylesheet">
-	<link href="${ctx}/css/owl.carousel.css" rel="stylesheet">
-	<link href="${ctx}/css/magnific-popup.css" rel="stylesheet">
-	<link href="${ctx}/css/animate.min.css" rel="stylesheet">
-	<link href="${ctx}/css/style.css" rel="stylesheet">
-	<link href="${ctx}/css/responsive.css" rel="stylesheet">
-	<link href="${ctx}/layui/css/layui.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="${ctx}/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${ctx}/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src='${ctx}/js/stopExecutionOnTimeout.js?t=1'></script>
-	<script type="text/javascript" src="${ctx}/layui/layui.js"></script>
-	<script type="text/javascript" src="${ctx}/js/Particleground.js"></script>
-	<script type="text/javascript" src="${ctx}/js/Treatment.js"></script>
-	<script type="text/javascript" src="${ctx}/js/jquery.mockjax.js"></script>
-	<script type="text/javascript" src="${ctx}/js/plugins.js"></script>
-	<script type="text/javascript" src="${ctx}/js/magnific-popup-options.js"></script>
-	<script type="text/javascript" src="${ctx}/js/validator.min.js"></script>
-	<script type="text/javascript" src="${ctx}/js/particles.min.js"></script>
-	<script type="text/javascript" src="${ctx}/js/app.js"></script>
-	<script type="text/javascript" src="${ctx}/js/wow-1.3.0.min.js"></script>
-	<script type="text/javascript" src="${ctx}/js/main.js"></script>
-	<script type="text/javascript" src="${ctx}/js/jquery-2.1.4.min.js"></script>
+	<link href="../css/default.css" rel="stylesheet" type="text/css" />
+	<link href="../css/styles.css" rel="stylesheet" type="text/css" />
+	<link href="../css/demo.css" rel="stylesheet" type="text/css" />
+	<link href="../css/loaders.css" rel="stylesheet" type="text/css" />
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../css/owl.carousel.css" rel="stylesheet">
+	<link href="../css/magnific-popup.css" rel="stylesheet">
+	<link href="../css/animate.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/responsive.css" rel="stylesheet">
+	<link href="../layui/css/layui.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src='../js/stopExecutionOnTimeout.js?t=1'></script>
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../js/Particleground.js"></script>
+	<script type="text/javascript" src="../js/Treatment.js"></script>
+	<script type="text/javascript" src="../js/jquery.mockjax.js"></script>
+	<script type="text/javascript" src="../js/plugins.js"></script>
+	<script type="text/javascript" src="../js/magnific-popup-options.js"></script>
+	<script type="text/javascript" src="../js/validator.min.js"></script>
+	<script type="text/javascript" src="../js/particles.min.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/wow-1.3.0.min.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 </head>
 
 <body>
@@ -57,20 +57,20 @@
 					<div class='login_fields'>
 						<div class='login_fields__user'>
 							<div class='icon'>
-								<img alt="" src='${ctx}/images/user_icon_copy.png'>
+								<img alt="" src='../images/user_icon_copy.png'>
 							</div>
 							<input name="userName" id="userName" placeholder='用户名' maxlength="16" type='text' autocomplete="off" />
 							<div class='validation'>
-								<img alt="" src='${ctx}/images/tick.png'>
+								<img alt="" src='../images/tick.png'>
 							</div>
 						</div>
 						<div class='login_fields__password'>
 							<div class='icon'>
-								<img alt="" src='${ctx}/images/lock_icon_copy.png'>
+								<img alt="" src='../images/lock_icon_copy.png'>
 							</div>
 							<input name="password" id="password" placeholder='密码' maxlength="16" type='password' autocomplete="off">
 							<div class='validation'>
-								<img alt="" src='${ctx}/images/tick.png'>
+								<img alt="" src='../images/tick.png'>
 							</div>
 						</div>
 						<div class='login_fields__submit'>

@@ -28,68 +28,58 @@ import java.util.Map;
 public class Client_NodeController {
 
     @Resource
-    IClientService iClientService;
+    private IClientService iClientService;
 
-    @RequestMapping(value = "/getClient_nodeAll.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/getClient_nodeAll.action", method = RequestMethod.GET)
     @ResponseBody
-    public String getClient_nodeAll(){
+    public String getClient_nodeAll() {
         List<Client> clientList = iClientService.findAll();
         //去掉外键
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
-            @Override
-            public boolean apply(Object sorce, String name, Object value) {
-                if (name.equals("level") || name.equals("client") ||
-                        name.equals("clients") || name.equals("flowCardMains") ||
-                        name.equals("inventories")) {
-                    return true;
-                }
-                return false;
-            }
-        });
-        JSONArray jsonArray = JSONArray.fromObject(clientList,jsonConfig);
+        jsonConfig.setJsonPropertyFilter((sorce, name, value) -> name.equals("level") || name.equals("client") ||
+                name.equals("clients") || name.equals("flowCardMains") || name.equals("inventories"));
+        JSONArray jsonArray = JSONArray.fromObject(clientList, jsonConfig);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("clientList",jsonArray);
+        jsonObject.put("clientList", jsonArray);
         return jsonObject.toString();
     }
 
-    @RequestMapping(value = "/addClient_node.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/addClient_node.action", method = RequestMethod.POST)
     @ResponseBody
-    public String addClient_node(Client client){
+    public String addClient_node(Client client) {
         client.setId(null);
         client.setIsLeaf("是");
         iClientService.add(client);
         return "success";
     }
 
-    @RequestMapping(value = "/getOneClient_node.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/getOneClient_node.action", method = RequestMethod.GET)
     @ResponseBody
-    public String getOneClient_node(Integer id,Map<String,Object> map){
+    public String getOneClient_node(Integer id, Map<String, Object> map) {
         Client client = iClientService.findOne(id);
-        map.put("client",client);
+        map.put("client", client);
         return "success";
     }
 
-    @RequestMapping(value = "/updateClient_node.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateClient_node.action", method = RequestMethod.POST)
     @ResponseBody
-    public String updateClient_node(Client client){
+    public String updateClient_node(Client client) {
         iClientService.update(client);
         return "success";
     }
 
-    @RequestMapping(value = "/deleteClient_node.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteClient_node.action", method = RequestMethod.POST)
     @ResponseBody
-    public String deleteClient_node(String ids){
-        System.out.println("ids:" + ids);
-        List<Integer> idsList = new ArrayList<Integer>();
+    public String deleteClient_node(String ids) {
+        List<Integer> idsList = new ArrayList<>();
         //判断是否有“-”，没有就表示只删除一个
-        if(ids.contains("-")) {
+        if (ids.contains("-")) {
             //用“-”截取loginids
             String[] idsStrings = ids.split("-");
-            for(String idString : idsStrings) {
+            for (String idString : idsStrings) {
                 idsList.add(Integer.parseInt(idString));
             }
-        }else {
+        } else {
             idsList.add(Integer.parseInt(ids));
         }
         iClientService.deleteByIds(idsList);

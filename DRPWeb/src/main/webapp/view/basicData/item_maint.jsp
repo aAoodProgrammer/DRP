@@ -15,14 +15,6 @@
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/app.js"></script>
 	<script type="text/javascript">
-		function choiceClient(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('../inventory/item_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
 		function addForCard() {
 			window.self.location = "${ctx}/view/basicData/item_add.jsp";
 		}
@@ -53,7 +45,6 @@
 					}
 				});
 			});
-			
 		}
 
 		function uploadPic() {
@@ -64,17 +55,10 @@
 
 <body>
 	<div class="daohang">
-		<ul>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-		</ul>
 	</div>
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
-			<dl class="am-icon-home" style="float: left;"> 当前位置： 基础数据管理 >
-				<a href="#">物料维护</a>
+			<dl class="am-icon-home" style="float: left;"> 当前位置： 基础数据管理 >物料维护
 			</dl>
 		</div>
 
@@ -83,7 +67,6 @@
 				<form action="" method="post">
 					<li>物料代码/名称:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;" onclick="choiceClient(this.index)">选择</button></li>
 					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
 					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</form>
@@ -103,14 +86,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--<tr>
-						<td><input type="checkbox" /></td>
-						<td>1</td>
-						<td>达力士 卡泊三醇软膏</td>
-						<td>15g:0.75mg</td>
-						<td class="am-hide-sm-only">1</td>
-						<td class="am-hide-sm-only">软膏剂</td>
-					</tr>-->
 				</tbody>
 			</table>
 
@@ -179,32 +154,34 @@
 				}
 			});
 		});
-		
+
 		//完成全选
-		$("#check_allItem").click(function(){
-			$(".check_itemItem").prop("checked",$(this).prop("checked"));
+		$("#check_allItem").click(function() {
+			$(".check_itemItem").prop("checked", $(this).prop("checked"));
 		});
-		$(document).on("click",".check_itemItem",function(){
+		$(document).on("click", ".check_itemItem", function() {
 			var flag = $(".check_itemItem:checked").length == $(".check_itemItem").length;
-			$("#check_allItem").prop("checked",flag);
+			$("#check_allItem").prop("checked", flag);
 		});
 		//删除
-		$("#deleteItem").click(function(){
+		$("#deleteItem").click(function() {
 			var ids = "";
 			var code = "";
-			$.each($(".check_itemItem:checked"),function(){
+			$.each($(".check_itemItem:checked"), function() {
 				ids += $(this).attr("itemId") + "-";
-				code += $(this).parents("tr").find("td:eq(1)").text()+"-";
+				code += $(this).parents("tr").find("td:eq(1)").text() + "-";
 			});
 			//去除多余的横线
-			code = code.substring(0, code.length -1);
-			ids = ids.substring(0, ids.length -1);
-			if(confirm("确定删除一下物料？\n"+code)){
+			code = code.substring(0, code.length - 1);
+			ids = ids.substring(0, ids.length - 1);
+			if(confirm("确定删除一下物料？\n" + code)) {
 				$.ajax({
-					url:"${ctx}/deleteItem.action",
-					type:"post",
-					data:{"ids":ids},
-					success:function(data){
+					url: "${ctx}/deleteItem.action",
+					type: "post",
+					data: {
+						"ids": ids
+					},
+					success: function(data) {
 						document.location.reload();
 					}
 				});

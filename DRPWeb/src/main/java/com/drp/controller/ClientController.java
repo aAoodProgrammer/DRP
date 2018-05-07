@@ -33,8 +33,7 @@ public class ClientController {
     @RequestMapping("getPie.action")
     @ResponseBody
     public List<CategoryDto> getClientPieData() {
-        List<CategoryDto> categoryDtos = clientService.findByClientLevel();
-        return categoryDtos;
+        return clientService.findByClientLevel();
     }
 
     @RequestMapping("/findAllClient.action")

@@ -32,52 +32,39 @@ public class FiscalController {
 
     /**
      * 获取Fiscal的所有信息
+     *
      * @return
      */
-    @RequestMapping(value = "/getFiscalAll.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/getFiscalAll.action", method = RequestMethod.GET)
     @ResponseBody
-    public String getFiscalAll(){
+    public String getFiscalAll() {
 
         System.out.println("请求Fiscal的数据");
         List<Fiscal> fiscalList = iFiscalService.findAll();
-        System.out.println("======fiscalList=======");
-        System.out.println(fiscalList);
-        System.out.println("=============");
 
         //去掉外键
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
-            @Override
-            public boolean apply(Object sorce, String name, Object value) {
-                if (name.equals("flowCardMains") || name.equals("inventories")) {
-                    return true;
-                }
-                return false;
-            }
-        });
+        jsonConfig.setJsonPropertyFilter((source, name, value) -> name.equals("flowCardMains") || name.equals("inventories"));
 
-        JSONArray jsonArray = JSONArray.fromObject(fiscalList,jsonConfig);
+        JSONArray jsonArray = JSONArray.fromObject(fiscalList, jsonConfig);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("fiscalList",jsonArray);
-        System.out.println("======jsonObject=======");
-        System.out.println(jsonObject.toString());
-        System.out.println("=============");
+        jsonObject.put("fiscalList", jsonArray);
         return jsonObject.toString();
     }
 
     /**
      * 添加一个Fiscal
+     *
      * @param fiscal
      * @return
      */
-    @RequestMapping(value = "/addFiscal.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/addFiscal.action", method = RequestMethod.POST)
     @ResponseBody
-    public String addFiscal(Fiscal fiscal){
+    public String addFiscal(Fiscal fiscal) {
         fiscal.setId(null);
-        System.out.println("保存的fiscal的信息:" + fiscal);
-        if(fiscal.getPeriodFlag() == null){
+        if (fiscal.getPeriodFlag() == null) {
             fiscal.setPeriodFlag("否");
-        }else {
+        } else {
             fiscal.setPeriodFlag("是");
         }
         iFiscalService.add(fiscal);
@@ -86,29 +73,30 @@ public class FiscalController {
 
     /**
      * 获取需要修改的Fiscal信息
+     *
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getOneFiscal.action",method = RequestMethod.GET)
+    @RequestMapping(value = "/getOneFiscal.action", method = RequestMethod.GET)
     @ResponseBody
-    public String getOneFiscal(Integer id, Map<String,Object> map){
+    public String getOneFiscal(Integer id, Map<String, Object> map) {
         Fiscal fiscal = iFiscalService.findOne(id);
-        map.put("fiscal",fiscal);
+        map.put("fiscal", fiscal);
         return "success";
     }
 
     /**
      * 修改Fiscal
+     *
      * @param fiscal
      * @return
      */
-    @RequestMapping(value = "/updateFiscal.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateFiscal.action", method = RequestMethod.POST)
     @ResponseBody
-    public String updateFiscal(Fiscal fiscal){
-        System.out.println("修改的fiscal:" + fiscal);
-        if(fiscal.getPeriodFlag().equals("on")){
+    public String updateFiscal(Fiscal fiscal) {
+        if (fiscal.getPeriodFlag().equals("on")) {
             fiscal.setPeriodFlag("是");
-        }else {
+        } else {
             fiscal.setPeriodFlag("否");
         }
         iFiscalService.update(fiscal);

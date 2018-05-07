@@ -19,12 +19,6 @@
 
 <body>
 	<div class="daohang">
-		<ul>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index.html">首页</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-			<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
-		</ul>
 	</div>
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
@@ -36,12 +30,10 @@
 				<ul>
 					<li>供方分销商代码:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" value="${sessionScope.client.code}" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
-				</ul>
-				<ul>
 					<li>物料代码:</li>
 					<li><input type="text" class="am-form-field am-input-sm am-input-xm" style="margin-left: 48px;" /></li>
-					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">重置</button></li>
+					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 100px;">搜索</button></li>
+					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</ul>
 			</div>
 		</form>
