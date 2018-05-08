@@ -24,7 +24,7 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="${ctx}/inventory/inv_init_qty_maint.action" target="main">分销商库存数量初始化</a>
+					<a href="../view/inventory/inv_init_qty_maint.jsp" target="main">分销商库存数量初始化</a>
 				</li>
 				<li>
 					<a href="${ctx}/inventory/inv_init_qty_confirm.action" target="main">分销商库存数量初始化确认</a>

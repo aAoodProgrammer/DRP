@@ -25,6 +25,18 @@ public class InventoryDto implements Serializable {
         this.initialNum = initialNum;
     }
 
+    public InventoryDto(Integer id, String clientCode, String clientName, String itemCode, String itemName, String specification, String modelNum, String isVerify, Integer initialNum) {
+        this.id = id;
+        this.clientCode = clientCode;
+        this.clientName = clientName;
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.specification = specification;
+        this.modelNum = modelNum;
+        this.isVerify = isVerify;
+        this.initialNum = initialNum;
+    }
+
     public InventoryDto(Integer id, Integer clientId, Integer itemId, String clientCode, String clientName, String itemCode, String itemName, String specification, String modelNum, String isVerify, Integer initialNum) {
         this.id = id;
         this.clientId = clientId;

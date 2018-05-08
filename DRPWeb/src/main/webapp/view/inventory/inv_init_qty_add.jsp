@@ -54,7 +54,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/inventory/inv_init_qty_maint.action"
+			window.self.location = "../inventory/inv_init_qty_maint.jsp"
 		}
 
 		$('#btnSave').click(
@@ -64,7 +64,7 @@
 					url: "${ctx}/inventory/add.action",
 					data: $("#myForm").serializeArray(),
 					success: function(result) { //成功
-						window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
+						window.location.href = "../inventory/inv_init_qty_maint.jsp"
 					}
 				})
 			});

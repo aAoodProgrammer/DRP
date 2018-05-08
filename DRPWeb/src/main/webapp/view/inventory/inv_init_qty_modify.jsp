@@ -55,7 +55,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/inventory/inv_init_qty_maint.action"
+			window.self.location = "../inventory/inv_init_qty_maint.jsp"
 		}
 
 		$('#btnSave').click(function() {
@@ -69,7 +69,7 @@
 					"initialNum": $('#initialNum').val()
 				},
 				success: function(data) { //成功
-					window.location.href = "${ctx}/inventory/inv_init_qty_maint.action"
+					window.location.href = "../inventory/inv_init_qty_maint.jsp"
 				}
 			})
 		});

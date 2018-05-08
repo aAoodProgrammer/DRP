@@ -36,6 +36,24 @@ public class InventoryController {
     @Resource
     private ItemRepository itemRepository;
 
+    @RequestMapping("/findAll.action")
+    @ResponseBody
+    public String findAll() {
+        List<Inventory> inventoryList = inventoryService.findAll();
+        List<InventoryDto> inventoryDtoList = new ArrayList<>();
+        for (Inventory inventory : inventoryList) {
+            Integer id = inventory.getId();
+            Integer clientId = inventory.getClientId();
+            Client client = clientRepository.findById(clientId);
+            Integer itemId = inventory.getItemId();
+            Item item = itemRepository.findOne(itemId);
+            inventoryDtoList.add(new InventoryDto(id, client.getCode(), client.getName(), item.getCode(), item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
+        }
+        JSONArray jsonArray = JSONArray.fromObject(inventoryDtoList);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("inventoryDtoList", jsonArray);
+        return jsonObject.toString();
+    }
 
     @RequestMapping("/inv_init_qty_confirm.action")
     public ModelAndView findAll1() {
@@ -145,36 +163,45 @@ public class InventoryController {
             Client client = clientRepository.findByCode(clientCode);
             Item item = itemRepository.findByCode(itemCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByClientIdAndItemId(client.getId(), item.getId());
-            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            List<InventoryDto> inventoryDtoList = new ArrayList<>();
+            for (Inventory inventory : inventoryList) {
+                Integer id = inventory.getId();
+                inventoryDtoList.add(new InventoryDto(id, clientCode, client.getName(), itemCode, item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
+            }
+            JSONArray jsonArray = JSONArray.fromObject(inventoryDtoList);
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("inventoryList", jsonArray);
+            jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
-        } else if (clientCode == null && itemCode != null && !itemCode.equals("")) {
+        } else if (clientCode == null||clientCode.equals("") && itemCode != null && !itemCode.equals("")) {
             Item item = itemRepository.findByCode(itemCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByItemId(item.getId());
-            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            List<InventoryDto> inventoryDtoList = new ArrayList<>();
+            for (Inventory inventory : inventoryList) {
+                Integer id = inventory.getId();
+                Integer clientId = inventory.getClientId();
+                Client client = clientRepository.findById(clientId);
+                inventoryDtoList.add(new InventoryDto(id, client.getCode(), client.getName(), item.getCode(), item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
+            }
+            JSONArray jsonArray = JSONArray.fromObject(inventoryDtoList);
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("inventoryList", jsonArray);
+            jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
-        } else if (itemCode == null && clientCode != null && !clientCode.equals("")) {
+        } else if (itemCode == null ||itemCode.equals("")&& clientCode != null && !clientCode.equals("")) {
             Client client = clientRepository.findByCode(clientCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByClientId(client.getId());
-            JSONArray jsonArray = JSONArray.fromObject(inventoryList);
+            List<InventoryDto> inventoryDtoList = new ArrayList<>();
+            for (Inventory inventory : inventoryList) {
+                Integer id = inventory.getId();
+                Integer itemId = inventory.getItemId();
+                Item item = itemRepository.findOne(itemId);
+                inventoryDtoList.add(new InventoryDto(id, client.getCode(), client.getName(), item.getCode(), item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
+            }
+            JSONArray jsonArray = JSONArray.fromObject(inventoryDtoList);
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("inventoryList", jsonArray);
+            jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
         } else
             return null;
-    }
-
-    @RequestMapping("/findAll.action")
-    @ResponseBody
-    public String findAll() {
-        List<Inventory> inventoryList = inventoryService.findAll();
-        JSONArray jsonArray = JSONArray.fromObject(inventoryList);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("inventoryList", jsonArray);
-        return jsonObject.toString();
     }
 }
 
