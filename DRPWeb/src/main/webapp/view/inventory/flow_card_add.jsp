@@ -56,7 +56,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/flowCard/flow_card_maint.action"
+			window.self.location = "${ctx}/view/inventory/flow_card_maint.jsp";
 		}
 
 		$('#btnSave').click(
@@ -66,7 +66,7 @@
 					url: "${ctx}/flowCard/add.action",
 					data: $("#myForm").serializeArray(),
 					success: function(result) { //成功
-						window.location.href = "${ctx}/flowCard/flow_card_maint.action"
+						window.location.href = "${ctx}/view/inventory/flow_card_maint.jsp";
 					}
 				})
 			});

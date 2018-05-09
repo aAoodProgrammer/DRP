@@ -27,7 +27,7 @@
 			</dl>
 		</div>
 
-		<form class="am-form am-g">
+		<form class="am-form am-g" id="inventoryForm">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
@@ -42,22 +42,8 @@
 						<th>是否确认</th>
 					</tr>
 				</thead>
-				<c:forEach items="${requestScope.inventoryDtoList}" var="inventory" varStatus="stat">
-					<tbody>
-						<tr>
-							<td><input type="checkbox" class="check_item" /></td>
-							<td style="display: none;">${inventory.id}</td>
-							<td>${inventory.clientCode}</td>
-							<td>${inventory.clientName}</td>
-							<td>${inventory.itemCode}</td>
-							<td>${inventory.itemName}</td>
-							<td>${inventory.specification}</td>
-							<td>${inventory.modelNum}</td>
-							<td>${inventory.initialNum}</td>
-							<td>${inventory.isVerify}</td>
-						</tr>
-					</tbody>
-				</c:forEach>
+				<tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
@@ -94,6 +80,41 @@
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script type="text/javascript">
+		//加载数据
+		$(document).ready(function() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/inventory/findAll.action",
+				data: {},
+				success: function(data) {
+					$("#inventoryForm tbody").empty();
+					var inventoryDtoList = eval('(' + data + ')');
+					$.each(inventoryDtoList.inventoryDtoList, function(index, inventory) {
+						var checkBox = $("<td><input type='checkbox' inventoryId='" + inventory.id + "' class='check_item' /></td>");
+						var clientCode = $("<td></td>").append(inventory.clientCode);
+						var clientName = $("<td></td>").append(inventory.clientName);
+						var itemCode = $("<td></td>").append(inventory.itemCode);
+						var itemName = $("<td></td>").append(inventory.itemName);
+						var specification = $("<td></td>").append(inventory.specification);
+						var modelNum = $("<td></td>").append(inventory.modelNum);
+						var initialNum = $("<td></td>").append(inventory.initialNum);
+						var isVerify = $("<td></td>").append(inventory.isVerify);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(clientCode)
+							.append(clientName)
+							.append(itemCode)
+							.append(itemName)
+							.append(specification)
+							.append(modelNum)
+							.append(initialNum)
+							.append(isVerify)
+							.appendTo("#inventoryForm tbody");
+					});
+				}
+			});
+		});
+
 		function updateIsVerify() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
@@ -115,7 +136,7 @@
 						alert("请勿重复确认")
 					} else {
 						alert("确认成功！")
-						window.self.location = "${ctx}/inventory/inv_init_qty_confirm.action";
+						window.self.location = "${ctx}/view/inventory/inv_init_qty_confirm.jsp";
 					}
 				}
 			});

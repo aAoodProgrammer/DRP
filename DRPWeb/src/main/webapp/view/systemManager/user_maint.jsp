@@ -25,7 +25,7 @@
 			<dl class="am-icon-home" style="float: left;"> 当前位置： 用户管理 >用户维护</dl>
 		</div>
 
-		<form class="am-form am-g">
+		<form class="am-form am-g" id="userForm">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
@@ -37,18 +37,8 @@
 						<th>创建日期</th>
 					</tr>
 				</thead>
-				<c:forEach items="${requestScope.users}" var="user" varStatus="stat">
-					<tbody>
-						<tr>
-							<td><input type="checkbox" class="check_item" /></td>
-							<td>${user.userCode}</td>
-							<td>${user.userName}</td>
-							<td>${user.userTel}</td>
-							<td>${user.userEmail}</td>
-							<td>${user.createDate}</td>
-						</tr>
-					</tbody>
-				</c:forEach>
+				<tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
@@ -82,12 +72,41 @@
 			</ul>
 
 			<hr />
-			<p>注： 共 页 当前第 页</p>
+			<p>注： 共5页 当前第1页</p>
 		</form>
 
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script>
+		//加载数据
+		$(document).ready(function() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/findAll.action",
+				data: {},
+				success: function(data) {
+					$("#userForm tbody").empty();
+					var userDtoList = eval('(' + data + ')');
+					$.each(userDtoList.userDtoList, function(index, user) {
+						var checkBox = $("<td><input type='checkbox' userId='" + user.id + "' class='check_item' /></td>");
+						var userCode = $("<td></td>").append(user.userCode);
+						var userName = $("<td></td>").append(user.userName);
+						var userTel = $("<td></td>").append(user.userTel);
+						var userEmail = $("<td></td>").append(user.userEmail);
+						var createTime = $("<td></td>").append(user.createTime);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(userCode)
+							.append(userName)
+							.append(userTel)
+							.append(userEmail)
+							.append(createTime)
+							.appendTo("#userForm tbody");
+					});
+				}
+			});
+		});
+
 		function addUser() {
 			window.self.location = "${ctx}/view/systemManager/user_add.jsp";
 		}
@@ -95,7 +114,7 @@
 		function updateUser() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+				ids += $(this).attr("userId") + "-";
 			});
 			ids = ids.substring(0, ids.length - 1);
 			$.ajax({
@@ -128,18 +147,18 @@
 		//批量删除
 		$("#deleteUser").click(function() {
 			var ids = "";
-			var meettingTitles = "";
+			var userNames = "";
 			$.each($(".check_item:checked"), function() {
-				meettingTitles += $(this).parents("tr").find("td:eq(2)").text() + "-";
-				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+				userNames += $(this).parents("tr").find("td:eq(2)").text() + "-";
+				ids += $(this).attr("userId") + "-";
 			});
 			//去除多余的横线
-			meettingTitles = meettingTitles.substring(0, meettingTitles.length - 1);
+			userNames = userNames.substring(0, userNames.length - 1);
 			ids = ids.substring(0, ids.length - 1);
 			if(ids.length == 0) {
 				alert("请选择需要删除的用户");
 			}
-			if(confirm("确定删除用户？\n" + meettingTitles)) {
+			if(confirm("确定删除用户？\n" + userNames)) {
 				$.ajax({
 					url: "${ctx}/deleteUser.action",
 					data: {
@@ -148,7 +167,7 @@
 					type: "post",
 					success: function(e) {
 						alert("删除成功！");
-						window.location.href = "${ctx}/user_maint.action"
+						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
 					}
 				});
 			}

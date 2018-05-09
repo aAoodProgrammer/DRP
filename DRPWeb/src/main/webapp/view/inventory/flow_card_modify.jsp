@@ -58,7 +58,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/flowCard/flow_card_maint.action"
+			window.self.location = "${ctx}/view/inventory/flow_card_maint.jsp";
 		}
 
 		$('#btnSave').click(function() {
@@ -70,7 +70,7 @@
 					"clientCode": $('#clientCode').val()
 				},
 				success: function(data) { //成功
-					window.location.href = "${ctx}/flowCard/flow_card_maint.action"
+					window.location.href = "${ctx}/view/inventory/flow_card_maint.jsp";
 				}
 			})
 		});

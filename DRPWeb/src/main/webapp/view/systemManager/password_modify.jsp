@@ -16,10 +16,8 @@
 	<script src="../../js/app.js"></script>
 
 	<script language="javascript">
-		var rowIndex = 0;
-
 		function goBack() {
-			window.self.location = "user_maint.html"
+			window.self.location = "${ctx}/view/systemManager/user_maint.jsp"
 		}
 	</script>
 </head>
@@ -30,7 +28,7 @@
 	<div class="admin-biaogelist">
 		<div class="listbiaoti am-cf">
 			<dl class="am-icon-home" style="float: left;"> 当前位置：用户管理>
-				<a href="flow_card_maint.html">用户维护</a>>修改密码
+				<a href="user_maint.jsp">用户维护</a>>修改密码
 			</dl>
 		</div>
 
@@ -39,7 +37,7 @@
 				<thead>
 					<tr class="am-success">
 						<th>原密码</th>
-						<td style="width: 50%;"><input type="text" name="id" value="14" /></td>
+						<td style="width: 50%;"><input type="text" name="id" /></td>
 					</tr>
 					<tr class="am-success">
 						<th>新密码</th>

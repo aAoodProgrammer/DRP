@@ -79,11 +79,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteAllByUserCode(String userCode) {
-        userRepository.deleteAllByUserCode(userCode);
-    }
-
-    @Override
     public User update(User user) {
         User saveAndFlush = userRepository.saveAndFlush(user);
         if (saveAndFlush == null)
@@ -101,17 +96,15 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAll() {
-        List<User> users = userRepository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
 
     public User login(String userName) {
         if (userName != null) {
             User user = userRepository.findByUserName(userName);
-            if (null != user) {
+            if (null != user)
                 return user;
-            }
             return null;
         }
         return null;

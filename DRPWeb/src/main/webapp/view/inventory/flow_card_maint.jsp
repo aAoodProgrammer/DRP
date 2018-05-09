@@ -45,7 +45,7 @@
 			</ul>
 		</div>
 
-		<form class="am-form am-g">
+		<form class="am-form am-g" id="flowCardForm">
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
@@ -57,19 +57,8 @@
 						<th>录入日期</th>
 					</tr>
 				</thead>
-				<c:forEach items="${requestScope.flowCardDtos}" var="flowCardDto" varStatus="stat">
-					<tbody>
-						<tr>
-							<td><input type="checkbox" class="check_item" /></td>
-							<td style="display: none;">${flowCardDto.id}</td>
-							<td>${flowCardDto.flowCardNum}</td>
-							<td>${flowCardDto.clientCode}</td>
-							<td>${flowCardDto.clientName}</td>
-							<td>${flowCardDto.recoederName}</td>
-							<td>${flowCardDto.recoedDate}</td>
-						</tr>
-					</tbody>
-				</c:forEach>
+				<tbody>
+				</tbody>
 			</table>
 
 			<div class="am-btn-group am-btn-group-xs">
@@ -109,6 +98,35 @@
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script type="text/javascript">
+		//加载数据
+		$(document).ready(function() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/flowCard/findAll.action",
+				data: {},
+				success: function(data) {
+					$("#flowCardForm tbody").empty();
+					var flowCardDtoList = eval('(' + data + ')');
+					$.each(flowCardDtoList.flowCardDtoList, function(index, flowCard) {
+						var checkBox = $("<td><input type='checkbox' flowCardId='" + flowCard.id + "' class='check_item' /></td>");
+						var flowCardNum = $("<td></td>").append(flowCard.flowCardNum);
+						var clientCode = $("<td></td>").append(flowCard.clientCode);
+						var clientName = $("<td></td>").append(flowCard.clientName);
+						var recoederName = $("<td></td>").append(flowCard.recoederName);
+						var recoedDate = $("<td></td>").append(flowCard.recoedDate);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(flowCardNum)
+							.append(clientCode)
+							.append(clientName)
+							.append(recoederName)
+							.append(recoedDate)
+							.appendTo("#flowCardForm tbody");
+					});
+				}
+			});
+		});
+
 		function addForCard() {
 			window.self.location = "${ctx}/view/inventory/flow_card_add.jsp";
 		}
@@ -116,7 +134,7 @@
 		function modifyForCard() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+				ids += $(this).attr("flowCardId") + "-";
 			});
 			ids = ids.substring(0, ids.length - 1);
 			$.ajax({
@@ -141,7 +159,7 @@
 		function submitForCensorship() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+				ids += $(this).attr("flowCardId") + "-";
 			});
 			ids = ids.substring(0, ids.length - 1);
 			$.ajax({
@@ -157,7 +175,7 @@
 						alert("只能选择一个")
 					} else {
 						alert("送审成功！")
-						window.self.location = "${ctx}/flowCard/flow_card_maint.action";
+						window.self.location = "${ctx}/view/inventory/flow_card_maint.jsp";
 					}
 				}
 			});
@@ -167,7 +185,7 @@
 		function deleteForCard() {
 			var ids = "";
 			$.each($(".check_item:checked"), function() {
-				ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+				ids += $(this).attr("flowCardId") + "-";
 			});
 			//去除多余的横线
 			ids = ids.substring(0, ids.length - 1);
@@ -182,7 +200,7 @@
 					type: "post",
 					success: function(e) {
 						alert("删除成功！");
-						window.location.href = "${ctx}/flowCard/flow_card_maint.action"
+						window.location.href = "${ctx}/view/inventory/flow_card_maint.jsp"
 					}
 				});
 			}

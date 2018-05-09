@@ -33,15 +33,15 @@
 						<th>用户代码</th>
 						<th>用户名称</th>
 						<th>联系电话</th>
-						<th class="table-type">邮箱</th>
+						<th>邮箱</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="hidden" name="uId" value="${sessionScope.byUserCode.uId}" /><input type="text" name="userCode" value="${sessionScope.byUserCode.userCode}" /></td>
-						<td><input type="text" name="userName" value="${sessionScope.byUserCode.userName}" /></td>
-						<td><input type="text" name="userTel" value="${sessionScope.byUserCode.userTel}" /></td>
-						<td><input type="text" name="userEmail" value="${sessionScope.byUserCode.userEmail}" /></td>
+						<td><input type="hidden" name="uId" value="${sessionScope.userDto.id}" /><input type="text" name="userCode" value="${sessionScope.userDto.userCode}" /></td>
+						<td><input type="text" name="userName" value="${sessionScope.userDto.userName}" /></td>
+						<td><input type="text" name="userTel" value="${sessionScope.userDto.userTel}" /></td>
+						<td><input type="text" name="userEmail" value="${sessionScope.userDto.userEmail}" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -57,7 +57,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/user_maint.action"
+			window.self.location = "${ctx}/view/systemManager/user_maint.jsp"
 		}
 		$('#btnSave').click(
 			function() {
@@ -66,7 +66,7 @@
 					url: "${ctx}/update.action",
 					data: $("#myForm").serializeArray(),
 					success: function(data) { //成功
-						window.location.href = "${ctx}/user_maint.action"
+						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
 					}
 				})
 			});

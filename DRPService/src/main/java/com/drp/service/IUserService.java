@@ -17,8 +17,6 @@ public interface IUserService {
 
     void deleteByIds(List<Integer> ids);
 
-    void deleteAllByUserCode(String userCode);
-
     User update(User user);
 
     User findOne(Integer id);

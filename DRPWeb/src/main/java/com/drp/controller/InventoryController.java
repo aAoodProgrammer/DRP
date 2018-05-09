@@ -54,25 +54,7 @@ public class InventoryController {
         jsonObject.put("inventoryDtoList", jsonArray);
         return jsonObject.toString();
     }
-
-    @RequestMapping("/inv_init_qty_confirm.action")
-    public ModelAndView findAll1() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<Inventory> inventories = inventoryService.findAll();
-        List<InventoryDto> inventoryDtoList = new ArrayList<>();
-        for (Inventory inventory : inventories) {
-            Integer clientId = inventory.getClientId();
-            Client client = clientRepository.findOne(clientId);
-            Integer itemId = inventory.getItemId();
-            Item item = itemRepository.findOne(itemId);
-            inventoryDtoList.add(new InventoryDto(inventory.getId(), clientId, itemId, client.getCode(), client.getName(), item.getCode(),
-                    item.getName(), item.getSpecification(), item.getModelNum(), inventory.getIsVerify(), inventory.getInitialNum()));
-        }
-        modelAndView.addObject("inventoryDtoList", inventoryDtoList);
-        modelAndView.setViewName("inventory/inv_init_qty_confirm");
-        return modelAndView;
-    }
-
+    
     @RequestMapping("/add.action")
     public String add(String clientCode, String itemCode, Integer initialNum) {
         Inventory inventory = new Inventory();
@@ -172,7 +154,7 @@ public class InventoryController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
-        } else if (clientCode == null||clientCode.equals("") && itemCode != null && !itemCode.equals("")) {
+        } else if (clientCode == null || clientCode.equals("") && itemCode != null && !itemCode.equals("")) {
             Item item = itemRepository.findByCode(itemCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByItemId(item.getId());
             List<InventoryDto> inventoryDtoList = new ArrayList<>();
@@ -186,7 +168,7 @@ public class InventoryController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
-        } else if (itemCode == null ||itemCode.equals("")&& clientCode != null && !clientCode.equals("")) {
+        } else if (itemCode == null || itemCode.equals("") && clientCode != null && !clientCode.equals("")) {
             Client client = clientRepository.findByCode(clientCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByClientId(client.getId());
             List<InventoryDto> inventoryDtoList = new ArrayList<>();

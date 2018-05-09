@@ -27,13 +27,13 @@
 					<a href="../view/inventory/inv_init_qty_maint.jsp" target="main">分销商库存数量初始化</a>
 				</li>
 				<li>
-					<a href="${ctx}/inventory/inv_init_qty_confirm.action" target="main">分销商库存数量初始化确认</a>
+					<a href="../view/inventory/inv_init_qty_confirm.jsp" target="main">分销商库存数量初始化确认</a>
 				</li>
 				<li>
-					<a href="${ctx}/flowCard/flow_card_maint.action" target="main">流向单维护</a>
+					<a href="../view/inventory/flow_card_maint.jsp" target="main">流向单维护</a>
 				</li>
 				<li>
-					<a href="${ctx}/flowCard/flow_card_audit.action" target="main">流向单审核</a>
+					<a href="../view/inventory/flow_card_audit.jsp" target="main">流向单审核</a>
 				</li>
 			</ul>
 			<h3 class="am-icon-volume-up">
@@ -59,7 +59,7 @@
 			</h3>
 			<ul class="slider">
 				<li>
-					<a href="${ctx}/user_maint.action" target="main" id="userMaint">用户维护</a>
+					<a href="../view/systemManager/user_maint.jsp" target="main" id="userMaint">用户维护</a>
 				</li>
 			</ul>
 		</div>

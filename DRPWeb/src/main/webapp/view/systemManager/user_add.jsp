@@ -58,7 +58,7 @@
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script language="javascript">
 		function goBack() {
-			window.self.location = "${ctx}/user_maint.action"
+			window.self.location = "${ctx}/view/systemManager/user_maint.jsp"
 		}
 
 		$('#btnSave').click(
@@ -68,7 +68,7 @@
 					url: "${ctx}/add.action",
 					data: $("#myForm").serializeArray(),
 					success: function(result) { //成功
-						window.location.href = "${ctx}/user_maint.action"
+						window.location.href = "${ctx}/view/systemManager/user_maint.jsp"
 					}
 				})
 			});

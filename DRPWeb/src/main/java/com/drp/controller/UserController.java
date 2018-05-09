@@ -1,7 +1,12 @@
 package com.drp.controller;
 
+import com.drp.dto.FlowCardDto;
+import com.drp.dto.UserDto;
+import com.drp.pojo.FlowCardMain;
 import com.drp.pojo.User;
 import com.drp.service.IUserService;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +16,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,25 +36,27 @@ public class UserController implements Serializable {
 
     @RequestMapping("login.action")
     public String login(HttpServletRequest request, User user) {
-        HttpSession session = request.getSession();
-
         userService.login(user.getUserName());
-        session.setAttribute("userName",user.getUserName());
         // 获取我们的错误信息
         request.getAttribute("shiroLoginFailure");
         return "login";
     }
 
-    /**
-     * 查询所有
-     */
-    @RequestMapping("/user_maint.action")
-    public ModelAndView findAll() {
-        ModelAndView modelAndView = new ModelAndView();
+    @RequestMapping("/findAll.action")
+    @ResponseBody
+    public String findAll() {
         List<User> users = userService.findAll();
-        modelAndView.addObject("users", users);
-        modelAndView.setViewName("systemManager/user_maint");
-        return modelAndView;
+        List<UserDto> userDtoList = new ArrayList<>();
+        for (User user : users) {
+            Date createDate = user.getCreateDate();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String createTime = format.format(createDate);
+            userDtoList.add(new UserDto(user.getuId(), user.getUserCode(), user.getUserName(), user.getUserTel(), user.getUserEmail(), createTime));
+        }
+        JSONArray jsonArray = JSONArray.fromObject(userDtoList);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userDtoList", jsonArray);
+        return jsonObject.toString();
     }
 
     @RequestMapping("/add.action")
@@ -73,10 +82,8 @@ public class UserController implements Serializable {
         byUserCode.setUserEmail(user.getUserEmail());
         byUserCode.setUserCode(user.getUserCode());
         User update = userService.update(byUserCode);
-        if (update == null) {
+        if (update == null)
             return null;
-        }
-
         return "systemManager/user_maint";
     }
 
@@ -87,26 +94,30 @@ public class UserController implements Serializable {
         if (ids.contains("-")) {
             String[] idArray = ids.split("-");
             for (String id : idArray) {
-                userService.deleteAllByUserCode(id);
+                userService.delete(Integer.parseInt(id));
             }
         } else {
-            userService.deleteAllByUserCode(ids);
+            userService.delete(Integer.parseInt(ids));
         }
     }
 
     @RequestMapping("/user_findOne.action")
     @ResponseBody
-    public Integer findOne(@RequestParam("ids") String userCode, HttpServletRequest request) {
-        if (userCode.length() == 0) {
+    public Integer findOne(@RequestParam("ids") String ids, HttpServletRequest request) {
+        if (ids.length() == 0) {
             return 0;
         }
-        if (userCode.contains("-")) {
+        if (ids.contains("-")) {
             return 1;
         }
-        if (!userCode.contains("-")) {
+        if (!ids.contains("-")) {
             HttpSession session = request.getSession();
-            User byUserCode = userService.findByUserCode(userCode);
-            session.setAttribute("byUserCode", byUserCode);
+            User user = userService.findOne(Integer.parseInt(ids));
+            Date createDate = user.getCreateDate();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String createTime = format.format(createDate);
+            UserDto userDto = new UserDto(user.getuId(), user.getUserCode(), user.getUserName(), user.getUserTel(), user.getUserEmail(), createTime);
+            session.setAttribute("userDto", userDto);
             return 3;
         }
         return null;
