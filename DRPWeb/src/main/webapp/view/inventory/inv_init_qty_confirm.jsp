@@ -73,9 +73,6 @@
 					<a href="#">»</a>
 				</li>
 			</ul>
-
-			<hr />
-			<p>注：共 5 页 &nbsp;&nbsp;&nbsp;&nbsp; 当前第 1 页</p>
 		</form>
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>

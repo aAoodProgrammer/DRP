@@ -108,9 +108,6 @@
 					<a href="#">»</a>
 				</li>
 			</ul>
-
-			<hr />
-			<p>注： 共5 页 &nbsp;&nbsp;&nbsp;当前第 1页</p>
 		</form>
 	</div>
 	<script src="../../js/amazeui.min.js"></script>

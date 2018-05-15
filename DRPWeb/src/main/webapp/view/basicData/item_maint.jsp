@@ -118,9 +118,6 @@
 					<a href="#">»</a>
 				</li>
 			</ul>
-
-			<hr />
-			<p>注： 共 5页 &nbsp;&nbsp;&nbsp;当前第 1页</p>
 		</form>
 
 	</div>

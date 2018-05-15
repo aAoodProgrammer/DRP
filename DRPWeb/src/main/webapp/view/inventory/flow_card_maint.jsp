@@ -28,19 +28,19 @@
 
 		<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
 			<ul>
-				<form action="" method="post">
+				<form id="searchForm">
 					<li style="margin-right: 0;">
 						<span class="tubiao am-icon-calendar"></span>
-						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
+						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" id="beginDate" placeholder="开始日期" data-am-datepicker="{theme: 'success',}" readonly/>
 					</li>
 					<li style="margin-left: -4px;">
 						<span class="tubiao am-icon-calendar"></span>
-						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="结束日期" data-am-datepicker="{theme: 'success',}" readonly/>
+						<input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" id="endDate" placeholder="结束日期" data-am-datepicker="{theme: 'success',}" readonly/>
 					</li>
 					<li>供方分销商代码:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
-					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" id="clientCode" /></li>
+					<li><button type="button" onclick="search()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
+					<li><button type="reset" onclick="resetValue()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</form>
 			</ul>
 		</div>
@@ -91,13 +91,39 @@
 					<a href="#">»</a>
 				</li>
 			</ul>
-			<hr />
-			<p>注： 共5页&nbsp;&nbsp;&nbsp;&nbsp;当前第1页</p>
 		</form>
 
 	</div>
 	<script src="${ctx}/js/amazeui.min.js"></script>
 	<script type="text/javascript">
+		function resetValue() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/flowCard/findAll.action",
+				data: {},
+				success: function(data) {
+					$("#flowCardForm tbody").empty();
+					var flowCardDtoList = eval('(' + data + ')');
+					$.each(flowCardDtoList.flowCardDtoList, function(index, flowCard) {
+						var checkBox = $("<td><input type='checkbox' flowCardId='" + flowCard.id + "' class='check_item' /></td>");
+						var flowCardNum = $("<td></td>").append(flowCard.flowCardNum);
+						var clientCode = $("<td></td>").append(flowCard.clientCode);
+						var clientName = $("<td></td>").append(flowCard.clientName);
+						var recoederName = $("<td></td>").append(flowCard.recoederName);
+						var recoedDate = $("<td></td>").append(flowCard.recoedDate);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(flowCardNum)
+							.append(clientCode)
+							.append(clientName)
+							.append(recoederName)
+							.append(recoedDate)
+							.appendTo("#flowCardForm tbody");
+					});
+				}
+			});
+		}
+
 		//加载数据
 		$(document).ready(function() {
 			$.ajax({
@@ -126,6 +152,38 @@
 				}
 			});
 		});
+
+		function search() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/flowCard/search.action",
+				data: {
+					"beginDate": $('#beginDate').val(),
+					"endDate": $('#endDate').val(),
+					"clientCode": $('#clientCode').val()
+				},
+				success: function(data) {
+					$("#flowCardForm tbody").empty();
+					var flowCardDtoList = eval('(' + data + ')');
+					$.each(flowCardDtoList.flowCardDtoList, function(index, flowCard) {
+						var checkBox = $("<td><input type='checkbox' flowCardId='" + flowCard.id + "' class='check_item' /></td>");
+						var flowCardNum = $("<td></td>").append(flowCard.flowCardNum);
+						var clientCode = $("<td></td>").append(flowCard.clientCode);
+						var clientName = $("<td></td>").append(flowCard.clientName);
+						var recoederName = $("<td></td>").append(flowCard.recoederName);
+						var recoedDate = $("<td></td>").append(flowCard.recoedDate);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(flowCardNum)
+							.append(clientCode)
+							.append(clientName)
+							.append(recoederName)
+							.append(recoedDate)
+							.appendTo("#flowCardForm tbody");
+					});
+				}
+			})
+		}
 
 		function addForCard() {
 			window.self.location = "${ctx}/view/inventory/flow_card_add.jsp";
