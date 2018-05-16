@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--<%@ page import="com.demo.drp.basedata.manager.*" %>
-<%@ page import="com.demo.drp.basedata.domain.*" %>
-<%@ page import="com.demo.drp.util.*" %>
-<%
-	int id = Integer.parseInt(request.getParameter("id"));
-    String command = request.getParameter(Constants.command);
-	Client client = ClientManager.getInstance().findRegionOrClientById(id);
-	if (Constants.DEL.equals(command)) {
-		ClientManager.getInstance().delRegionOrClient(id);
-		out.println("删除成功！");
-	}	
-%> --%>
 <html>
 
 	<head>

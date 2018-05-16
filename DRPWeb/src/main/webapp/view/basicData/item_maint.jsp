@@ -66,9 +66,9 @@
 			<ul>
 				<form action="" method="post">
 					<li>物料代码/名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
-					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" id="itemCodeOrName" /></li>
+					<li><button type="button" onclick="search()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
+					<li><button type="reset" onclick="resetValue()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</form>
 			</ul>
 		</div>
@@ -94,30 +94,6 @@
 				<button type="button" class="am-btn am-btn-default" id="deleteItem"><span class="am-icon-plus"></span> 删除</button>
 				<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-save"></span> 修改</button>
 			</div>
-
-			<ul class="am-pagination am-fr">
-				<li class="am-disabled">
-					<a href="#">«</a>
-				</li>
-				<li class="am-active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">»</a>
-				</li>
-			</ul>
 		</form>
 
 	</div>
@@ -151,6 +127,64 @@
 				}
 			});
 		});
+
+		function resetValue() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/getItemAll.action",
+				data: {},
+				success: function(data) {
+					$("#itemForm tbody").empty();
+					var itemList = eval('(' + data + ')');
+					$.each(itemList.itemList, function(index, item) {
+						var checkBox = $("<td><input type='checkbox' itemId='" + item.id + "' class='check_itemItem' /></td>");
+						var code = $("<td></td>").append(item.code);
+						var name = $("<td></td>").append(item.name);
+						var specification = $("<td></td>").append(item.specification);
+						var modelNum = $("<td></td>").append(item.modelNum);
+						var simplePhoto = $("<td></td>").append(item.simplePhoto);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(code)
+							.append(name)
+							.append(specification)
+							.append(modelNum)
+							.append(simplePhoto)
+							.appendTo("#itemForm tbody");
+					});
+				}
+			});
+		}
+
+		function search() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/findByItemIdAndName.action",
+				data: {
+					"itemCodeOrName": $('#itemCodeOrName').val()
+				},
+				success: function(data) {
+					$("#itemForm tbody").empty();
+					var itemList = eval('(' + data + ')');
+					$.each(itemList.itemList, function(index, item) {
+						var checkBox = $("<td><input type='checkbox' itemId='" + item.id + "' class='check_itemItem' /></td>");
+						var code = $("<td></td>").append(item.code);
+						var name = $("<td></td>").append(item.name);
+						var specification = $("<td></td>").append(item.specification);
+						var modelNum = $("<td></td>").append(item.modelNum);
+						var simplePhoto = $("<td></td>").append(item.simplePhoto);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(code)
+							.append(name)
+							.append(specification)
+							.append(modelNum)
+							.append(simplePhoto)
+							.appendTo("#itemForm tbody");
+					});
+				}
+			})
+		}
 
 		//完成全选
 		$("#check_allItem").click(function() {

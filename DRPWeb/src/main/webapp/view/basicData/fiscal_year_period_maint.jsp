@@ -65,7 +65,7 @@
 						<th class="table-id">核算月</th>
 						<th class="table-title">开始日期</th>
 						<th class="table-type">结束日期</th>
-						<th class="table-date am-hide-sm-only">核算期状态</th>
+						<th class="table-date am-hide-sm-only">是否核算</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,30 +84,6 @@
 				<button type="button" class="am-btn am-btn-default" onclick="addForCard()"><span class="am-icon-plus" ></span> 新增</button>
 				<button type="button" class="am-btn am-btn-default" onclick="modifyForCard()"><span class="am-icon-save" ></span> 修改</button>
 			</div>
-
-			<ul class="am-pagination am-fr">
-				<li class="am-disabled">
-					<a href="#">«</a>
-				</li>
-				<li class="am-active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">»</a>
-				</li>
-			</ul>
 		</form>
 	</div>
 	<script src="../../js/amazeui.min.js"></script>

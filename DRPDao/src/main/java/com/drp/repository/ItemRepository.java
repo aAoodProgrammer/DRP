@@ -76,8 +76,8 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
     @Query("select i from Item i where i.code like concat('%',?1,'%') or i.name like concat('%',?1,'%')")
     List<Item> findLikeNameCode(String nameCode);
 
-//	@Query("select i from Item i where i.name = ?1")
-//	List<Item> findByName(String name);
+	@Query("select i from Item i where i.name = ?1")
+	Item findByName(String name);
 
     /**
      * 通过物料代码进行查询

@@ -12,17 +12,16 @@
 	<link rel="apple-touch-icon-precomposed" href="../../i/app-icon72x72@2x.png" type="text/css">
 	<link rel="stylesheet" href="../../css/amazeui.min.css" />
 	<link rel="stylesheet" href="../../css/admin.css">
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/app.js"></script>
+	<script src="../../js/json2.js"></script>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/vue-resource.js"></script>
 	<script type="text/javascript">
-		function choiceClient(index) {
-			var width = 1000;
-			var height = 600;
-			var top = Math.round((window.screen.height - height) / 2);
-			var left = Math.round((window.screen.width - width) / 2);
-			window.open('../inventory/client_select.jsp', '请选择需方客户', "height=" + height + ", width=" + width + ",top=" + top + ", left= " + left + ", scrollbars=no");
-		}
-
 		function addForCard() {
 			window.self.location = "${ctx}/view/basicData/client_node_add.jsp";
 		}
@@ -70,9 +69,9 @@
 			<ul>
 				<form action="" method="post">
 					<li>分销商代码/名称:</li>
-					<li><input type="text" class="am-form-field am-input-sm am-input-xm" /></li>
-					<li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
-					<li><button type="reset" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
+					<li><input type="text" class="am-form-field am-input-sm am-input-xm" id="clientCodeOrName" /></li>
+					<li><button type="button" onclick="search()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;margin-left: 50px;">搜索</button></li>
+					<li><button type="reset" onclick="resetValue()" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">重置</button></li>
 				</form>
 			</ul>
 		</div>
@@ -92,26 +91,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--						<tr>
-							<td><input type="checkbox" /></td>
-							<td>1</td>
-							<td>成都昇和医药公司</td>
-							<td>二级分销商</td>
-							<td>6217253100010630000</td>
-							<td>18482243520</td>
-							<td>成都市</td>
-							<td>610000</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>2</td>
-							<td>成都昇和医药公司</td>
-							<td>二级分销商</td>
-							<td>6217253100010630000</td>
-							<td>18482243520</td>
-							<td>成都市</td>
-							<td>610000</td>
-						</tr>-->
 				</tbody>
 			</table>
 
@@ -121,31 +100,11 @@
 				<button type="button" class="am-btn am-btn-default" onClick="modifyForCard()"><span class="am-icon-save"></span> 修改</button>
 			</div>
 
-			<ul class="am-pagination am-fr">
-				<li class="am-disabled">
-					<a href="#">«</a>
-				</li>
-				<li class="am-active">
-					<a href="#">1</a>
-				</li>
-				<li>
-					<a href="#">2</a>
-				</li>
-				<li>
-					<a href="#">3</a>
-				</li>
-				<li>
-					<a href="#">4</a>
-				</li>
-				<li>
-					<a href="#">5</a>
-				</li>
-				<li>
-					<a href="#">»</a>
-				</li>
-			</ul>
+			<div align="center">
+				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 20, 30, 40]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="totalCount">
+				</el-pagination>
+			</div>
 		</form>
-
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
 	<script type="text/javascript">
@@ -180,33 +139,100 @@
 				}
 			});
 		});
-		
-		
+
+		function resetValue() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/getClient_nodeAll.action",
+				data: {},
+				success: function(data) {
+					$("#cilent_nodeForm tbody").empty();
+					var clientList = eval('(' + data + ')');
+					$.each(clientList.clientList, function(index, item) {
+						var checkBox = $("<td><input type='checkbox' Client_nodeId='" + item.id + "' class='check_itemClient_node' /></td>");
+						var code = $("<td></td>").append(item.code);
+						var name = $("<td></td>").append(item.name);
+						var isClient = $("<td></td>").append(item.isClient);
+						var bankCardNum = $("<td></td>").append(item.bankCardNum);
+						var contactTel = $("<td></td>").append(item.contactTel);
+						var address = $("<td></td>").append(item.address);
+						var zipCode = $("<td></td>").append(item.zipCode);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(code)
+							.append(name)
+							.append(isClient)
+							.append(bankCardNum)
+							.append(contactTel)
+							.append(address)
+							.append(zipCode)
+							.appendTo("#cilent_nodeForm tbody");
+					});
+				}
+			});
+		}
+
+		function search() {
+			$.ajax({
+				type: "get",
+				url: "${ctx}/findByClientCodeAndName.action",
+				data: {
+					"clientCodeOrName": $('#clientCodeOrName').val()
+				},
+				success: function(data) {
+					$("#cilent_nodeForm tbody").empty();
+					var clientList = eval('(' + data + ')');
+					$.each(clientList.clientList, function(index, item) {
+						var checkBox = $("<td><input type='checkbox' Client_nodeId='" + item.id + "' class='check_itemClient_node' /></td>");
+						var code = $("<td></td>").append(item.code);
+						var name = $("<td></td>").append(item.name);
+						var isClient = $("<td></td>").append(item.isClient);
+						var bankCardNum = $("<td></td>").append(item.bankCardNum);
+						var contactTel = $("<td></td>").append(item.contactTel);
+						var address = $("<td></td>").append(item.address);
+						var zipCode = $("<td></td>").append(item.zipCode);
+						$("<tr></tr>")
+							.append(checkBox)
+							.append(code)
+							.append(name)
+							.append(isClient)
+							.append(bankCardNum)
+							.append(contactTel)
+							.append(address)
+							.append(zipCode)
+							.appendTo("#cilent_nodeForm tbody");
+					});
+				}
+			})
+		}
+
 		//完成全选
-		$("#check_allClient_node").click(function(){
-			$(".check_itemClient_node").prop("checked",$(this).prop("checked"));
+		$("#check_allClient_node").click(function() {
+			$(".check_itemClient_node").prop("checked", $(this).prop("checked"));
 		});
-		$(document).on("click",".check_itemClient_node",function(){
+		$(document).on("click", ".check_itemClient_node", function() {
 			var flag = $(".check_itemClient_node:checked").length == $(".check_itemClient_node").length;
-			$("#check_allClient_node").prop("checked",flag);
+			$("#check_allClient_node").prop("checked", flag);
 		});
 		//删除
-		$("#deleteClient_node").click(function(){
+		$("#deleteClient_node").click(function() {
 			var ids = "";
 			var code = "";
-			$.each($(".check_itemClient_node:checked"),function(){
+			$.each($(".check_itemClient_node:checked"), function() {
 				ids += $(this).attr("Client_nodeId") + "-";
-				code += $(this).parents("tr").find("td:eq(1)").text()+"-";
+				code += $(this).parents("tr").find("td:eq(1)").text() + "-";
 			});
 			//去除多余的横线
-			code = code.substring(0, code.length -1);
-			ids = ids.substring(0, ids.length -1);
-			if(confirm("确定删除分销商代码为以下的项吗？\n"+code)){
+			code = code.substring(0, code.length - 1);
+			ids = ids.substring(0, ids.length - 1);
+			if(confirm("确定删除分销商代码为以下的项吗？\n" + code)) {
 				$.ajax({
-					url:"${ctx}/deleteClient_node.action",
-					type:"post",
-					data:{"ids":ids},
-					success:function(data){
+					url: "${ctx}/deleteClient_node.action",
+					type: "post",
+					data: {
+						"ids": ids
+					},
+					success: function(data) {
 						document.location.reload();
 					}
 				});

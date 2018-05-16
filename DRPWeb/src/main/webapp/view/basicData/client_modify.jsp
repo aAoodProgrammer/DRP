@@ -1,39 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--<%@ page import="java.util.*" %>
-<%@ page import="com.demo.drp.basedata.manager.*" %>
-<%@ page import="com.demo.drp.util.datadict.manager.*" %>
-<%@ page import="com.demo.drp.basedata.domain.*" %>
-<%@ page import="com.demo.drp.util.datadict.domain.*" %>
-<%@ page import="com.demo.drp.util.*" %>
-<%
-	int id = Integer.parseInt(request.getParameter("id"));
-	String command = request.getParameter(Constants.command);
-	if (Constants.MODIFY.equals(command)) {
-		Client client = new Client();
-		client.setId(id);
-		client.setName(request.getParameter("clientName"));
-		ClientLevel cl = new ClientLevel();
-		cl.setId(request.getParameter("clientLevel"));
-		//建立与ClientLevel的关联
-		client.setClientLevel(cl);
-		
-		client.setBankAcctNo(request.getParameter("bankAcctNo"));
-		client.setContactTel(request.getParameter("contactTel"));
-		client.setAddress(request.getParameter("address"));
-		client.setZipCode(request.getParameter("zipCode"));
-		
-		ClientManager.getInstance().modifyRegionOrClient(client);
-		//out.println("修改成功！");
-%>
-<script type="text/javascript">
-	alert("修改成功！");
-</script>
-<%		
-	}
-    Client client = ClientManager.getInstance().findRegionOrClientById(id);
-  
-%> --%>
 <html>
 
 	<head>

@@ -1,6 +1,7 @@
 package com.drp.controller;
 
 import com.drp.pojo.Item;
+import com.drp.repository.ItemRepository;
 import com.drp.service.IItemService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -19,19 +20,22 @@ import java.util.Map;
  * @Description:
  * @date 2018/5/1 15:03
  */
-@SessionAttributes("item")
+@SessionAttributes( "item" )
 @Controller
 public class ItemController {
 
     @Resource
     private IItemService iItemService;
 
+    @Resource
+    private ItemRepository itemRepository;
+
     /**
      * 查询所有Item的信息
      *
      * @return
      */
-    @GetMapping("/getItemAll.action")
+    @GetMapping( "/getItemAll.action" )
     @ResponseBody
     public String getItemAll() {
         List<Item> itemList = iItemService.findAll();
@@ -51,7 +55,7 @@ public class ItemController {
      * @param item
      * @return
      */
-    @RequestMapping(value = "/addItem.action", method = RequestMethod.POST)
+    @RequestMapping( value = "/addItem.action", method = RequestMethod.POST )
     @ResponseBody
     public String addItem(Item item) {
         item.setId(null);
@@ -64,7 +68,7 @@ public class ItemController {
      *
      * @return
      */
-    @RequestMapping(value = "/getOneItem.action", method = RequestMethod.GET)
+    @RequestMapping( value = "/getOneItem.action", method = RequestMethod.GET )
     @ResponseBody
     public String getOneItem(Integer id, Map<String, Object> map) {
         Item item = iItemService.findOne(id);
@@ -72,7 +76,7 @@ public class ItemController {
         return "success";
     }
 
-    @RequestMapping(value = "/updateItem.action", method = RequestMethod.POST)
+    @RequestMapping( value = "/updateItem.action", method = RequestMethod.POST )
     @ResponseBody
     public String updateItem(Item item) {
         System.out.println("修改的Item:" + item);
@@ -80,7 +84,7 @@ public class ItemController {
         return "success";
     }
 
-    @RequestMapping(value = "/deleteItem.action", method = RequestMethod.POST)
+    @RequestMapping( value = "/deleteItem.action", method = RequestMethod.POST )
     @ResponseBody
     public String deleteItem(String ids) {
         List<Integer> idsList = new ArrayList<Integer>();
@@ -98,4 +102,38 @@ public class ItemController {
         return "success";
     }
 
+    /**
+     * 根据物料id和名字查询
+     *
+     * @return
+     */
+    @GetMapping( "/findByItemIdAndName.action" )
+    @ResponseBody
+    public String findByItemIdAndName(String itemCodeOrName) {
+        List<Item> itemList = iItemService.findAll();
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray;
+        List<Item> items = new ArrayList<>();
+        //去掉外键
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setJsonPropertyFilter((source, name, value) -> name.equals("user") || name.equals("flowCardDetail")
+                || name.equals("inventories") || name.equals("itemType") || name.equals("unitType"));
+        for (Item item : itemList) {
+            String code = item.getCode();
+            String name = item.getName();
+            if (code.equals(itemCodeOrName) && !name.contains(itemCodeOrName)) {
+                Item byCode = itemRepository.findByCode(itemCodeOrName);
+                items.add(byCode);
+            } else if (!code.equals(itemCodeOrName) && name.contains(itemCodeOrName)) {
+                Item byName = itemRepository.findByName(name);
+                items.add(byName);
+            } else if (code.equals(itemCodeOrName) && name.contains(itemCodeOrName)) {
+                Item byCode = itemRepository.findByCode(itemCodeOrName);
+                items.add(byCode);
+            }
+        }
+        jsonArray = JSONArray.fromObject(items, jsonConfig);
+        jsonObject.put("itemList", jsonArray);
+        return jsonObject.toString();
+    }
 }

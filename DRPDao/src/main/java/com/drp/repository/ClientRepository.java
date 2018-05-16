@@ -100,6 +100,9 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
     @Query("select c from Client c where c.id = ?1")
     Client findById(Integer id);
 
+    @Query("select c from Client c where c.name = ?1")
+    Client findAllByName(String name);
+
     /**
      * 通过代码进行查找
      *
