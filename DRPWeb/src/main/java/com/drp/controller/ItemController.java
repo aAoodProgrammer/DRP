@@ -119,6 +119,7 @@ public class ItemController {
         jsonConfig.setJsonPropertyFilter((source, name, value) -> name.equals("user") || name.equals("flowCardDetail")
                 || name.equals("inventories") || name.equals("itemType") || name.equals("unitType"));
         for (Item item : itemList) {
+
             String code = item.getCode();
             String name = item.getName();
             if (code.equals(itemCodeOrName) && !name.contains(itemCodeOrName)) {
