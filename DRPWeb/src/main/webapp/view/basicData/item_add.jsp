@@ -101,11 +101,11 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped" name="tblFlowCardDetail" id="tblFlowCardDetail">
 				<thead>
 					<tr class="am-success">
-						<th class="table-id">*物料代码</th>
-						<th class="table-id">*物料名称</th>
-						<th class="table-type">规格</th>
-						<th class="table-type">型号</th>
-						<th class="table-type">类别</th>
+						<th>物料代码</th>
+						<th>物料名称</th>
+						<th>规格</th>
+						<th>型号</th>
+						<th>类别</th>
 					</tr>
 				</thead>
 				<tbody>

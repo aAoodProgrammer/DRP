@@ -28,36 +28,6 @@ public class UserService implements IUserService {
     @Resource
     private UserRepository userRepository;
 
-    private StateAndMsg judge(User user) {
-        if (user == null) {
-            return new StateAndMsg(-1, "参数有误！");
-        }
-        if (user.getUserCode() == null) {
-            return new StateAndMsg(-1, "用户代码不能为空！");
-        }
-        if (user.getUserName() == null) {
-            return new StateAndMsg(-1, "用户名不能为空！");
-        }
-        if (user.getUserPassword() == null) {
-            return new StateAndMsg(-1, "密码不能为空！");
-        }
-
-//		if (userRepository.findByUserCode(user.getUserCode()) != null) {
-//			return new StateAndMsg(-1, "用户代码已存在！");
-//		}
-        if (userRepository.findByUserName(user.getUserName()) != null) {
-            return new StateAndMsg(-1, "用户名已存在！");
-        }
-        if (userRepository.findByUserTel(user.getUserTel()) != null) {
-            return new StateAndMsg(-1, "用户手机已存在！");
-        }
-        if (userRepository.findByUserEmail(user.getUserEmail()) != null) {
-            return new StateAndMsg(-1, "用户邮箱已存在！");
-        }
-        return null;
-
-    }
-
     @Override
     public User add(User user) {
         User saveAndFlush = userRepository.saveAndFlush(user);
@@ -109,25 +79,4 @@ public class UserService implements IUserService {
         }
         return null;
     }
-
-    public StateAndMsg alterPassword(Integer uId, String password, String newPassword) {
-        User user = userRepository.findOne(uId);
-        if (password != null && newPassword != null) {
-            if (Encryption.EncoderByMd5(password).equals(user.getUserPassword())) {
-                userRepository.updateUserPassword(Encryption.EncoderByMd5(newPassword), uId);
-                return new StateAndMsg(1, "密码修改成功！");
-            } else {
-                return new StateAndMsg(-1, "原始密码不匹配！");
-            }
-        } else {
-            return new StateAndMsg(-1, "输入信息有误！");
-        }
-
-    }
-
-    @Override
-    public User findByUserCode(String userCode) {
-        return userRepository.findByUserCode(userCode);
-    }
-
 }

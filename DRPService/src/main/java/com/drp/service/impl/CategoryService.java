@@ -6,7 +6,6 @@ import com.drp.pojo.Category;
 import com.drp.repository.CategoryRepository;
 import com.drp.service.ICategoryService;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;

@@ -98,13 +98,13 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-id">*分销商代码</th>
-						<th class="table-id">*分销商名称</th>
-						<th class="table-title">*是否是分销商</th>
-						<th class="table-type">银行帐号</th>
-						<th class="table-type">联系电话</th>
-						<th class="table-type">地址</th>
-						<th class="table-type">邮编</th>
+						<th>分销商代码</th>
+						<th>分销商名称</th>
+						<th>是否是分销商</th>
+						<th>银行帐号</th>
+						<th>联系电话</th>
+						<th>地址</th>
+						<th>邮编</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -129,23 +129,21 @@
 	</div>
 	<script src="../../js/amazeui.min.js"></script>
 	<script type="text/javascript">
-		
-		$("#addClient_node_btnSave").click(function(){
+		$("#addClient_node_btnSave").click(function() {
 			var len = $("#addClient_node_isClient")[0].value;
-			if(len.length != 1){
+			if(len.length != 1) {
 				alert("是否是分销商只能填入一个字");
 				return;
 			}
 			$.ajax({
-				type:"post",
-				url:"${ctx}/addClient_node.action",
-				data:$("#addClient_nodeForm").serialize(),
-				success:function(data){
+				type: "post",
+				url: "${ctx}/addClient_node.action",
+				data: $("#addClient_nodeForm").serialize(),
+				success: function(data) {
 					goBack();
 				}
 			});
 		});
-		
 	</script>
 </body>
 

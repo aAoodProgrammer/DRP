@@ -1,8 +1,4 @@
-/**
- *
- */
 package com.drp.repository;
-
 
 import java.util.List;
 
@@ -30,7 +26,7 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param code          物料代码
      */
     @Modifying
-    @Query(value = "update t_item i set i.name=?1, i.specification=?2, i.modelNum=?3, i.itemType_id=?4, i.unitType_id=?5 where i.code=?6", nativeQuery = true)
+    @Query( value = "update t_item i set i.name=?1, i.specification=?2, i.modelNum=?3, i.itemType_id=?4, i.unitType_id=?5 where i.code=?6", nativeQuery = true )
     void updateItem(String name, String specification, String modelNum, Integer itemType_id, Integer unitType_id, String code);
 
     /**
@@ -44,7 +40,7 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param id            物料id
      */
     @Modifying
-    @Query(value = "update t_item i set i.name=?1, i.specification=?2, i.modelNum=?3, i.itemType_id=?4, i.unitType_id=?5 where i.id=?6", nativeQuery = true)
+    @Query( value = "update t_item i set i.name=?1, i.specification=?2, i.modelNum=?3, i.itemType_id=?4, i.unitType_id=?5 where i.id=?6", nativeQuery = true )
     void updateItem(String name, String specification, String modelNum, Integer itemType_id, Integer unitType_id, Integer id);
 
     /**
@@ -54,7 +50,7 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param id          物料id
      */
     @Modifying
-    @Query("update Item i set i.simplePhoto=?1 where i.id=?2")
+    @Query( "update Item i set i.simplePhoto=?1 where i.id=?2" )
     void upLoadPic(String simplePhoto, Integer id);
 
     /**
@@ -64,7 +60,7 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param code        物料代码
      */
     @Modifying
-    @Query("update Item i set i.simplePhoto=?1 where i.code=?2")
+    @Query( "update Item i set i.simplePhoto=?1 where i.code=?2" )
     void upLoadPic(String simplePhoto, String code);
 
     /**
@@ -73,11 +69,11 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param nameCode
      * @return
      */
-    @Query("select i from Item i where i.code like concat('%',?1,'%') or i.name like concat('%',?1,'%')")
+    @Query( "select i from Item i where i.code like concat('%',?1,'%') or i.name like concat('%',?1,'%')" )
     List<Item> findLikeNameCode(String nameCode);
 
-	@Query("select i from Item i where i.name = ?1")
-	Item findByName(String name);
+    @Query( "select i from Item i where i.name = ?1" )
+    Item findByName(String name);
 
     /**
      * 通过物料代码进行查询
@@ -85,6 +81,6 @@ public interface ItemRepository extends org.springframework.data.jpa.repository.
      * @param code
      * @return
      */
-    @Query("select i from Item i where i.code = ?1")
+    @Query( "select i from Item i where i.code = ?1" )
     Item findByCode(String code);
 }

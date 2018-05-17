@@ -23,5 +23,4 @@ public interface IInventoryService {
 
     List<Inventory> findAll();
 
-    List<Inventory> pageByClientId(Integer clientId, Integer itemId, Integer currentPage);
 }

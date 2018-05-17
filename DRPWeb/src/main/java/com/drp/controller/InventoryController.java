@@ -168,7 +168,7 @@ public class InventoryController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("inventoryDtoList", jsonArray);
             return jsonObject.toString();
-        } else if (itemCode == null || itemCode.equals("") && clientCode != null && !clientCode.equals("")) {
+        } else if (itemCode == null || itemCode.equals("") && !clientCode.equals("")) {
             Client client = clientRepository.findByCode(clientCode);
             List<Inventory> inventoryList = inventoryRepository.findAllByClientId(client.getId());
             List<InventoryDto> inventoryDtoList = new ArrayList<>();

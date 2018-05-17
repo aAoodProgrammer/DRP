@@ -20,7 +20,7 @@ public interface FlowCardDetailRepository extends org.springframework.data.jpa.r
      * @param item_id
      * @param oprateNum
      */
-    @Query(value = "insert into t_flowcarddetail (aimClientId,clientType,item_id,oprateNum) values(?1,?2,?3,?4)", nativeQuery = true)
+    @Query( value = "insert into t_flowcarddetail (aimClientId,clientType,item_id,oprateNum) values(?1,?2,?3,?4)", nativeQuery = true )
     void saveProperty(Integer aimClientId, String clientType, Integer item_id, Integer oprateNum);
 
     /**
@@ -32,14 +32,14 @@ public interface FlowCardDetailRepository extends org.springframework.data.jpa.r
      * @param item_id
      */
     @Modifying
-    @Query(value = "update  t_flowcarddetail set aimClientId = ?1, clientType = ?2, item_id = ?3, adjustNum = ?4 where id = ?5", nativeQuery = true)
+    @Query( value = "update  t_flowcarddetail set aimClientId = ?1, clientType = ?2, item_id = ?3, adjustNum = ?4 where id = ?5", nativeQuery = true )
     void update(Integer aimClientId, String clientType, Integer item_id, Integer adjustNum, Integer id);
 
     /**
      * @param flowMainId
      */
     @Modifying
-    @Query(value = "update  t_flowcarddetail set flowCardMain_id = null where flowCardMain_id = ?1", nativeQuery = true)
+    @Query( value = "update  t_flowcarddetail set flowCardMain_id = null where flowCardMain_id = ?1", nativeQuery = true )
     void updateFlowMainNull(Integer flowMainId);
 
     /**
@@ -47,7 +47,7 @@ public interface FlowCardDetailRepository extends org.springframework.data.jpa.r
      *
      * @param floeCardMainId
      */
-    @Query(value = "select * from t_flowcarddetail where flowCardMainId = ?", nativeQuery = true)
+    @Query( value = "select * from t_flowcarddetail where flowCardMainId = ?", nativeQuery = true )
     void queryByMainId(Integer floeCardMainId);
 
 }

@@ -2,13 +2,11 @@ package com.drp.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drp.pojo.FlowCardDetail;
 import com.drp.repository.FlowCardDetailRepository;
 import com.drp.service.IFlowCardDetailService;
-import com.drp.util.StateAndMsg;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;

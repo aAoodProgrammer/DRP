@@ -18,31 +18,31 @@ import javax.persistence.Table;
  * @date 2017年11月7日 上午11:44:29
  */
 @Entity
-@Table(name = "t_fiscalPeriod")
+@Table( name = "t_fiscalPeriod" )
 public class Fiscal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;            //主键id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Integer id;             //主键id
 
-    @Column(length = 4)
-    private String fiscalYear;    //审核年份
+    @Column( length = 4 )
+    private String fiscalYear;      //审核年份
 
-    @Column(length = 2)
-    private String fiscalPeriod;//审核月份
+    @Column( length = 2 )
+    private String fiscalPeriod;    //审核月份
 
-    private String beginDate;    //开始时间
+    private String beginDate;       //开始时间
 
-    private String endDate;        //结束时间
+    private String endDate;          //结束时间
 
-    @Column(length = 1, nullable = false)
-    private String periodFlag;    //审核标识是否可用
+    @Column( length = 1, nullable = false )
+    private String periodFlag;       //审核标识是否可用
 
-    @OneToMany(mappedBy = "fiscal")
+    @OneToMany( mappedBy = "fiscal" )
     private Set<FlowCardMain> flowCardMains;//流向单主信息 一对多
 
-    @OneToMany(mappedBy = "fiscal")
+    @OneToMany( mappedBy = "fiscal" )
     private Set<Inventory> inventories;      //库存
 
     public Fiscal() {

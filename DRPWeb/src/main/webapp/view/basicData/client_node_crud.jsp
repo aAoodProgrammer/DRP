@@ -81,13 +81,13 @@
 				<thead>
 					<tr class="am-success">
 						<th class="table-check"><input id="check_allClient_node" type="checkbox" /></th>
-						<th class="table-id">分销商代码</th>
-						<th class="table-id">分销商名称</th>
-						<th class="table-title">是否是分销商</th>
-						<th class="table-type">银行帐号</th>
-						<th class="table-date am-hide-sm-only">联系电话</th>
-						<th class="table-type">地址</th>
-						<th class="table-type">邮编</th>
+						<th>分销商代码</th>
+						<th>分销商名称</th>
+						<th>是否是分销商</th>
+						<th>银行帐号</th>
+						<th>联系电话</th>
+						<th>地址</th>
+						<th>邮编</th>
 					</tr>
 				</thead>
 				<tbody>

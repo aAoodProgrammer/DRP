@@ -43,6 +43,14 @@ public class FlowCardMainController {
     public String findAll() {
         List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByStatus0();
         List<FlowCardDto> flowCardDtoList = new ArrayList<>();
+        getFlowCardDtoList(flowCardMains, flowCardDtoList);
+        JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("flowCardDtoList", jsonArray);
+        return jsonObject.toString();
+    }
+
+    private void getFlowCardDtoList(List<FlowCardMain> flowCardMains, List<FlowCardDto> flowCardDtoList) {
         for (FlowCardMain flowCardMain : flowCardMains) {
             Integer clientId = flowCardMain.getClientId();
             Client client = clientRepository.findById(clientId);
@@ -54,10 +62,6 @@ public class FlowCardMainController {
             flowCardDtoList.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
                     user.getUserName(), time));
         }
-        JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("flowCardDtoList", jsonArray);
-        return jsonObject.toString();
     }
 
     @RequestMapping( "/findAll1.action" )
@@ -65,17 +69,7 @@ public class FlowCardMainController {
     public String findAll1() {
         List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByStatus01();
         List<FlowCardDto> flowCardDtoList1 = new ArrayList<>();
-        for (FlowCardMain flowCardMain : flowCardMains) {
-            Integer clientId = flowCardMain.getClientId();
-            Client client = clientRepository.findById(clientId);
-            Integer recoeder = flowCardMain.getRecoeder();
-            User user = userRepository.findOne(recoeder);
-            Date recoedDate = flowCardMain.getRecoedDate();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String time = format.format(recoedDate);
-            flowCardDtoList1.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                    user.getUserName(), time));
-        }
+        getFlowCardDtoList(flowCardMains, flowCardDtoList1);
         JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList1);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("flowCardDtoList1", jsonArray);
@@ -244,17 +238,7 @@ public class FlowCardMainController {
             }
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByTime(beginDate1, endDate1);
             List<FlowCardDto> flowCardDtoList = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList", jsonArray);
@@ -263,17 +247,7 @@ public class FlowCardMainController {
             Client byCode = clientRepository.findByCode(clientCode);
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByClientId(byCode.getId());
             List<FlowCardDto> flowCardDtoList = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList", jsonArray);
@@ -291,17 +265,7 @@ public class FlowCardMainController {
             }
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByTimeAndClientId(beginDate1, endDate1, byCode.getId());
             List<FlowCardDto> flowCardDtoList = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList", jsonArray);
@@ -324,17 +288,7 @@ public class FlowCardMainController {
             }
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByTime1(beginDate1, endDate1);
             List<FlowCardDto> flowCardDtoList1 = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList1.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList1);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList1);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList1", jsonArray);
@@ -343,17 +297,7 @@ public class FlowCardMainController {
             Client byCode = clientRepository.findByCode(clientCode);
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByClientId1(byCode.getId());
             List<FlowCardDto> flowCardDtoList1 = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList1.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList1);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList1);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList1", jsonArray);
@@ -371,17 +315,7 @@ public class FlowCardMainController {
             }
             List<FlowCardMain> flowCardMains = flowCardMainRepository.findAllByTimeAndClientId1(beginDate1, endDate1, byCode.getId());
             List<FlowCardDto> flowCardDtoList1 = new ArrayList<>();
-            for (FlowCardMain flowCardMain : flowCardMains) {
-                Integer clientId = flowCardMain.getClientId();
-                Client client = clientRepository.findById(clientId);
-                Integer recoeder = flowCardMain.getRecoeder();
-                User user = userRepository.findOne(recoeder);
-                Date recoedDate = flowCardMain.getRecoedDate();
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = format1.format(recoedDate);
-                flowCardDtoList1.add(new FlowCardDto(flowCardMain.getId(), flowCardMain.getFlowCardNum(), client.getCode(), client.getName(),
-                        user.getUserName(), time));
-            }
+            getFlowCardDtoList(flowCardMains, flowCardDtoList1);
             JSONArray jsonArray = JSONArray.fromObject(flowCardDtoList1);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("flowCardDtoList1", jsonArray);

@@ -5,7 +5,6 @@ import com.drp.service.IFiscalService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
-import net.sf.json.util.PropertyFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +21,7 @@ import java.util.Map;
  * @Description:
  * @date 2018/4/30 11:21
  */
-@SessionAttributes(value = {"fiscal"})
+@SessionAttributes( value = {"fiscal"} )
 @Controller
 public class FiscalController {
 
@@ -35,11 +34,9 @@ public class FiscalController {
      *
      * @return
      */
-    @RequestMapping(value = "/getFiscalAll.action", method = RequestMethod.GET)
+    @RequestMapping( value = "/getFiscalAll.action", method = RequestMethod.GET )
     @ResponseBody
     public String getFiscalAll() {
-
-        System.out.println("请求Fiscal的数据");
         List<Fiscal> fiscalList = iFiscalService.findAll();
 
         //去掉外键
@@ -58,7 +55,7 @@ public class FiscalController {
      * @param fiscal
      * @return
      */
-    @RequestMapping(value = "/addFiscal.action", method = RequestMethod.POST)
+    @RequestMapping( value = "/addFiscal.action", method = RequestMethod.POST )
     @ResponseBody
     public String addFiscal(Fiscal fiscal) {
         fiscal.setId(null);
@@ -77,7 +74,7 @@ public class FiscalController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getOneFiscal.action", method = RequestMethod.GET)
+    @RequestMapping( value = "/getOneFiscal.action", method = RequestMethod.GET )
     @ResponseBody
     public String getOneFiscal(Integer id, Map<String, Object> map) {
         Fiscal fiscal = iFiscalService.findOne(id);
@@ -91,7 +88,7 @@ public class FiscalController {
      * @param fiscal
      * @return
      */
-    @RequestMapping(value = "/updateFiscal.action", method = RequestMethod.POST)
+    @RequestMapping( value = "/updateFiscal.action", method = RequestMethod.POST )
     @ResponseBody
     public String updateFiscal(Fiscal fiscal) {
         if (fiscal.getPeriodFlag().equals("on")) {

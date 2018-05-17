@@ -57,8 +57,7 @@ public final class CommonUtil {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         //拼接文件名
-        String randomString = sdf.format(date) + filename;
-        return randomString;
+        return sdf.format(date) + filename;
     }
 
     /**

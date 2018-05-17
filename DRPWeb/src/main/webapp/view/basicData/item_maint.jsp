@@ -77,12 +77,12 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-check"><input id="check_allItem" type="checkbox" /></th>
-						<th class="table-id">物料代码</th>
-						<th class="table-id">物料名称</th>
-						<th class="table-title">物料规格</th>
-						<th class="table-type">物料型号</th>
-						<th class="table-date am-hide-sm-only">类别</th>
+						<th><input id="check_allItem" type="checkbox" /></th>
+						<th>物料代码</th>
+						<th>物料名称</th>
+						<th>物料规格</th>
+						<th>物料型号</th>
+						<th>类别</th>
 					</tr>
 				</thead>
 				<tbody>

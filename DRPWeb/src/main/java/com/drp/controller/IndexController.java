@@ -15,7 +15,7 @@ public class IndexController {
      * @param model
      * @return
      */
-    @RequestMapping("first.action")
+    @RequestMapping( "first.action" )
     public String first(Model model) {
         //按照原来的做法我们是不是需要将我们的用户名和菜单新新存储到我们的域对象里面去
         //获取用户信息放到我们的域对象
@@ -31,15 +31,12 @@ public class IndexController {
     /**
      * 编写了一个授权的测试方法
      *
-     * @param @return
      * @return String
-     * @throws
      * @Title: authrization
      * @Description: TODO
      */
-    @RequestMapping("bobo.action")
+    @RequestMapping( "bobo.action" )
     public String authrization() {
-        System.out.println("我被执行了我是bobo.action");
         return "/first.action";
     }
 }

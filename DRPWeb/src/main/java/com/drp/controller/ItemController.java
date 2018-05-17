@@ -33,7 +33,7 @@ public class ItemController {
     /**
      * 查询所有Item的信息
      *
-     * @return
+     * @return json
      */
     @GetMapping( "/getItemAll.action" )
     @ResponseBody
@@ -52,8 +52,8 @@ public class ItemController {
     /**
      * 添加一个item
      *
-     * @param item
-     * @return
+     * @param item 物料信息
+     * @return string
      */
     @RequestMapping( value = "/addItem.action", method = RequestMethod.POST )
     @ResponseBody
@@ -66,7 +66,7 @@ public class ItemController {
     /**
      * 获取需要修改的item
      *
-     * @return
+     * @return string
      */
     @RequestMapping( value = "/getOneItem.action", method = RequestMethod.GET )
     @ResponseBody
@@ -87,10 +87,16 @@ public class ItemController {
     @RequestMapping( value = "/deleteItem.action", method = RequestMethod.POST )
     @ResponseBody
     public String deleteItem(String ids) {
-        List<Integer> idsList = new ArrayList<Integer>();
+        List<Integer> idsList = new ArrayList<>();
         //判断是否有“-”，没有就表示只删除一个
+        getIDList(ids, idsList);
+        iItemService.deleteByIds(idsList);
+        return "success";
+    }
+
+    static void getIDList(String ids, List<Integer> idsList) {
         if (ids.contains("-")) {
-            //用“-”截取loginids
+            //用“-”截取loginIds
             String[] idsStrings = ids.split("-");
             for (String idString : idsStrings) {
                 idsList.add(Integer.parseInt(idString));
@@ -98,42 +104,48 @@ public class ItemController {
         } else {
             idsList.add(Integer.parseInt(ids));
         }
-        iItemService.deleteByIds(idsList);
-        return "success";
     }
 
     /**
      * 根据物料id和名字查询
      *
-     * @return
+     * @return string
      */
     @GetMapping( "/findByItemIdAndName.action" )
     @ResponseBody
     public String findByItemIdAndName(String itemCodeOrName) {
+        //查询所有物料
         List<Item> itemList = iItemService.findAll();
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray;
         List<Item> items = new ArrayList<>();
         //去掉外键
+        //创建一个jsonConfig对象
         JsonConfig jsonConfig = new JsonConfig();
+        //设置属性过滤器，排除不需要的属性，即去除外键
         jsonConfig.setJsonPropertyFilter((source, name, value) -> name.equals("user") || name.equals("flowCardDetail")
                 || name.equals("inventories") || name.equals("itemType") || name.equals("unitType"));
+        //遍历物料list，进行匹配
         for (Item item : itemList) {
-
             String code = item.getCode();
             String name = item.getName();
             if (code.equals(itemCodeOrName) && !name.contains(itemCodeOrName)) {
+                //通过物料代码查询
                 Item byCode = itemRepository.findByCode(itemCodeOrName);
                 items.add(byCode);
             } else if (!code.equals(itemCodeOrName) && name.contains(itemCodeOrName)) {
+                //通过物料名称模糊查询
                 Item byName = itemRepository.findByName(name);
                 items.add(byName);
             } else if (code.equals(itemCodeOrName) && name.contains(itemCodeOrName)) {
+                //若输入关键词既和物料代码一样，又包含在名称里，通过物料代码模糊查询
                 Item byCode = itemRepository.findByCode(itemCodeOrName);
                 items.add(byCode);
             }
         }
+        //将需要的物料list放入json数组
         jsonArray = JSONArray.fromObject(items, jsonConfig);
+        //将json数组放入json对象，以便传回前端
         jsonObject.put("itemList", jsonArray);
         return jsonObject.toString();
     }

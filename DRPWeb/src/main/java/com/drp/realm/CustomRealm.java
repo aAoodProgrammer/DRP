@@ -19,6 +19,9 @@ import com.drp.service.IUserService;
 
 import javax.annotation.Resource;
 
+/**
+ * 用户自定义realm
+ */
 @Controller
 public class CustomRealm extends AuthorizingRealm {
 
@@ -37,7 +40,6 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     // 认证
-    
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 

@@ -98,13 +98,13 @@
 			<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 				<thead>
 					<tr class="am-success">
-						<th class="table-id">*分销商代码</th>
-						<th class="table-id">*分销商名称</th>
-						<th class="table-title">*分销商类型</th>
-						<th class="table-type">银行帐号</th>
-						<th class="table-type">联系电话</th>
-						<th class="table-type">地址</th>
-						<th class="table-type">邮编</th>
+						<th>分销商代码</th>
+						<th>分销商名称</th>
+						<th>分销商类型</th>
+						<th>银行帐号</th>
+						<th>联系电话</th>
+						<th>地址</th>
+						<th>邮编</th>
 					</tr>
 				</thead>
 				<tbody>

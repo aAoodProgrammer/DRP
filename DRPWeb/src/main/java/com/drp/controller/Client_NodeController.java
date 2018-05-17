@@ -1,13 +1,11 @@
 package com.drp.controller;
 
 import com.drp.pojo.Client;
-import com.drp.pojo.Item;
 import com.drp.repository.ClientRepository;
 import com.drp.service.IClientService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
-import net.sf.json.util.PropertyFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,15 +73,7 @@ public class Client_NodeController {
     public String deleteClient_node(String ids) {
         List<Integer> idsList = new ArrayList<>();
         //判断是否有“-”，没有就表示只删除一个
-        if (ids.contains("-")) {
-            //用“-”截取loginids
-            String[] idsStrings = ids.split("-");
-            for (String idString : idsStrings) {
-                idsList.add(Integer.parseInt(idString));
-            }
-        } else {
-            idsList.add(Integer.parseInt(ids));
-        }
+        ItemController.getIDList(ids, idsList);
         iClientService.deleteByIds(idsList);
         return "success";
     }

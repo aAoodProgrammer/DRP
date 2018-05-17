@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.drp.repository;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -30,7 +27,4 @@ public interface FiscalRepository extends org.springframework.data.jpa.repositor
     @Modifying
     @Query(value = "update Fiscal f set f.fiscalYear = ?1, fiscalPeriod =?2, beginDate = ?3, endDate = ?4, periodflag = ?5 where id = ?6")
     void updateFiscal(String fiscalYear, String fiscalPeriod, String beginDate, String endDate, String periodflag, Integer id);
-
-//	@Query("")
-//	Fiscal findFiscal();
 }

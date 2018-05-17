@@ -17,8 +17,7 @@
     <!-- 开启aop，对类代理 -->
     <aop:config proxy-target-class="true"/>
     <!-- 开启shiro注解支持 -->
-    <bean
-            class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
     <!-- 开启注解扫描 -->
@@ -46,8 +45,7 @@
     </mvc:annotation-driven>
 
     <!--视图解析器-->
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>

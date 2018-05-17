@@ -1,8 +1,6 @@
 package com.drp.controller;
 
-import com.drp.dto.FlowCardDto;
 import com.drp.dto.UserDto;
-import com.drp.pojo.FlowCardMain;
 import com.drp.pojo.User;
 import com.drp.service.IUserService;
 import net.sf.json.JSONArray;
@@ -10,7 +8,6 @@ import net.sf.json.JSONObject;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drp.pojo.Inventory;
 import com.drp.repository.InventoryRepository;
 import com.drp.service.IInventoryService;
-import com.drp.util.StateAndMsg;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -69,10 +67,5 @@ public class InventoryService implements IInventoryService {
         if (empty)
             return null;
         return inventories;
-    }
-
-    public List<Inventory> pageByClientId(Integer clientId, Integer itemId, Integer currentPage) {
-        Integer pageSize = 10;
-        return inventoryRepository.pageByClientId(clientId, itemId, currentPage, pageSize);
     }
 }

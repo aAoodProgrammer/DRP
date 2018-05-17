@@ -22,10 +22,4 @@ public interface IItemService {
     Item findOne(Integer id);
 
     List<Item> findAll();
-    /**
-     * 图片管理
-     * @param file
-     */
-    //public void imgManage(MultipartFile file);
-
 }

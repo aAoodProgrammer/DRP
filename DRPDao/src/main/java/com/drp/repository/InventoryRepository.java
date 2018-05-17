@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.drp.repository;
 
 import java.util.List;
@@ -24,19 +21,19 @@ public interface InventoryRepository extends org.springframework.data.jpa.reposi
      * @param isVerify 商务代表是否确认
      * @return
      */
-    @Query("select i from Inventory i where i.isVerify=?1")
+    @Query( "select i from Inventory i where i.isVerify=?1" )
     List<Inventory> findByIsVerify(String isVerify);
 
 
-    @Query(value = "select * from t_inventory  where client_id=?1 and item_id=?2 limit ?3,?4", nativeQuery = true)
+    @Query( value = "select * from t_inventory  where client_id=?1 and item_id=?2 limit ?3,?4", nativeQuery = true )
     List<Inventory> pageByClientId(Integer clientId, Integer itemId, Integer currentPage, Integer pageSize);
 
-    @Query("select  i from Inventory i where i.clientId=?1 and i.itemId = ?2")
+    @Query( "select  i from Inventory i where i.clientId=?1 and i.itemId = ?2" )
     List<Inventory> findAllByClientIdAndItemId(Integer clientId, Integer itemId);
 
-    @Query("select i from Inventory i where i.itemId = ?1")
+    @Query( "select i from Inventory i where i.itemId = ?1" )
     List<Inventory> findAllByItemId(Integer itemId);
 
-    @Query("select i from Inventory i where i.clientId = ?1")
+    @Query( "select i from Inventory i where i.clientId = ?1" )
     List<Inventory> findAllByClientId(Integer clientId);
 }

@@ -25,10 +25,4 @@ public interface IUserService {
 
     //登录
     User login(String uName);
-
-    //修改密码
-    Object alterPassword(Integer uId, String password, String newPassword);
-
-    User findByUserCode(String userCode);
-
 }

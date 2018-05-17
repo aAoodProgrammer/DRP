@@ -3,6 +3,10 @@ package com.drp.util;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 分页Util
+ * @param <T>
+ */
 public class BasePage<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;

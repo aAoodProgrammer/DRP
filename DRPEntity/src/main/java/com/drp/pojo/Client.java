@@ -21,47 +21,47 @@ import javax.persistence.Table;
  * @date 2017年11月7日 上午11:43:42
  */
 @Entity
-@Table(name = "t_client")
+@Table( name = "t_client" )
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;            //分销商主键id
 
-    @Column(length = 40)            //,nullable=false
+    @Column( length = 40 )
     private String name;        //分销商名字
 
-    @Column(length = 10)
+    @Column( length = 10 )
     private String code;        //分销商代码
 
-    @Column(length = 30)
+    @Column( length = 30 )
     private String bankCardNum;    //银行卡号
 
-    @Column(length = 50)
+    @Column( length = 50 )
     private String address;        //地址
 
-    @Column(length = 15)
+    @Column( length = 15 )
     private String zipCode;        //邮编
 
-    @Column(length = 15)
+    @Column( length = 15 )
     private String contactTel;      //联系电话
 
-    @Column(length = 1, nullable = false)
+    @Column( length = 1, nullable = false )
     private String isLeaf;    //是否是叶子节点
 
-    @Column(length = 1, nullable = false)
+    @Column( length = 1, nullable = false )
     private String isClient;    //是否是分销商
 
     @ManyToOne()
-    @JoinColumn(name = "level_id")
+    @JoinColumn( name = "level_id" )
     private Category level;    //分销商界别
 
     @ManyToOne()
-    @JoinColumn(name = "upperId")
+    @JoinColumn( name = "upperId" )
     private Client client;        //上级区域id
 
-    @OneToMany(mappedBy = "client", cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
+    @OneToMany( mappedBy = "client", cascade = {CascadeType.REFRESH, CascadeType.REMOVE} )
     private Set<Client> clients;//分销商集合
 
     public Client() {
@@ -172,7 +172,6 @@ public class Client implements Serializable {
     public void setClients(Set<Client> clients) {
         this.clients = clients;
     }
-
 
 
     public Category getLevel() {

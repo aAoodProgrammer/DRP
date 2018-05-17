@@ -61,11 +61,11 @@
 				<thead>
 					<tr class="am-success">
 						<th class="table-check check_allFiscal"><input type="checkbox" /></th>
-						<th class="table-id">核算年</th>
-						<th class="table-id">核算月</th>
-						<th class="table-title">开始日期</th>
-						<th class="table-type">结束日期</th>
-						<th class="table-date am-hide-sm-only">是否核算</th>
+						<th>核算年</th>
+						<th>核算月</th>
+						<th>开始日期</th>
+						<th>结束日期</th>
+						<th>是否核算</th>
 					</tr>
 				</thead>
 				<tbody>

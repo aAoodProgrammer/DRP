@@ -6,7 +6,7 @@
     <!--配置Spring -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:bean-*.xml,classpath:spring-mvc.xml</param-value>
+        <param-value>classpath:bean-base.xml,classpath:spring-mvc.xml</param-value>
     </context-param>
 
     <!--配置shiro filter-name中的这个名字很重要 一会儿咋们还要在bean.xml中使用 -->

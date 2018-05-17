@@ -8,8 +8,6 @@
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
-
-
         http://www.springframework.org/schema/data/jpa 
         http://www.springframework.org/schema/data/jpa/spring-jpa-1.2.xsd
         http://www.springframework.org/schema/tx
@@ -47,22 +45,27 @@
         <!--配置的是JPA的实现产品中的其他的配置信息 -->
         <property name="jpaProperties">
             <props>
+                <!--自动创建表设置为更新-->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--不在控制台输出SQL-->
                 <prop key="hibernate.show_sql">false</prop>
+                <!--格式化控制台的sql-->
                 <prop key="hibernate.format_sql">true</prop>
+                <!--支持Mysql-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!--不使用hibernate的增强主键生成注解-->
                 <prop key="hibernate.id.new_generator_mappings">false</prop>
             </props>
         </property>
     </bean>
 
-    <!--配置我们的事务 -->
+    <!--配置jps对事务的支持 -->
     <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="dataSource" ref="dataSource"/>
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <!--应用我们的事务 -->
+    <!--应用事务 -->
     <tx:annotation-driven transaction-manager="jpaTransactionManager"/>
 
     <!--SpringData的配置 base-package:这个就是扫描的我们的dao的接口所在的地方 我们的dao接口最好写成 实体Repository的名字
@@ -112,8 +115,8 @@
     <!--配置我们的安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="customRealm"/>
-        <!--注入我们的缓存管理 -->
-        <property name="cacheManager" ref="cache"/>
+        <!--&lt;!&ndash;注入我们的缓存管理 &ndash;&gt;-->
+        <!--<property name="cacheManager" ref="cache"/>-->
         <!--注入我们的session管理器 -->
         <property name="sessionManager" ref="sessionManager"/>
         <!--注入我们的RememberMe的管理器 -->
@@ -134,18 +137,18 @@
         <property name="hashIterations" value="1"/>
     </bean>
 
-    <!--配置我们的缓存 -->
-    <!--配置我们的缓存管理器 这里不能按照以前的做法直接写类而是要使用Spring中的ehcache来解决这个问题 -->
-    <bean id="cache" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManager" ref="ehCacheManager"/>
-    </bean>
+    <!--&lt;!&ndash;配置我们的缓存 &ndash;&gt;-->
+    <!--&lt;!&ndash;配置我们的缓存管理器 这里不能按照以前的做法直接写类而是要使用Spring中的ehcache来解决这个问题 &ndash;&gt;-->
+    <!--<bean id="cache" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
+    <!--<property name="cacheManager" ref="ehCacheManager"/>-->
+    <!--</bean>-->
 
-    <!--配置的是我们Spring中的ehcache的使用 -->
-    <bean id="ehCacheManager"
-          class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-        <property name="configLocation" value="classpath:ehcache.xml"/>
-        <property name="shared" value="true"/>
-    </bean>
+    <!--&lt;!&ndash;配置的是我们Spring中的ehcache的使用 &ndash;&gt;-->
+    <!--<bean id="ehCacheManager"-->
+    <!--class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+    <!--<property name="configLocation" value="classpath:ehcache.xml"/>-->
+    <!--<property name="shared" value="true"/>-->
+    <!--</bean>-->
     <!--实现session的管理 -->
     <bean id="sessionManager"
           class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

@@ -18,38 +18,38 @@ import javax.persistence.Table;
  * @date 2017年11月7日 上午11:45:59
  */
 @Entity
-@Table(name = "t_flowCardDetail")
+@Table( name = "t_flowCardDetail" )
 public class FlowCardDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;            //流向单详情
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Integer id;              //流向单详情
 
-    @Column(length = 12, nullable = false)
-    private Integer oprateNum;    //操作数量
+    @Column( length = 12, nullable = false )
+    private Integer oprateNum;      //操作数量
 
-    @Column(length = 12)
-    private Integer adjustNum;    //调整数量
+    @Column( length = 12 )
+    private Integer adjustNum;       //调整数量
 
-    @Column(length = 30)
-    private String adjustReason;//调整原因
+    @Column( length = 30 )
+    private String adjustReason;    //调整原因
 
-    @Column(length = 1, nullable = false)
-    private String adjustFlag;//调整标识
+    @Column( length = 1, nullable = false )
+    private String adjustFlag;      //调整标识
 
-    @Column(length = 10)
-    private Integer aimClientId;//目标客户的id
+    @Column( length = 10 )
+    private Integer aimClientId;    //目标客户的id
 
-    @Column(length = 10)
-    private String clientType;//目标客户的id
+    @Column( length = 10 )
+    private String clientType;      //目标客户的id
 
     @ManyToOne()
-    @JoinColumn(name = "flowCardMain_Id")
+    @JoinColumn( name = "flowCardMain_Id" )
     private FlowCardMain flowCardMain;//流向单主信息id
 
     @ManyToOne()
-    @JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn( name = "item_id", nullable = false )
     private Item item;            //物料id
 
     public FlowCardDetail() {

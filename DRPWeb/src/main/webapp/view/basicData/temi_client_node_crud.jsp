@@ -57,14 +57,14 @@
 				<table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
 					<thead>
 						<tr class="am-success">
-							<th class="table-check"><input type="checkbox" /></th>
-							<th class="table-id">终端客户代码</th>
-							<th class="table-id">终端客户名称</th>
-							<th class="table-title">终端客户类型</th>
-							<th class="table-type">联系人</th>
-							<th class="table-date am-hide-sm-only">联系电话</th>
-							<th class="table-type">地址</th>
-							<th class="table-type">邮编</th>
+							<th><input type="checkbox" /></th>
+							<th>终端客户代码</th>
+							<th>终端客户名称</th>
+							<th>终端客户类型</th>
+							<th>联系人</th>
+							<th>联系电话</th>
+							<th>地址</th>
+							<th>邮编</th>
 						</tr>
 					</thead>
 					<tbody>

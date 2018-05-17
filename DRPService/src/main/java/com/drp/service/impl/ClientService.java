@@ -1,15 +1,12 @@
 package com.drp.service.impl;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.drp.dto.CategoryDto;
-import com.drp.pojo.Category;
 import com.drp.pojo.Client;
 import com.drp.repository.CategoryRepository;
 import com.drp.repository.ClientRepository;
@@ -74,23 +71,5 @@ public class ClientService implements IClientService {
         if (empty)
             return null;
         return clients;
-    }
-
-    /**
-     * 用于生成jsp页面的饼状图
-     *
-     * @return
-     */
-    public List<CategoryDto> findByClientLevel() {
-        List<Category> categories = categoryRepository.findCategoryByCategory(1);
-        List<CategoryDto> categoryDtos = new ArrayList<>();
-        for (Category category : categories) {
-            Object ob = clientRepository.findByCategory(category.getId());
-            CategoryDto categoryDtoTemp = new CategoryDto();
-            categoryDtoTemp.setNum(Integer.parseInt(ob.toString()));
-            categoryDtoTemp.setName(category.getName());
-            categoryDtos.add(categoryDtoTemp);
-        }
-        return categoryDtos;
     }
 }

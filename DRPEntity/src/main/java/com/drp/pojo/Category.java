@@ -18,30 +18,30 @@ import javax.persistence.Table;
  * @date 2017年11月7日 上午11:42:28
  */
 @Entity
-@Table(name = "t_type")
+@Table( name = "t_type" )
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;        //类别id
 
-    @Column(length = 10, nullable = false)
+    @Column( length = 10, nullable = false )
     private String name;    //具体类名
 
-    @Column(length = 2, nullable = false)
+    @Column( length = 2, nullable = false )
     private Integer category;//数据类型 （1,2,3,4）
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany( mappedBy = "category" )
     private Set<EndClient> endClient;
 
-    @OneToMany(mappedBy = "itemType")
+    @OneToMany( mappedBy = "itemType" )
     private Set<Item> itemTypes;
 
-    @OneToMany(mappedBy = "unitType")
+    @OneToMany( mappedBy = "unitType" )
     private Set<Item> itemUnits;
 
-    @OneToMany(mappedBy = "level")
+    @OneToMany( mappedBy = "level" )
     private Set<Client> clients;
 
     public Category() {

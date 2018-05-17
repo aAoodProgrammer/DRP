@@ -3,6 +3,7 @@ package com.drp.util;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 
 /**
@@ -31,16 +32,17 @@ public class Encryption {
             e.printStackTrace();
         }
         //BASE64Encoder base64en = new BASE64Encoder();
-        //newstr = base64en.encode(md5.digest(str.getBytes("utf-8")));
+        //newStr = base64en.encode(md5.digest(str.getBytes("utf-8")));
         //加密后的字符串
-        String newstr = null;
+        String newStr = null;
         try {
-            byte[] newbyte = md5.digest(str.getBytes("utf-8"));
-            newstr = newbyte.toString();
+            assert md5 != null;
+            byte[] newByte = md5.digest(str.getBytes("utf-8"));
+            newStr = Arrays.toString(newByte);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return newstr;
+        return newStr;
     }
 }

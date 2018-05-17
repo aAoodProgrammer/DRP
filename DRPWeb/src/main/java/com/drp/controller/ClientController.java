@@ -9,9 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.drp.dto.CategoryDto;
 import com.drp.pojo.Client;
 import com.drp.service.IClientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,24 +17,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author 刘江涛
  * @ClassName: UserController
- * @Description: 用户控制层
+ * @Description: 分销商控制层
  * @date 2017年11月1日 下午2:36:15
  */
 
 @Controller
-@RequestMapping("/client")
+@RequestMapping( "/client" )
 public class ClientController {
 
     @Resource
     private IClientService clientService;
 
-    @RequestMapping("getPie.action")
-    @ResponseBody
-    public List<CategoryDto> getClientPieData() {
-        return clientService.findByClientLevel();
-    }
-
-    @RequestMapping("/findAllClient.action")
+    @RequestMapping( "/findAllClient.action" )
     @ResponseBody
     public Boolean findAll(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -45,9 +37,9 @@ public class ClientController {
         return clients != null;
     }
 
-    @RequestMapping("/choiceOne.action")
+    @RequestMapping( "/choiceOne.action" )
     @ResponseBody
-    public Object choiceOne(@RequestParam("ids") String ids) {
+    public Object choiceOne(@RequestParam( "ids" ) String ids) {
         if (ids.length() == 0) {
             return 0;
         }

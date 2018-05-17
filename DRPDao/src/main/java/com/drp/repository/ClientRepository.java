@@ -1,9 +1,3 @@
-/**
- * @Title: ClientRepository.java
- * @Package com.qf.drp
- * @author 刘江涛    日期：2017年11月1日 上午9:06:39
- * @version V1.0
- */
 package com.drp.repository;
 
 import java.math.BigInteger;
@@ -30,7 +24,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      * @param upperId
      * @return
      */
-    @Query(value = "SELECT * FROM t_client WHERE upperId = ?", nativeQuery = true)
+    @Query( value = "SELECT * FROM t_client WHERE upperId = ?", nativeQuery = true )
     List<Client> queryByUpperId(Integer upperId);
 
     /**
@@ -45,7 +39,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      * @param zipCode     id
      */
     @Modifying
-    @Query(value = "update t_client set name = ?1, level_id =?2, bankCardNum = ?3, address = ?4, contactTel = ?5, zipCode = ?6 where id = ?7", nativeQuery = true)
+    @Query( value = "update t_client set name = ?1, level_id =?2, bankCardNum = ?3, address = ?4, contactTel = ?5, zipCode = ?6 where id = ?7", nativeQuery = true )
     void updateClient(String name, Integer level_id, String bankCardNum, String address, String contactTel, String zipCode, Integer id);
 
     /**
@@ -55,7 +49,7 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      * @param id
      */
     @Modifying
-    @Query(value = "update t_client set name = ?1 where id = ?2", nativeQuery = true)
+    @Query( value = "update t_client set name = ?1 where id = ?2", nativeQuery = true )
     void updateArea(String name, Integer id);
 
     /**
@@ -64,32 +58,8 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      *
      * @return
      */
-    @Query("select c from Client c where c.code like concat('%',?1,'%') or c.name like concat('%',?1,'%')")
+    @Query( "select c from Client c where c.code like concat('%',?1,'%') or c.name like concat('%',?1,'%')" )
     List<Client> queryLikeNoOrName(String codeName);
-
-    /**
-     * 查找所有的大区
-     *
-     * @return
-     */
-    @Query("select c from Client c where c.client.id = 1 and c.isClient = '否' and c.isLeaf = '否'")
-    List<Client> queryArea();
-
-    /**
-     * 查找所有的省份
-     *
-     * @return
-     */
-    @Query("select c from Client c where not c.client.id = 1 and c.isClient = '否' and c.isLeaf = '否'")
-    List<Client> queryProvince();
-
-    /**
-     * 查找所有的省份
-     *
-     * @return
-     */
-    @Query("select c from Client c where not c.client.id =1 and c.isClient = '否' and c.isLeaf = '否'")
-    List<Client> queryClient();
 
     /**
      * 通过id进行查找
@@ -97,10 +67,10 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      * @param id
      * @return
      */
-    @Query("select c from Client c where c.id = ?1")
+    @Query( "select c from Client c where c.id = ?1" )
     Client findById(Integer id);
 
-    @Query("select c from Client c where c.name = ?1")
+    @Query( "select c from Client c where c.name = ?1" )
     Client findAllByName(String name);
 
     /**
@@ -109,18 +79,8 @@ public interface ClientRepository extends org.springframework.data.jpa.repositor
      * @param code
      * @return
      */
-    @Query("select c from Client c where c.code = ?1")
+    @Query( "select c from Client c where c.code = ?1" )
     Client findByCode(String code);
-
-    /**
-     * 查询分销商级别为levelId的分销商数量
-     *
-     * @param levelId
-     * @return Integer 分销商级别为levelId的分销商数量
-     */
-    @Query(value = "SELECT count(level_id) FROM t_client WHERE level_id=?1 ", nativeQuery = true)
-    BigInteger findByCategory(Integer levelId);
-
 }
 
 
