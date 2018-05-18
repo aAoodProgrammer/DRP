@@ -1,7 +1,6 @@
 package com.drp.controller;
 
 import com.drp.dto.FlowCardDto;
-import com.drp.dto.InventoryDto;
 import com.drp.pojo.*;
 import com.drp.repository.ClientRepository;
 import com.drp.repository.FlowCardMainRepository;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

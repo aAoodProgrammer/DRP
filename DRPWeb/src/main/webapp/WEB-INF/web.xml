@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <!--配置Spring -->
+    <!--配置Spring 上下文关系 集成Web环境的通用配置-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:bean-base.xml,classpath:spring-mvc.xml</param-value>
@@ -14,7 +14,7 @@
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         <init-param>
-            <!--这句话的作用就是 实际上运行的过滤器 不是咋们上面申明的这一个 而是咋们bena.xml中申明的 -->
+            <!--这句话的作用就是 实际上运行的过滤器 不是咋们上面申明的这一个 而是咋们base-bean.xml中申明的 -->
             <param-name>targetFilterLifecycle</param-name>
             <param-value>true</param-value>
         </init-param>
@@ -56,6 +56,7 @@
         <filter-name>OpenSessionInViewFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping> -->
+    <!--解决懒加载-->
     <filter>
         <filter-name>openEntityManagerInViewFilter</filter-name>
         <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
@@ -69,7 +70,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--配置SpringMVC -->
+    <!--配置SpringMVC 前端控制器DispatcherServlet-->
     <servlet>
         <servlet-name>DispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -79,6 +80,7 @@
         </init-param>
     </servlet>
 
+    <!--servlet映射，这里配默认找url中带.action的路径-->
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>*.action</url-pattern>

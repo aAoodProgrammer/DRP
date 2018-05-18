@@ -33,7 +33,7 @@
     <bean id="hibernateJpaVendorAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
-    <!--创建我们的EntityManagerFactory的创建 -->
+    <!--创建EntityManagerFactory实体管理器工厂 -->
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <!--注入我们的数据源 -->

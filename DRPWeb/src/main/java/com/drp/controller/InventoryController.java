@@ -12,7 +12,6 @@ import com.drp.repository.ItemRepository;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.drp.pojo.Inventory;
 import com.drp.service.IInventoryService;
@@ -20,7 +19,6 @@ import com.drp.service.IInventoryService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.sound.midi.Soundbank;
 
 @RestController
 @RequestMapping("/inventory")
@@ -85,13 +83,13 @@ public class InventoryController {
     @RequestMapping("/deleteInventory.action")
     @ResponseBody
     public void delete(@RequestParam(value = "ids", required = false) String ids) {
-        if (ids.contains("-")) {
+        if (!ids.contains("-")) {
+            inventoryService.delete(Integer.parseInt(ids));
+        } else {
             String[] idArray = ids.split("-");
             for (String id : idArray) {
                 inventoryService.delete(Integer.parseInt(id));
             }
-        } else {
-            inventoryService.delete(Integer.parseInt(ids));
         }
     }
 

@@ -25,9 +25,6 @@ public class ClientService implements IClientService {
     @Resource
     private ClientRepository clientRepository;
 
-    @Resource
-    private CategoryRepository categoryRepository;
-
     @Override
     public Client add(Client client) {
         Client saveAndFlush = clientRepository.saveAndFlush(client);

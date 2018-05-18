@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.drp.dto.CategoryDto;
 import com.drp.pojo.Client;
 import com.drp.service.IClientService;
 import org.springframework.stereotype.Controller;

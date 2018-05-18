@@ -30,7 +30,7 @@ public class Client_NodeController {
     @Resource
     private ClientRepository clientRepository;
 
-    @RequestMapping( value = "/getClient_nodeAll.action", method = RequestMethod.GET )
+    @GetMapping( value = "/getClient_nodeAll.action" )
     @ResponseBody
     public String getClient_nodeAll() {
         List<Client> clientList = iClientService.findAll();
@@ -44,7 +44,7 @@ public class Client_NodeController {
         return jsonObject.toString();
     }
 
-    @RequestMapping( value = "/addClient_node.action", method = RequestMethod.POST )
+    @PostMapping( value = "/addClient_node.action" )
     @ResponseBody
     public String addClient_node(Client client) {
         client.setId(null);
@@ -81,14 +81,14 @@ public class Client_NodeController {
     /**
      * 根据物料id和名字查询
      *
-     * @return
+     * @return json对象
      */
     @GetMapping( "/findByClientCodeAndName.action" )
     @ResponseBody
     public String findByClientCodeAndName(String clientCodeOrName) {
         List<Client> clientList = iClientService.findAll();
         JSONObject jsonObject = new JSONObject();
-        JSONArray jsonArray = null;
+        JSONArray jsonArray;
         List<Client> clients = new ArrayList<>();
         //去掉外键
         JsonConfig jsonConfig = new JsonConfig();

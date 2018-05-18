@@ -33,7 +33,7 @@ public class CustomRealm extends AuthorizingRealm {
         return "customRealm";
     }
 
-    // 支持什么类型的token
+    // 支持什么类型的token，一般是UsernamePasswordToken
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof UsernamePasswordToken;
@@ -60,10 +60,11 @@ public class CustomRealm extends AuthorizingRealm {
                 getName());
     }
 
-    // 授权
+    // 授权 实际项目并没有做授权，这里只是模拟
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         // 获取身份信息
         User activeUser = (User) principals.getPrimaryPrincipal();
+        System.out.println(activeUser);
 
         // 根据用户id从数据库中查询权限数据
         // ....这里使用静态数据模拟

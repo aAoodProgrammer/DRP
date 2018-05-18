@@ -31,7 +31,7 @@ public class UserController implements Serializable {
     @Resource
     private IUserService userService;
 
-    @RequestMapping("login.action")
+    @RequestMapping( "login.action" )
     public String login(HttpServletRequest request, User user) {
         userService.login(user.getUserName());
         // 获取我们的错误信息
@@ -39,7 +39,7 @@ public class UserController implements Serializable {
         return "login";
     }
 
-    @RequestMapping("/findAll.action")
+    @RequestMapping( "/findAll.action" )
     @ResponseBody
     public String findAll() {
         List<User> users = userService.findAll();
@@ -56,7 +56,7 @@ public class UserController implements Serializable {
         return jsonObject.toString();
     }
 
-    @RequestMapping("/add.action")
+    @RequestMapping( "/add.action" )
     public String add(User user) {
         String userPassword = user.getUserPassword();
         Md5Hash md5Hash = new Md5Hash(userPassword, "drp", 10);
@@ -70,7 +70,7 @@ public class UserController implements Serializable {
         return "systemManager/user_maint";
     }
 
-    @RequestMapping("/update.action")
+    @RequestMapping( "/update.action" )
     public String update(User user) {
         Integer id = user.getuId();
         User byUserCode = userService.findOne(id);
@@ -84,23 +84,22 @@ public class UserController implements Serializable {
         return "systemManager/user_maint";
     }
 
-    @RequestMapping("/deleteUser.action")
+    @RequestMapping( "/deleteUser.action" )
     @ResponseBody
-    public void delete(@RequestParam(value = "ids", required = false) String ids) {
-        System.out.println(ids);
-        if (ids.contains("-")) {
-            String[] idArray = ids.split("-");
+    public void delete(@RequestParam( value = "ids", required = false ) String ids) {
+        if (!ids.contains("-")) {
+            userService.delete(Integer.parseInt(ids));
+        } else {
+            String[] idArray = "-".split(ids);
             for (String id : idArray) {
                 userService.delete(Integer.parseInt(id));
             }
-        } else {
-            userService.delete(Integer.parseInt(ids));
         }
     }
 
-    @RequestMapping("/user_findOne.action")
+    @RequestMapping( "/user_findOne.action" )
     @ResponseBody
-    public Integer findOne(@RequestParam("ids") String ids, HttpServletRequest request) {
+    public Integer findOne(@RequestParam( "ids" ) String ids, HttpServletRequest request) {
         if (ids.length() == 0) {
             return 0;
         }

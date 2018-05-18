@@ -12,8 +12,8 @@ import com.drp.pojo.User;
 public class IndexController {
 
     /**
-     * @param model
-     * @return
+     * @param model model
+     * @return 跳转页面
      */
     @RequestMapping( "first.action" )
     public String first(Model model) {

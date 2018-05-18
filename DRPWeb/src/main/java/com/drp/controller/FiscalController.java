@@ -32,7 +32,7 @@ public class FiscalController {
     /**
      * 获取Fiscal的所有信息
      *
-     * @return
+     * @return json对象
      */
     @RequestMapping( value = "/getFiscalAll.action", method = RequestMethod.GET )
     @ResponseBody
@@ -52,8 +52,8 @@ public class FiscalController {
     /**
      * 添加一个Fiscal
      *
-     * @param fiscal
-     * @return
+     * @param fiscal fiscal
+     * @return string
      */
     @RequestMapping( value = "/addFiscal.action", method = RequestMethod.POST )
     @ResponseBody
@@ -71,8 +71,8 @@ public class FiscalController {
     /**
      * 获取需要修改的Fiscal信息
      *
-     * @param id
-     * @return
+     * @param id id
+     * @return string
      */
     @RequestMapping( value = "/getOneFiscal.action", method = RequestMethod.GET )
     @ResponseBody
@@ -85,8 +85,8 @@ public class FiscalController {
     /**
      * 修改Fiscal
      *
-     * @param fiscal
-     * @return
+     * @param fiscal fiscal
+     * @return string
      */
     @RequestMapping( value = "/updateFiscal.action", method = RequestMethod.POST )
     @ResponseBody
